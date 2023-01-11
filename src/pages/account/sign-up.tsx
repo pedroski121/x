@@ -1,5 +1,5 @@
 import {SignUpForm} from '@components/account/sign-up/sign-up-form';
-import {RightSide} from '@components/account/right-side';
+import {RightSide} from '@components/account/sign-up/right-side';
 import styles from '@components/account/account.module.css'
 
 const SignUp = () => {
