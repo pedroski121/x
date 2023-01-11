@@ -1,6 +1,8 @@
 import { NavBar } from "@components/app/navbar"
-export default function () {
-  return <>
+const Home = () => {
+  return (<>
     <NavBar/>
-  </>
+  </>)
 }
+
+export default Home

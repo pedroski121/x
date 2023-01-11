@@ -9,7 +9,7 @@ const SignUpForm = () => {
       <div className={`p-3 ${styles.sign_up_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
       <h1>Welcome to X</h1>
-      <p className='text-secondary'>Sign up to start Shopping</p>
+      <p className='text-secondary'>Your No.1 stop for fashion</p>
          </div>
          <form data-testid="sign-up-form">
             <div className="mb-3">
