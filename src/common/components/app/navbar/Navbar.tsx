@@ -3,10 +3,10 @@ import Link from 'next/link'
 
 export const NavBar = () => {
     return (<>
- <nav className="py-2 bg-light border-bottom">
+ <nav className="py-2 bg-light border-bottom" data-testid="nav_bar">
     <div className="container d-flex flex-wrap justify-content-between">
-    <a href="/" className="d-flex align-items-center  mb-lg-0 me-lg-auto text-dark text-decoration-none">
-        <span className="fs-4 fw-bold">X</span>
+      <a href="/" className="d-flex align-items-center  mb-lg-0 me-lg-auto text-dark text-decoration-none">
+         <span className="fs-4 fw-bold">X</span>
       </a>
       <ul className="nav">
          <li className="nav-item"><a href="#" className="nav-link link-dark px-2">My Account</a></li>
@@ -20,8 +20,6 @@ export const NavBar = () => {
                <a className="nav-link link-dark px-2">Sign In</a>
             </Link>
          </li>
-
-
       </ul>
     </div>
  </nav>
@@ -32,6 +30,6 @@ export const NavBar = () => {
          <li className="nav-item"><a href="#" className="nav-link link-light px-2">Women</a></li>
       </ul>
     </div>
-  </header>
+ </header>
 </>)
 }

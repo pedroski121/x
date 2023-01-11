@@ -1,0 +1,18 @@
+.side {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sign_up_form {
+    width: 75%;
+}
+.input_type:focus  {
+    border: 1px solid gray;
+}
+
+.custom_checkbox:checked, .custom_checkbox:after{
+    background-color: black !important;
+}
+.custom_checkbox {
+    border: 1px solid black !important;
+}
