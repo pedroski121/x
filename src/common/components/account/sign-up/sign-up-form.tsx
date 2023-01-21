@@ -1,66 +1,93 @@
 import React,{useState} from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import axios, {AxiosResponse} from 'axios';
 import accountStyles from '@components/account/account.module.css';
 import { ToHomeIcon } from '@components/ToHomeIcon';
 import { dancingScript} from '@utils/font';
 import styles from './sign-up-form.module.css';
-import Link from 'next/link';
 
 const SignUpForm = () => {
   const [fullName, setFullName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [spinner, setSpinner] = useState<boolean>(false);
+
+  const [accountInValidityMessage, setAccountInValidityMessage] = useState<string>('');
+  const [passwordInValidityMessage, setPasswordInvalidityMessage] = useState<string>('');
+  const [fullNameInValidityMessage, setFullNameInValidityMessage] = useState<string>('');
   const router = useRouter();
+  
   async function handleSignUpFormSumbit(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSpinner(true);
+    setSpinner(true); 
+    setAccountInValidityMessage(''); setPasswordInvalidityMessage(''); setFullNameInValidityMessage('')
     const data = {email, fullName, password};
-    await axios.post('http://localhost:5000/api/auth/sign-up', data).then((response: AxiosResponse)=>{
-      console.log(response.data[0].message)
-      router.push('/account/sign-in')
-    }).catch((err)=>{
-      console.log(err)
-    })
-    setSpinner(false);
-    setEmail(''); setPassword('');
-    
-  }
 
+    await axios.post('http://localhost:5000/api/auth/sign-up', data)
+    .then((response: AxiosResponse)=>{
+      router.push('/account/sign-in')
+    })
+    .catch((err)=>{
+      err.response.data.map((obj:{message:'string', success:boolean, field?:string})=>{
+        if(obj.field == 'password'){
+          setPasswordInvalidityMessage(obj.message)
+        }
+        else if (obj.field == 'email') {
+          setAccountInValidityMessage(obj.message)
+        }
+        else if(obj.field == 'fullName') {
+          setFullNameInValidityMessage(obj.message)
+        }
+        else {
+          setPasswordInvalidityMessage(obj.message); setAccountInValidityMessage(obj.message); setFullName(obj.message);
+        }
+      })
+    });
+    setSpinner(false); setEmail(''); setPassword(''); setFullName('');
+  }
     return (
     <div className={`d-flex flex-column justify-content-between ${accountStyles.side}`}>
       <ToHomeIcon/>
-      <div className={`p-3 ${styles.sign_up_form} align-self-center`}>
+      <div className={`p-1 ${styles.sign_up_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
-      <h1>Welcome to X</h1>
+      <h1>Welcome</h1>
       <p className='text-secondary'>Fashion in a way you never imagined</p>
          </div>
-         <form data-testid="sign-up-form" onSubmit={handleSignUpFormSumbit}>
-            <div className="mb-3">
+         <form data-testid="sign-up-form" onSubmit={handleSignUpFormSumbit} noValidate>
+            <div className="mb-1">
               <label htmlFor="fullName" className="form-label fw-bold">Full Name</label>
               <input type="text" value={fullName} onChange={e=>setFullName(e.target.value)} 
-              className={`form-control rounded-0 shadow-none ${styles.input_type}`} id="fullName" aria-describedby="what full Name"/>
+              className={`form-control ${fullNameInValidityMessage.length == 0 ? '' :' is-invalid'}  rounded-0 shadow-none ${styles.input_type}`} id="fullName" aria-describedby="what full Name"/>
+                               <div  className="invalid-feedback">
+                    {fullNameInValidityMessage}
+                    </div>
             </div>
 
-            <div className="mb-3">
+            <div className="mb-1">
               <label htmlFor="email" className="form-label fw-bold">Email</label>
               <input type="email" value={email} onChange={e => setEmail(e.target.value)} 
-              className={`form-control rounded-0 shadow-none ${styles.input_type}`} id="email" aria-describedby="emailHelp"/>
+              className={`form-control ${accountInValidityMessage.length==0 ? '' :' is-invalid'} rounded-0 shadow-none ${styles.input_type}`} id="email" aria-describedby="emailHelp"/>
+                    <div  className="invalid-feedback">
+                    {accountInValidityMessage}
+                    </div>
             </div>
-            <div className="mb-3">
+            <div className="mb-1">
               <label htmlFor="password" className="form-label fw-bold">Password</label>
               <input type="password" value={password} onChange={e => setPassword(e.target.value)}
-              className={`form-control rounded-0 shadow-none ${styles.input_type}`} id="password"/>
+              className={`form-control rounded-0 ${passwordInValidityMessage.length == 0 ? '' :' is-invalid'} shadow-none ${styles.input_type}`} id="password"/>
+               <div  className="invalid-feedback">
+                    {passwordInValidityMessage}
+                    </div>
             </div>
-            <div className='row p-2 d-flex align-content-between'>
+            <div className='row p-1 d-flex align-content-between'>
             <div className="mb-3 form-check col-6">
               <input type="checkbox" className={`form-check-input ${styles.custom_checkbox} shadow-none border-0`} id="check"/>
               <label className="form-check-label" htmlFor="check">Remember Me</label>
             </div>
 
             </div>
-            <div className='d-grid gap-2'>
+            <div className='d-grid gap-1'>
                 <button type="submit" role="signUp" className="btn btn-dark rounded-0">Sign Up  &nbsp;
                 <span className={spinner ? "spinner-border spinner-border-sm" : "invisible"} role="status" aria-hidden="true"> </span>
                 </button>
@@ -70,8 +97,8 @@ const SignUpForm = () => {
       </div>
       <p className='align-self-center'><span className='text-secondary'>Have an account? </span> 
       <Link href="/account/sign-in" legacyBehavior>
-        <a className='link-dark pe-auto'>Sign In</a>
-        </Link>
+          <a className='link-dark pe-auto'>Sign In</a>
+      </Link>
       </p>
     </div>
  )

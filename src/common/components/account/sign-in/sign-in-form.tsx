@@ -61,7 +61,7 @@ const SignInForm = () => {
             </div>
          </form>
       </div>
-      <p className='align-self-center'><span className='text-secondary'>Don't have an account? </span> 
+      <p className='align-self-center'><span className='text-secondary'>{`Don't have an account? `}</span> 
       <Link href="/account/sign-up" legacyBehavior>
         <a className='link-dark pe-auto'>Sign Up</a>
         </Link>
