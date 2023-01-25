@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { ToHomeIcon } from '@components/ToHomeIcon'
+import { ToHomeIcon } from '@components/HomeIcon'
 
 export const NavBar = () => {
     return (<>
@@ -8,10 +8,6 @@ export const NavBar = () => {
     <div className="container d-flex flex-wrap justify-content-between">
       <ToHomeIcon/>
       <ul className="nav">
-         <li className="nav-item">
-         <Link href="/account/sign-up" legacyBehavior>
-            <a className="nav-link link-dark px-2">My Account</a></Link>
-         </li>
          <li className="nav-item">
             <Link href="/account/sign-up" legacyBehavior>
                <a className="nav-link link-dark px-2">Sign Up</a>

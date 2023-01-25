@@ -1,13 +1,14 @@
-import React,{useState} from 'react';
+import React,{useState, useReducer} from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import axios, {AxiosResponse} from 'axios';
-import accountStyles from '@components/account/account.module.css';
-import { ToHomeIcon } from '@components/ToHomeIcon';
-import { dancingScript} from '@utils/font';
+import {AxiosResponse} from 'axios';
 import styles from './sign-up-form.module.css';
-
+import { axiosInstance } from '@utils/axiosInstance';
+import accountStyles from '@components/account/account.module.css';
+import { ToHomeIcon } from '@components/HomeIcon';
+import { dancingScript} from '@utils/font';
 const SignUpForm = () => {
+
   const [fullName, setFullName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -24,12 +25,12 @@ const SignUpForm = () => {
     setAccountInValidityMessage(''); setPasswordInvalidityMessage(''); setFullNameInValidityMessage('')
     const data = {email, fullName, password};
 
-    await axios.post('http://localhost:5000/api/auth/sign-up', data)
+    await axiosInstance.post('http://localhost:5000/api/auth/sign-up', data)
     .then((response: AxiosResponse)=>{
       router.push('/account/sign-in')
     })
     .catch((err)=>{
-      err.response.data.map((obj:{message:'string', success:boolean, field?:string})=>{
+      err.response?.data.map((obj:{message:'string', success:boolean, field?:string})=>{
         if(obj.field == 'password'){
           setPasswordInvalidityMessage(obj.message)
         }
@@ -72,20 +73,13 @@ const SignUpForm = () => {
                     {accountInValidityMessage}
                     </div>
             </div>
-            <div className="mb-1">
+            <div className="mb-3">
               <label htmlFor="password" className="form-label fw-bold">Password</label>
               <input type="password" value={password} onChange={e => setPassword(e.target.value)}
               className={`form-control rounded-0 ${passwordInValidityMessage.length == 0 ? '' :' is-invalid'} shadow-none ${styles.input_type}`} id="password"/>
                <div  className="invalid-feedback">
                     {passwordInValidityMessage}
                     </div>
-            </div>
-            <div className='row p-1 d-flex align-content-between'>
-            <div className="mb-3 form-check col-6">
-              <input type="checkbox" className={`form-check-input ${styles.custom_checkbox} shadow-none border-0`} id="check"/>
-              <label className="form-check-label" htmlFor="check">Remember Me</label>
-            </div>
-
             </div>
             <div className='d-grid gap-1'>
                 <button type="submit" role="signUp" className="btn btn-dark rounded-0">Sign Up  &nbsp;
