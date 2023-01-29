@@ -18,6 +18,11 @@ export const NavBar = () => {
                <a className="nav-link link-dark px-2">Sign In</a>
             </Link>
          </li>
+         <li className="nav-item">
+            <Link href="/account/admin" legacyBehavior>
+               <a className="nav-link link-dark px-2">Admin</a>
+            </Link>
+         </li>
       </ul>
     </div>
  </nav>

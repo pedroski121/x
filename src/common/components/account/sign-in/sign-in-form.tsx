@@ -52,9 +52,9 @@ const SignInForm = () => {
       <div className={`p-3 ${styles.sign_in_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
       <h1>Welcome back</h1>
-      <p className='text-secondary'>Fashion in a way you never imagined</p>
+      <p className='text-secondary'>Stay ahead of the fashion curve with our latest collection</p>
          </div>
-         <form data-testid="sign-in-form" onSubmit={handleSignInFormSumbit}>
+         <form data-testid="sign-in-form" onSubmit={handleSignInFormSumbit} noValidate>
             <div className="mb-3">
               <label htmlFor="email" className="form-label fw-bold">Email</label>
               <input type="email" value={email} onChange={e => setEmail(e.target.value)} 

@@ -53,7 +53,7 @@ const SignUpForm = () => {
       <div className={`p-1 ${styles.sign_up_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
       <h1>Welcome</h1>
-      <p className='text-secondary'>Fashion in a way you never imagined</p>
+      <p className='text-secondary'>Elevate your style with our latest fashion finds.</p>
          </div>
          <form data-testid="sign-up-form" onSubmit={handleSignUpFormSumbit} noValidate>
             <div className="mb-1">
