@@ -6,8 +6,7 @@ import { useRouter } from 'next/router';
 
 const RightSide =() =>{
     const router = useRouter();
-    console.log(router.pathname)
-    return (
+   return (
         <>
             <div className={styles.bgWrap}>
       <Image

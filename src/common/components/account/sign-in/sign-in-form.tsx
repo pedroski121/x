@@ -25,7 +25,6 @@ const SignInForm = () => {
     dispatch({type:ACTION_KIND.CHANGE_PSWD_INVALID_MESSAGE,payload:''})
 
     const data = {email, password};
-
     await axiosInstance.post('api/auth/sign-in', data)
     .then((response: AxiosResponse)=>{
       router.push('/')
