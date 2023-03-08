@@ -25,7 +25,7 @@ const SignUpForm = () => {
     setAccountInValidityMessage(''); setPasswordInvalidityMessage(''); setFullNameInValidityMessage('')
     const data = {email, fullName, password};
 
-    await axiosInstance.post('https://x-backend-service.onrender.com/api/auth/sign-up', data)
+    await axiosInstance.post('/api/auth/sign-up', data)
     .then((response: AxiosResponse)=>{
       router.push('/account/sign-in')
     })
