@@ -9,7 +9,7 @@ export const NavBar = () => {
       <ToHomeIcon iconColor='text-dark'/>
       <ul className="nav">
          <li className="nav-item">
-            <Link href="#" legacyBehavior>
+            <Link href="/" legacyBehavior>
                <a className="nav-link link-dark px-2">Cart</a>
             </Link>
          </li>

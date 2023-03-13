@@ -19,7 +19,8 @@
       "@components/*":["src/common/components/*"],
       "@utils/*":["src/common/utils/*"],
       "@modules/*":["src/modules/*"],
-      "@types/*":["src/types/*"]
+      "@types/*":["src/types/*"],
+      "@hooks/*":["src/hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
