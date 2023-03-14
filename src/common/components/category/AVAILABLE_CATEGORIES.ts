@@ -1,4 +1,6 @@
 export enum AVAILABLE_CATEGORIES {
     MEN = 'men',
-    WOMEN = 'women'
+    WOMEN = 'women',
+    CHILDREN = 'children',
+    OKRIKA = 'okrika'
 }

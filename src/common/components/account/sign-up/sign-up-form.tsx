@@ -5,7 +5,7 @@ import {AxiosResponse} from 'axios';
 import styles from './sign-up-form.module.css';
 import { axiosInstance } from '@utils/axiosInstance';
 import accountStyles from '@components/account/account.module.css';
-import { ToHomeIcon } from '@components/HomeIcon';
+import { HomeIcon } from '@components/HomeIcon';
 import { dancingScript} from '@utils/font';
 const SignUpForm = () => {
 
@@ -49,7 +49,7 @@ const SignUpForm = () => {
   }
     return (
     <div className={`d-flex flex-column justify-content-between ${accountStyles.side}`}>
-      <ToHomeIcon/>
+      <HomeIcon/>
       <div className={`p-1 ${styles.sign_up_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
       <h1>Welcome</h1>

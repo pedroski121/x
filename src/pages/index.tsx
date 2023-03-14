@@ -10,13 +10,13 @@ const Home = () => {
     <HomePageCard name="MEN" imageURL="/suit.jpg" link="/categories/men" altText="men card"/>
   </div>
   <div className="col-xs-12 col-sm-6 p-4">
-    <HomePageCard name="WOMEN" imageURL="/african-women.jpg" link="/" altText="women card"/>
+    <HomePageCard name="WOMEN" imageURL="/african-women.jpg" link="/categories/women" altText="women card"/>
   </div>
   <div className="col-xs-12 col-sm-6 p-4">
-    <HomePageCard name="CHILDREN" imageURL="/child.jpg" link="/" altText="children card"/>
+    <HomePageCard name="CHILDREN" imageURL="/child.jpg" link="/categories/children" altText="children card"/>
   </div>
   <div className="col-xs-12 col-sm-6 p-4">
-    <HomePageCard name="OKIRIKA" imageURL="/okirika.jpg" link="/" altText="okirika card"/>
+    <HomePageCard name="OKRIKA" imageURL="/okirika.jpg" link="/categories/okrika" altText="okrika card"/>
   </div>
   </div>
   <Footer/>

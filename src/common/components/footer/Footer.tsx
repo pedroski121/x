@@ -1,10 +1,10 @@
-import { ToHomeIcon } from "@components/HomeIcon"
+import { HomeIcon } from "@components/HomeIcon"
 export const Footer = () =>{
     return <>
 <footer className="footer mt-auto py-3 bg-dark">
   <div className="container">
     <section className="row">
-        <section className="col-md-6"><ToHomeIcon iconColor="text-secondary"/></section>
+        <section className="col-md-6"><HomeIcon iconColor="text-secondary"/></section>
         <section className="col-md-6 fw-bold text-secondary">
             <h5>Contact Us</h5>
             <p><span className="bi bi-telephone-fill "></span> +234 810 000 0000</p>

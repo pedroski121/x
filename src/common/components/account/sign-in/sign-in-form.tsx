@@ -3,7 +3,7 @@ import Link from 'next/link';
 import  { useRouter } from 'next/router';
 import {AxiosResponse} from 'axios';
 import accountStyles from '@components/account/account.module.css';
-import { ToHomeIcon } from '@components/HomeIcon';
+import { HomeIcon } from '@components/HomeIcon';
 import { dancingScript} from '@utils/font';
 import { axiosInstance } from '@utils/axiosInstance';
 import styles from './sign-in-form.module.css';
@@ -47,7 +47,7 @@ const SignInForm = () => {
   }
     return (
     <div className={`d-flex flex-column justify-content-between ${accountStyles.side}`}>
-   <ToHomeIcon iconColor='text-dark'/>
+   <HomeIcon iconColor='text-dark'/>
       <div className={`p-3 ${styles.sign_in_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
       <h1>Welcome back</h1>
