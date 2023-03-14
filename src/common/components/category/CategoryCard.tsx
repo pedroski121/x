@@ -18,7 +18,7 @@ export const CategoryCard:FC<ICategoryCard> = ({ImgSrc,QueryString,AltText="imag
                      <Image src={ImgSrc} alt={AltText} width={300} height={200} layout="responsive" className="card-img" objectFit="cover"/>
 
                      <div className="card-body">
-                        <Link href={{pathname:`/products/${CategoryName}`,query:{"sub-category":QueryString} }} className="stretched-link text-decoration-none text-dark">
+                        <Link href={{pathname:`/categories/${CategoryName}/${QueryString}` }} className="stretched-link text-decoration-none text-dark">
                             <p className="card-text fw-bold">{SubCategoryName}</p>
                         </Link>
                      </div>
