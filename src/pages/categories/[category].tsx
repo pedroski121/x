@@ -1,27 +1,70 @@
+import { FC } from "react";
 import { NavBar } from "@components/navbar";
 import { Footer } from "@components/footer";
-import { BreadCrumbNav, CategoryCard} from "@components/category";
+import {CategoryCard, BreadCrumbNav } from "@components/category";
 import { useDynamicPath } from "@hooks/useDynamicPath";
+import { GetStaticPaths, GetStaticProps } from "next";
 
+interface paths {
+  _id:string,
+  name:string,
+  imgURL:string,
+  subCategories:{_id:string,name:string, imgURL:string}[],
+}
 
-const Category = () => { 
-const currentPage = useDynamicPath()
+interface ICategory {
+  categoriesPaths:paths[]
+}
+
+const Category:FC<ICategory> = ({categoriesPaths}) => {
+    const pages = useDynamicPath(); 
+    const currentPageName = pages[pages.length - 1]
+    const currentCategory = categoriesPaths.filter(path => path.name == currentPageName)[0]
+    const subCategories = currentCategory.subCategories
+    
     return (
         <>
           <NavBar/>
           <div className="container-fluid">
-            <BreadCrumbNav pages={currentPage}/>
+          <BreadCrumbNav pages={pages}/>
+
             <div className="row mt-1 mb-4">
-                <CategoryCard ImgSrc="/men/all.jpg" QueryString="all" SubCategoryName="All" CategoryName={currentPage[currentPage.length-1]}/>
-                <CategoryCard ImgSrc="/men/suit.jpg" QueryString="suits" SubCategoryName="Suits" CategoryName={currentPage[currentPage.length-1]}/>
-                <CategoryCard ImgSrc="/men/senator.jpg" QueryString="senators" SubCategoryName="Senators" CategoryName={currentPage[currentPage.length-1]}/>
-                <CategoryCard ImgSrc="/men/shoes.jpg" QueryString="shoes" SubCategoryName="Shoes" CategoryName={currentPage[currentPage.length-1]}/>   
-                <CategoryCard ImgSrc="/men/watches.jpg" QueryString="watches" SubCategoryName="Watches" CategoryName={currentPage[currentPage.length-1]}/>
-                <CategoryCard ImgSrc="/men/perfumes.jpg" QueryString="perfumes" SubCategoryName="Perfumes" CategoryName={currentPage[currentPage.length-1]}/>
-            </div>
+              {
+               subCategories.map((category)=>{
+                  return <CategoryCard key={category._id}imgSrc="/men/all.jpg" queryString={category.name} subCategoryName={category.name} categoryName={currentCategory.name}/>
+                })
+              }
+                {/* <CategoryCard imgSrc="/men/all.jpg" queryString="all" subCategoryName="All" categoryName={pages[pages.length-1]}/> */}
+           </div>
           </div>
           <Footer/>
         </>
     )
 }
+
+const getStaticProps:GetStaticProps = async () =>  {
+  const res = await fetch(`${process.env.SERVER}/api/category/all`)
+                .then((res)=>{
+                  return res.json();
+                })
+                .catch((err)=>{
+                  console.log(err)
+                })
+   return { props: {categoriesPaths:res} }
+ }
+
+const getStaticPaths:GetStaticPaths = async () =>{
+    const res = await fetch(`${process.env.SERVER}/api/category/all`);
+    const categories = await res.json();
+    const categoriesPath = categories.map((category:any)=>({
+      params:{category:category.name}
+    }));
+  return {
+    paths: categoriesPath,
+    fallback:false
+  }
+}
+
+
+export {getStaticPaths, getStaticProps}
 export default Category

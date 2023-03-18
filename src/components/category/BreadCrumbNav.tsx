@@ -9,10 +9,11 @@ const BreadCrumbNav:FC<IBreadCrumbNav> = ({pages}) => {
     return (
         <>
            <header className="d-flex flex-wrap justify-content-center py-2 border-bottom ">
-           <div className=" mb-1 mb-md-0 me-md-auto text-dark text-decoration-none">
+           <div className=" mb-1 mb-md-0 me-auto text-dark text-decoration-none">
            <nav aria-label="breadcrumb">
               <ol className="breadcrumb">
-                <li className="breadcrumb-item"><Link href="/" className="link-dark">Home</Link></li>
+                <li className="breadcrumb-item">
+                  <Link href="/" className="link-dark">Home</Link></li>
                 {
                   pages.map((page,index)=>{
                     

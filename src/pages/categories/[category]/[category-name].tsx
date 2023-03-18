@@ -6,9 +6,11 @@ const CategoryProducts = () => {
   const paths = useDynamicPath()
     return (
         <>
-          <NavBar/>
-          <BreadCrumbNav pages={paths}/>
 
+          <NavBar/>
+          <div className="container-fluid">
+          <BreadCrumbNav pages={paths}/>
+</div>
         </>
     )
 }
