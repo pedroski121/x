@@ -1,4 +1,4 @@
-import React,{useState, useReducer} from 'react';
+import React,{useState} from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {AxiosResponse} from 'axios';
