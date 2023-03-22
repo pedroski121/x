@@ -10,7 +10,7 @@ export const NavBar = () => {
       <ul className="nav">
          <li className="nav-item">
             <Link href="/" className='nav-link link-dark px-2'>
-             Cart
+             Bag
             </Link>
          </li>
          <li className="nav-item dropdown">

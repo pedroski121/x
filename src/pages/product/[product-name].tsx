@@ -5,6 +5,7 @@ const Product:NextPage = () =>{
     return (
         <>
             <NavBar/>
+
         </>
     )
 }
