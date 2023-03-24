@@ -1,5 +1,4 @@
 import { LeftSide } from './left-side';
-import { ProductCarousal } from './right-side/ProductCarousel';
 import { RightSide } from './right-side/RightSide';
 
 const ProductDetails = () => {
