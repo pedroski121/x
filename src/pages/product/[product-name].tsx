@@ -1,11 +1,11 @@
 import { NavBar } from "@components/navbar"
 import { NextPage } from "next"
-
-const Product:NextPage = () =>{
+import { ProductDetails } from "@components/product-details"
+const Product: NextPage = () => {
     return (
         <>
-            <NavBar/>
-
+            <NavBar />
+            <ProductDetails />
         </>
     )
 }
