@@ -22,6 +22,7 @@ const BreadCrumbNav: FC<IBreadCrumbNav> = ({ pages }) => {
 
                   // use the list of dynamic pages upto the current page and turns it into a string, that the Link tag can easily navigates to 
                   let currentRoute = pages.slice(0, index + 1).toString().replace(',', '/')
+                  console.log(currentRoute)
                   // breadcrumb dynamic links for pages visited in order
                   return <Link href={`/categories/${currentRoute}`} key={`${index}${page}`} className={`breadcrumb-item ${activePage ? 'active text-decoration-none' : 'link-dark'} text-capitalize `} aria-current="page">{page}</Link>
                 })

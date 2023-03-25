@@ -15,18 +15,14 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="col-xs-12 col-sm-6 pe-1 mt-3 ">
-        <HomePageCard name="MEN" imageURL="/suit.jpg" link="/categories/men" altText="men card" />
-      </div>
-      <div className="col-xs-12 col-sm-6 pe-1 mt-3">
-        <HomePageCard name="WOMEN" imageURL="/african-women.jpg" link="/categories/women" altText="women card" />
-      </div>
-      <div className="col-xs-12 col-sm-6 mt-3 pe-1">
-        <HomePageCard name="UNISEX" imageURL="/men/all.jpg" link="/categories/unisex" altText="unisex card" />
-      </div>
-      <div className="col-xs-12 col-sm-6 mt-3 pe-1">
-        <HomePageCard name="OKRIKA" imageURL="/okirika.jpg" link="/categories/okrika" altText="okrika card" />
-      </div>
+
+      <HomePageCard name="MEN" imageURL="/suit.jpg" link="/categories/men" altText="men card" />
+
+      <HomePageCard name="WOMEN" imageURL="/african-women.jpg" link="/categories/women" altText="women card" />
+
+      <HomePageCard name="UNISEX" imageURL="/men/all.jpg" link="/categories/unisex" altText="unisex card" />
+
+      <HomePageCard name="OKRIKA" imageURL="/okirika.jpg" link="/categories/okrika" altText="okrika card" />
     </div>
     <Footer />
   </div>
