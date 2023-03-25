@@ -1,14 +1,7 @@
-import Link from "next/link"
 import { FC } from "react";
+import Link from "next/link";
 import Image from "next/legacy/image";
-
-interface ICategoryCard {
-    imgSrc: string;
-    queryString: string;
-    categoryName: string;
-    subCategoryName: string;
-    altText?: string;
-}
+import { ICategoryCard } from "./types";
 
 export const CategoryCard: FC<ICategoryCard> = ({ imgSrc, queryString, altText = "image goes here", subCategoryName, categoryName }) => {
     return (

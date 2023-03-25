@@ -1,7 +1,8 @@
 import { NextPage } from "next";
 import { NavBar } from "@components/navbar";
 import { Footer } from "@components/footer";
-import { CategoryCard, BreadCrumbNav } from "@components/category";
+import { CategoryCard } from "@components/category";
+import { BreadCrumbNav } from "@components/BreadCrumbNav";
 import { useDynamicPath } from "@hooks/useDynamicPath";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getStaticPaths as getStaticPathsFn, getStaticProps as getStaticPropsFn } from "@lib/categoryPageDataFetch";

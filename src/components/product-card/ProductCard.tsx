@@ -2,13 +2,9 @@ import { useState, FC, MouseEvent } from "react";
 import Link from "next/link";
 import { dancingScript } from "@utils/font";
 import ProductCardCss from './ProductCard.module.css';
+import Image from "next/legacy/image";
+import { IProductCard } from "./types";
 
-interface IProductCard {
-  title: string,
-  price: number,
-  imgURL: string,
-  altText?: string,
-}
 
 const ProductCard: FC<IProductCard> = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);
@@ -22,7 +18,7 @@ const ProductCard: FC<IProductCard> = (props) => {
     <div className="col-6 col-md-3 pb-2">
       <div className="card ">
         <Link href={{ pathname: `/product/${props.title.replaceAll(' ', '-')}` }} className=" text-decoration-none text-dark">
-          <img src={props.imgURL} className="card-img-top " alt={props.altText} />
+          <Image src={props.imgURL} alt={props.altText} width={300} height={200} layout="responsive" className="card-img" objectFit="cover" />
         </Link>
         <div className="card-body">
 

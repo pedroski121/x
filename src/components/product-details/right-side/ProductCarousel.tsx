@@ -1,3 +1,4 @@
+import Image from "next/legacy/image"
 
 const ProductCarousal = () => {
     return (<>
@@ -10,13 +11,13 @@ const ProductCarousal = () => {
             </div>
             <div className={`carousel-inner`}>
                 <div className={`carousel-item active`}>
-                    <img src="/men/watches.jpg" className="d-block w-100 object-fit-cover" alt="..." />
+                    <Image src="/men/watches.jpg" alt='...' width={300} height={200} layout="responsive" objectFit="cover" />
                 </div>
                 <div className={`carousel-item`}>
-                    <img src="/men/all.jpg" className="d-block w-100 object-fit-cover" alt="..." />
+                    <Image src="/women/african-women.jpg" alt='...' width={300} height={200} layout="responsive" objectFit="cover" />
                 </div>
                 <div className={`carousel-item  `}>
-                    <img src="/okirika.jpg" className="d-block w-100" alt="..." />
+                    <Image src="/men/all.jpg" alt='...' width={300} height={200} layout="responsive" objectFit="cover" />
                 </div>
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouseIndicators" data-bs-slide="prev">

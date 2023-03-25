@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { HomeIcon } from '@components/HomeIcon'
+import NavbarCss from './NavBar.module.css';
 
 export const NavBar = () => {
    return (<>
@@ -8,10 +9,11 @@ export const NavBar = () => {
          <div className="container d-flex flex-wrap justify-content-between">
             <HomeIcon iconColor='text-dark' />
             <ul className="nav">
-               <li className="nav-item">
+               <li className="nav-item position-relative">
                   <Link href="/" className='nav-link link-dark px-2'>
-                     Bag
+                     Bag<sup className={`${NavbarCss.dot}`}>•</sup>
                   </Link>
+
                </li>
                <li className="nav-item dropdown">
                   <Link href="#" className="nav-link dropdown-toggle link-dark" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"

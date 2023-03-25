@@ -1,5 +1,5 @@
 import { LeftSide } from './left-side';
-import { RightSide } from './right-side/RightSide';
+import { RightSide } from './right-side';
 
 const ProductDetails = () => {
 

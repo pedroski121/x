@@ -1,4 +1,4 @@
-import { BreadCrumbNav } from "@components/category"
+import { BreadCrumbNav } from "@components/BreadCrumbNav"
 import { Footer } from "@components/footer"
 import { ProductCarousal } from "./ProductCarousel"
 
