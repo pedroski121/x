@@ -17,7 +17,7 @@ const ProductCard: FC<IProductCard> = (props) => {
 
     <div className="col-6 col-md-3 pb-2">
       <div className="card ">
-        <Link href={{ pathname: `/product/${props.title.replaceAll(' ', '-')}` }} className=" text-decoration-none text-dark">
+        <Link href={{ pathname: `/product/${props.title.replace(' ', '-')}` }} className=" text-decoration-none text-dark">
           <Image src={props.imgURL} alt={props.altText} width={300} height={200} layout="responsive" className="card-img" objectFit="cover" />
         </Link>
         <div className="card-body">
