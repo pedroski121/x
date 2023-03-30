@@ -10,13 +10,13 @@ const CartModal = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="row modal-body d-flex justify-content-center">
-                            <div className="col-3 col-md-12 text-center">
+                            <div className="col-12 text-center">
                                 <Image src='/men/shoes.jpg' alt="Cart Image" className="rounded" height={200} width={200} objectFit="cover" />
                             </div>
-                            <div className="col-4 col-md-12 d-flex justify-content-center align-items-center">
+                            <div className="col-12 d-flex justify-content-center align-items-center">
                                 <p className="display-6 fs-5 ">Black Suede Suit - <span className="fw-bold">₦2000</span></p>
                             </div>
-                            <div className="col-5 col-md-12 d-flex justify-content-center align-items-center">
+                            <div className="col-12 d-flex justify-content-center align-items-center">
 
                                 <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups for item sizes">
 
