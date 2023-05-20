@@ -9,7 +9,7 @@ const Home = () => {
       <div className="p-5 mb-3  bg-body-tertiary  border border-dark">
         <h1 className="display-5 fw-bold">X</h1>
         <p className="col-md-12 fs-4">
-          Find your perfect style and fit.
+          Find your Perfect Style and Fit.
         </p>
       </div>
 

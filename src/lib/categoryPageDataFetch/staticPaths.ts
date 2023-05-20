@@ -11,7 +11,7 @@ const getStaticPaths: GetStaticPaths = async () => {
     const categoriesPath = categories?.map((category: paths) => ({
       params: { category: category.name },
     }));
-    return { paths: categoriesPath, fallback: false };
+    return { paths:['/categories/men'], fallback: false };
 
   } catch (error) {
     return {
