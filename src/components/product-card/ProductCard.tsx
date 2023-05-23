@@ -14,16 +14,16 @@ const ProductCard: FC<IProductsData> = (props) => {
 
   }
   return (<>
-    <div className="col-6 col-md-3 pb-2">
-      <div className="card rounded-0">
+    <div className="col-6 col-md-3 mb-2 ">
+      <div className={`card rounded-0 `}>
         <Link href={{ pathname: `/categories/men/shoes/${props.name.split(" ").join("-")} ` }} className=" text-decoration-none text-dark">
           <Image src={props.imgURLs ? props.imgURLs[0] : '/default-product-not-found.jpg'} alt={props.imgAltText} width={300} height={200} layout="responsive" className="card-img" objectFit="cover" />
         </Link>
         <div className="card-body">
 
-          <h6 className="card-title d-flex flex-column">
-            {props.name}  <span className={`text-secondary ${dancingScript.className} mt-2`}>₦{props.price}</span>
-          </h6>
+          <p className="card-title d-flex flex-column fw-bold">
+            {props.name.length > 28 ? `${props.name.substring(0, 28)}...` : props.name}  <span className={`text-secondary mt-1`}>₦{props.price}</span>
+          </p>
 
         </div>
         <div className="card-footer d-flex justify-content-between ">
