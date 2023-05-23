@@ -25,7 +25,7 @@ const CategoryProducts = () => {
         <BreadCrumbNav pages={activePaths} />
         <div className="row mt-3">
           {
-            currentPageProductData?.map(product => <ProductCard {...product} />)
+            currentPageProductData?.map(product => <ProductCard {...product} key={product.name} />)
           }
         </div>
 
