@@ -6,6 +6,7 @@ import { Footer } from "@components/footer";
 import { CategoryCard } from "@components/category";
 import { BreadCrumbNav } from "@components/BreadCrumbNav";
 import { useDynamicPath } from "@hooks/useDynamicPath";
+import { GrowingSpinner } from "@components/spinner";
 
 
 interface IPath {
@@ -16,18 +17,20 @@ interface IPath {
 }
 
 
-const fetcher = async (url: string) => await axios.get(url).then((res) => res.data);
+const fetchCategories = async (url: string) => await axios.get(url).then((res) => res.data);
 
 const Category: NextPage = () => {
-  const { data, error, isLoading } = useSWR(`${process.env.SERVER}/api/category/all`, fetcher);
-  if (error) return <p>An error has occured</p>;
-  if (isLoading) return <p>loading...</p>;
-
+  const { data, error, isLoading } = useSWR(`${process.env.SERVER}/api/category/all`, fetchCategories);
   // Get  the exact page your on
   const pages = useDynamicPath();
-  const currentPageName = pages[pages.length - 1];
 
-  //filter the data from your database and get the available categories for the exact page you on 
+  //show an error page or loading page depending on the exact state of SWR
+  if (error) return <p>An error has occured</p>;
+  if (isLoading) return (<GrowingSpinner />);
+
+
+  const currentPageName = pages[pages.length - 1];
+  //filter the data from your database and get the available sub-categories for the exact page you on 
   const currentCategory = data.filter(
     (path: IPath) => path.name == currentPageName
   )[0];

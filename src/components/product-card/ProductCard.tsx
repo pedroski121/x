@@ -3,28 +3,26 @@ import Link from "next/link";
 import { dancingScript } from "@utils/font";
 import ProductCardCss from './ProductCard.module.css';
 import Image from "next/legacy/image";
-import { IProductCard } from "./types";
+import { IProductsData } from "@lib/types/products-data-type";
 import { CartModal } from "@components/cart";
 
-const ProductCard: FC<IProductCard> = (props) => {
+const ProductCard: FC<IProductsData> = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);
   const [favorite, setFavorite] = useState(false)
   const handleToggle = (e: MouseEvent, eventType: string) => {
     e.preventDefault();
 
   }
-
   return (<>
-
     <div className="col-6 col-md-3 pb-2">
-      <div className="card ">
-        <Link href={{ pathname: `/product/${props.title.replace(' ', '-')}` }} className=" text-decoration-none text-dark">
-          <Image src={props.imgURL} alt={props.altText} width={300} height={200} layout="responsive" className="card-img" objectFit="cover" />
+      <div className="card rounded-0">
+        <Link href={{ pathname: `/categories/men/shoes/${props.name.replaceAll(' ', '-')}` }} className=" text-decoration-none text-dark">
+          <Image src={props.imgURLs ? props.imgURLs[0] : '/default-product-not-found.jpg'} alt={props.imgAltText} width={300} height={200} layout="responsive" className="card-img" objectFit="cover" />
         </Link>
         <div className="card-body">
 
-          <h6 className="card-title d-flex justify-content-between ">
-            {props.title}  <span className={`text-secondary ${dancingScript.className}`}>₦{props.price}</span>
+          <h6 className="card-title d-flex flex-column">
+            {props.name}  <span className={`text-secondary ${dancingScript.className} mt-2`}>₦{props.price}</span>
           </h6>
 
         </div>

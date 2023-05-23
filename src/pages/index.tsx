@@ -1,5 +1,5 @@
 import { NavBar } from "@components/navbar"
-import { HomePageCard } from "@components/home-page"
+import { HomePageCard } from "@components/home-page-card"
 import { Footer } from "@components/footer"
 
 const Home = () => {
@@ -20,7 +20,6 @@ const Home = () => {
 
       <HomePageCard name="UNISEX" imageURL="/men/all.jpg" link="/categories/unisex" altText="unisex card" />
 
-      <HomePageCard name="OKRIKA" imageURL="/okirika.jpg" link="/categories/okrika" altText="okrika card" />
     </div>
     <Footer />
   </div>
