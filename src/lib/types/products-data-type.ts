@@ -1,4 +1,5 @@
 export interface IProductsData {
+    _id:string,
     name: string,
     price: number,
     category: string,
@@ -8,7 +9,8 @@ export interface IProductsData {
     storeName: string,
     rating: number,
     quantity: number,
-    imgURLs?: string[],
+    imgURLs: string[],
+    activePaths:string[],
     imgAltText?:string,
     reviews?: { userID: string, review: string, date: string }[]
   }

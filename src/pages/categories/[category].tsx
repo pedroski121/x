@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 import useSWR from 'swr';
-import axios from "axios";
 import { NavBar } from "@components/navbar";
 import { Footer } from "@components/footer";
 import { CategoryCard } from "@components/category";
 import { BreadCrumbNav } from "@components/BreadCrumbNav";
 import { useDynamicPath } from "@hooks/useDynamicPath";
 import { GrowingSpinner } from "@components/spinner";
+import { axiosInstance } from "@utils/axiosInstance";
 
 
 interface IPath {
@@ -17,10 +17,10 @@ interface IPath {
 }
 
 
-const fetchCategories = async (url: string) => await axios.get(url).then((res) => res.data);
+const fetchCategories = async (url: string) => await axiosInstance.get(url).then((res) => res.data);
 
 const Category: NextPage = () => {
-  const { data, error, isLoading } = useSWR(`${process.env.SERVER}/api/category/all`, fetchCategories);
+  const { data, error, isLoading } = useSWR(`/api/category/all`, fetchCategories);
   // Get  the exact page your on
   const pages = useDynamicPath();
 

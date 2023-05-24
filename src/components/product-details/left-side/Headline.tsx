@@ -1,16 +1,22 @@
 import ProductDetailsCss from '../ProductDetails.module.css';
+import { starArray } from '@utils/star-array';
 
-const Headline = () => {
+interface IHeadlineProps {
+    name: string,
+    price: number,
+    rating: number,
+}
+
+const Headline = (props: IHeadlineProps) => {
+
     return (
         <>
-            <h1 className={`fw-bolder ${ProductDetailsCss.increase_heading_fontsize}`}>NIKE AIR MAX AP</h1>
+            <h1 className={`fw-bolder ${ProductDetailsCss.increase_heading_fontsize}`}>{props.name}</h1>
             <div className='d-flex justify-content-between'>
-                <p className='display-6'>₦16,500</p>
-                <span><i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-fill" />
-                    <i className="bi bi-star-half" />
-                    <i className="bi bi-star" />
+                <p className='display-6'>₦{props.price}</p>
+
+                <span>
+                    {starArray(props.rating).map((star) => star)}
                 </span>
             </div>
         </>
