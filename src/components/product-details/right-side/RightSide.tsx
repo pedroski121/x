@@ -1,25 +1,29 @@
-import { BreadCrumbNav } from "@components/BreadCrumbNav"
-import { Footer } from "@components/footer"
+import { useContext } from "react"
+import { ProductContext } from '@contexts/ProductContext';
+import { IProductDetailsRightSide } from "@lib/types/product"
+import { BreadCrumbNav } from "@general-components/BreadCrumbNav"
+import { Footer } from "@general-components/footer"
 import { ProductCarousal } from "./ProductCarousel"
-import { TRightSide } from "./types"
 
 
-const RightSide = (props: TRightSide) => {
-    // get the array of paths but without the nameURLId attached and create a new one
-    let newActivePaths = props.activePaths.slice(0, props.activePaths.length - 1)
 
+const RightSide = () => {
+    const data = useContext(ProductContext);
+    const { name, imgURLs, activePaths }: IProductDetailsRightSide = data.data
+
+    // get the array of paths but without the name+URLId attached and create a new one
+    let newActivePaths = activePaths.slice(0, activePaths.length - 1)
     return (
         <>
             <section className="col-12 col-md-6 text-dark p-0 d-flex flex-column justify-content-between">
                 <div className='p-3'>
-                    <BreadCrumbNav pages={[...newActivePaths, props.name]} />
+                    <BreadCrumbNav pages={[...newActivePaths, name]} />
                 </div>
-                <ProductCarousal imgURLs={props.imgURLs} />
+                <ProductCarousal imgURLs={imgURLs} />
                 <div className='d-none d-md-block'>
                     <Footer />
                 </div>
             </section>
-
         </>
     )
 }

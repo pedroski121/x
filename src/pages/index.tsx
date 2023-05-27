@@ -1,6 +1,6 @@
-import { NavBar } from "@components/navbar"
+import { NavBar } from "@general-components/navbar"
 import { HomePageCard } from "@components/home-page-card"
-import { Footer } from "@components/footer"
+import { Footer } from "@general-components/footer"
 
 const Home = () => {
   return (<div className="overflow-hidden">

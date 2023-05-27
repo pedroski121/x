@@ -1,23 +1,22 @@
 import ProductDetailsCss from '../ProductDetails.module.css';
 import { SpecAccordion, ReviewsAccordion, Headline, BagAndFavoriteButton } from './index';
+import { ProductContext } from '@contexts/ProductContext';
+import { useContext } from 'react';
+import { IProductDetailsLeftSide } from '@lib/types/product';
 
-interface IProductDetailsLeftSide {
-    name: string,
-    price: number,
-    specification: string,
-    rating: number,
-    reviews?: { userID: string; review: string; date: string; }[]
-}
 
-const LeftSide = (props: IProductDetailsLeftSide) => {
+const LeftSide = () => {
+    const data = useContext(ProductContext);
+    const { name, price, specification, rating, reviews }: IProductDetailsLeftSide = data.data
+
     return (
         <>
             <section className={`col-12 col-md-6 text-dark p-0 d-flex flex-column justify-content-between ${ProductDetailsCss.content_details}`}>
                 <div className='p-3 p-md-5'>
-                    <Headline name={props.name} price={props.price} rating={props.rating} />
+                    <Headline name={name} price={price} rating={rating} />
                     <div className={`accordion accordion-flush mt-5`} id="accordionExample">
-                        <SpecAccordion specification={props.specification} />
-                        <ReviewsAccordion reviews={props.reviews} />
+                        <SpecAccordion specification={specification} />
+                        <ReviewsAccordion reviews={reviews} />
                     </div>
                 </div>
                 <BagAndFavoriteButton />

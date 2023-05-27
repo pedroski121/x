@@ -1,4 +1,4 @@
-import { NavBar } from "@components/navbar"
+import { NavBar } from "@general-components/navbar"
 import { useEffect } from "react"
 
 

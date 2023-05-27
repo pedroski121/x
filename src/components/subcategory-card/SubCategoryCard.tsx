@@ -1,11 +1,12 @@
 import { useState, FC, MouseEvent, useEffect } from "react";
 import Link from "next/link";
-import ProductCardCss from './ProductCard.module.css';
+import SubCategoryCss from './SubCategoryCard.module.css';
 import Image from "next/legacy/image";
-import { IProductsData } from "@lib/types/products-data-type";
-import { CartModal } from "@components/cart";
+import { IProductsData } from "@lib/types/product";
 
-const ProductCard: FC<IProductsData> = (props) => {
+import { CartModal } from "@general-components/cart";
+
+const SubCategoryCard: FC<IProductsData> = (props) => {
   const [cartEmpty, setCartEmpty] = useState(false);
   const [favorite, setFavorite] = useState(false)
   const handleToggle = (e: MouseEvent, eventType: string) => {
@@ -25,12 +26,12 @@ const ProductCard: FC<IProductsData> = (props) => {
 
         </div>
         <div className="card-footer d-flex justify-content-between ">
-          <span data-bs-toggle="modal" data-bs-target="#cartModal" className={`bi ${cartEmpty ? 'bi-bag-check-fill text-dark' : 'bi-bag-plus'} ${ProductCardCss.pointer} h4`}></span>
-          <span onClick={(e) => { handleToggle(e, 'favorite') }} className={`bi ${favorite ? ' bi-heart-fill text-dark' : 'bi-heart'} ${ProductCardCss.pointer} h4`}></span>
+          <span data-bs-toggle="modal" data-bs-target="#cartModal" className={`bi ${cartEmpty ? 'bi-bag-check-fill text-dark' : 'bi-bag-plus'} ${SubCategoryCss.pointer} h4`}></span>
+          <span onClick={(e) => { handleToggle(e, 'favorite') }} className={`bi ${favorite ? ' bi-heart-fill text-dark' : 'bi-heart'} ${SubCategoryCss.pointer} h4`}></span>
         </div>
       </div>
     </div>
     <CartModal />
   </>)
 }
-export { ProductCard }
+export { SubCategoryCard }

@@ -1,12 +1,13 @@
 import { NextPage } from "next";
 import useSWR from 'swr';
-import { NavBar } from "@components/navbar";
-import { Footer } from "@components/footer";
+import { NavBar } from "@general-components/navbar";
+import { Footer } from "@general-components/footer";
 import { CategoryCard } from "@components/category";
-import { BreadCrumbNav } from "@components/BreadCrumbNav";
+import { BreadCrumbNav } from "@general-components/BreadCrumbNav";
 import { useDynamicPath } from "@hooks/useDynamicPath";
-import { GrowingSpinner } from "@components/spinner";
+import { GrowingSpinner } from "@general-components/spinner";
 import { axiosInstance } from "@utils/axiosInstance";
+import Custom404 from "../404";
 
 
 interface IPath {
@@ -25,7 +26,7 @@ const Category: NextPage = () => {
   const pages = useDynamicPath();
 
   //show an error page or loading page depending on the exact state of SWR
-  if (error) return <p>An error has occured</p>;
+  if (error) return <Custom404 />;
   if (isLoading) return (<GrowingSpinner />);
 
 
@@ -36,6 +37,7 @@ const Category: NextPage = () => {
   )[0];
   const subCategories = currentCategory?.subCategories;
 
+
   return (
     <>
       <NavBar />
@@ -43,7 +45,7 @@ const Category: NextPage = () => {
 
         <BreadCrumbNav pages={pages} />
         <div className="row mt-1 mb-4">
-          {subCategories?.map((category: any) => {
+          {subCategories?.map((category: { name: string, imgURL: string, _id: string }) => {
             return (
               <CategoryCard
                 key={category._id}
