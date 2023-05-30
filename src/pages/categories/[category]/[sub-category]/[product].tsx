@@ -7,7 +7,6 @@ const Product: NextPage = () => {
 
     return (
         <>
-            <NavBar />
             <ProductProvider>
                 <ProductDetails />
             </ProductProvider>

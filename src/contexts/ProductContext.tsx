@@ -5,6 +5,7 @@ import { useDynamicPath } from "@hooks/useDynamicPath"
 import { axiosInstance } from "@utils/axiosInstance"
 import { GrowingSpinner } from "@general-components/spinner"
 import Custom404 from "src/pages/404"
+import { NavBar } from '@components/general/navbar'
 import { IProductContext, ProductDefaultValues, IProductsData } from '@lib/types/product'
 
 
@@ -30,9 +31,11 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
         return <Custom404 />
     }
     data["activePaths"] = activePaths
-    return (
+    return (<>
+        <NavBar />
+
         <ProductContext.Provider value={{ data }}>
             {children}
-        </ProductContext.Provider>
+        </ProductContext.Provider></>
     )
 }
