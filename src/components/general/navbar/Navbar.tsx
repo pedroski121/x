@@ -10,7 +10,7 @@ export const NavBar = () => {
             <HomeIcon iconColor='text-dark' />
             <ul className="nav">
                <li className="nav-item position-relative">
-                  <Link href="/" className='nav-link link-dark px-2'>
+                  <Link href="/bag" className='nav-link link-dark px-2'>
                      Bag<sup className={`${NavbarCss.dot}`}>•</sup>
                   </Link>
 

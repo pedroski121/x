@@ -4,12 +4,12 @@ const SummaryCheckout: FC = () => {
     return (
         <>
             <div className="row justify-content-between">
-                <div className="col-6">
+                <div className="col-7">
                     <div className="row">
-                        <div className=" col-6 border border-dark p-3 text-center">
+                        <div className=" col-5 border border-dark p-3 text-center">
                             Delivery - <b>₦500</b>
                         </div>
-                        <div className="col-6 border border-dark p-3 text-center ">
+                        <div className="col-7 border border-dark p-3 text-center ">
                             SubTotal - <b>₦20000</b>
                         </div>
                     </div>
