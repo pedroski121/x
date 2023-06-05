@@ -1,7 +1,7 @@
 import { HomeIcon } from "@components/HomeIcon"
 export const Footer = () => {
   return <>
-    <footer className="footer mt-2 py-3 bg-dark">
+    <footer className="footer mt-auto py-3 bg-dark">
       <div className="container">
         <section className="row">
           <section className="col-md-6"><HomeIcon iconColor="text-secondary" /></section>
