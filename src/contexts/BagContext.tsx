@@ -3,7 +3,7 @@ import { TBagState, EAvailableBagAction, BagDefaultValues, TBagAction, TBagConte
 import { getItem, setItem, removeItem } from "@utils/local-storage";
 
 
-const bagReducer = (state: TBagState[], action: TBagAction) => {
+const bagReducer = (state: TBagState[], action: TBagAction): TBagState[] => {
 
     switch (action.type) {
         case EAvailableBagAction.ADD_TO_BAG:
@@ -26,7 +26,8 @@ const bagReducer = (state: TBagState[], action: TBagAction) => {
             removeItem('bag')
             return [];
         case EAvailableBagAction.IN_BAG:
-            return getItem('bag')
+            const itemsInbag = getItem('bag')
+            return itemsInbag ? itemsInbag : BagDefaultValues
         default:
             return state
     }

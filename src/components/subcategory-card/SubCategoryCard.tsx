@@ -4,7 +4,7 @@ import SubCategoryCss from './SubCategoryCard.module.css';
 import Image from "next/legacy/image";
 import { IProductsData } from "@lib/types/product";
 import { BagModal } from "@components/general/bag-modal";
-import { EAvailableBagAction, IModalDetails } from "@lib/types/bag";
+import { EAvailableBagAction, IModalDetails, BagDefaultValues } from "@lib/types/bag";
 import { BagContext } from "@contexts/BagContext";
 
 
@@ -17,7 +17,7 @@ const SubCategoryCard: FC<IProductsData> = (props) => {
 
   const handleToggle = (bag: string) => {
     if (bag === 'bag') {
-      const inBagorNot = bagState.some(bag => bag._id === props._id)
+      const inBagorNot = bagState?.some(bag => bag._id === props._id)
       setItemInBag(inBagorNot)
       setModalDetails({ ...modalDetails, inBag: inBagorNot })
     }
@@ -28,7 +28,7 @@ const SubCategoryCard: FC<IProductsData> = (props) => {
   }, [bagState])
 
   useEffect(() => {
-    dispatch ? dispatch({ type: EAvailableBagAction.IN_BAG }) : null
+    dispatch ? dispatch({ type: EAvailableBagAction.IN_BAG }) : BagDefaultValues
   }, [])
 
   return (<>
