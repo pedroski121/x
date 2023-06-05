@@ -1,3 +1,4 @@
+
 import { LeftSide } from './left-side';
 import { RightSide } from './right-side';
 import { NextPage } from 'next';

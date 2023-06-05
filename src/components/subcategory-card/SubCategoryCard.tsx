@@ -1,37 +1,59 @@
-import { useState, FC, MouseEvent, useEffect } from "react";
+import { useState, useContext, FC, useEffect } from "react";
 import Link from "next/link";
 import SubCategoryCss from './SubCategoryCard.module.css';
 import Image from "next/legacy/image";
 import { IProductsData } from "@lib/types/product";
+import { BagModal } from "@components/general/bag-modal";
+import { EAvailableBagAction, IModalDetails } from "@lib/types/bag";
+import { BagContext } from "@contexts/BagContext";
 
-import { CartModal } from "@general-components/cart";
+
 
 const SubCategoryCard: FC<IProductsData> = (props) => {
-  const [cartEmpty, setCartEmpty] = useState(false);
-  const [favorite, setFavorite] = useState(false)
-  const handleToggle = (e: MouseEvent, eventType: string) => {
-    e.preventDefault();
+  const [itemInBag, setItemInBag] = useState<boolean>(false);
+  const [favorite, setFavorite] = useState<boolean>(false);
+  const [modalDetails, setModalDetails] = useState<IModalDetails>({ name: props.name, _id: props._id, price: props.price, imgURLs: props.imgURLs });
+  const { dispatch, bagState } = useContext(BagContext)
+
+  const handleToggle = (bag: string) => {
+    if (bag === 'bag') {
+      const inBagorNot = bagState.some(bag => bag._id === props._id)
+      setItemInBag(inBagorNot)
+      setModalDetails({ ...modalDetails, inBag: inBagorNot })
+    }
+
   }
+  useEffect(() => {
+    handleToggle('bag')
+  }, [bagState])
+
+  useEffect(() => {
+    dispatch ? dispatch({ type: EAvailableBagAction.IN_BAG }) : null
+  }, [])
+
   return (<>
+
     <div className="col-6 col-md-3 mb-2 ">
-      <div className={`card rounded-0 `}>
+      <div className={`card rounded - 0 `}>
         <Link href={{ pathname: `/categories/${props.activePaths[0]}/${props.activePaths[1]}/${props.name.split(" ").join("-")}-${props._id}` }} className=" text-decoration-none text-dark">
-          <Image src={props.imgURLs ? props.imgURLs[0] : '/default-product-not-found.jpg'} alt={props.imgAltText} width={300} height={200} layout="responsive" className="card-img" objectFit="cover" />
+          <Image src={props.imgURLs ? props.imgURLs[0] : '/default-product-not-found.jpg'} alt={props.imgAltText} width={300} height={200} layout="responsive" className="card-img rounded-0" objectFit="cover" />
         </Link>
         <div className="card-body">
 
-          <p className="card-title d-flex flex-column fw-bold">
-            {props.name.length > 28 ? `${props.name.substring(0, 28)}...` : props.name}  <span className={`text-secondary mt-1`}>₦{props.price}</span>
+          <p className="card-title d-flex flex-column fs-6">
+            {/* Check if the product name is greater than a certain number. If it is, use '...' to represent the rest */}
+            {props.name.length > 20 ? `${props.name.substring(0, 20)}...` : props.name} <b className={`text - dark mt - 1`}>₦{props.price}</b>
           </p>
 
         </div>
         <div className="card-footer d-flex justify-content-between ">
-          <span data-bs-toggle="modal" data-bs-target="#cartModal" className={`bi ${cartEmpty ? 'bi-bag-check-fill text-dark' : 'bi-bag-plus'} ${SubCategoryCss.pointer} h4`}></span>
-          <span onClick={(e) => { handleToggle(e, 'favorite') }} className={`bi ${favorite ? ' bi-heart-fill text-dark' : 'bi-heart'} ${SubCategoryCss.pointer} h4`}></span>
+          <span data-bs-toggle="modal" onClick={() => handleToggle('bag')} data-bs-target={`#bagModal${modalDetails._id} `} className={`bi ${itemInBag ? 'bi-bag-check-fill text-dark' : 'bi-bag-plus'} ${SubCategoryCss.pointer} h4`}></span>
+          <span className={`bi ${favorite ? ' bi-heart-fill text-dark' : 'bi-heart'} ${SubCategoryCss.pointer} h4`}></span>
         </div>
       </div>
     </div>
-    <CartModal />
+    <BagModal {...modalDetails} />
+
   </>)
 }
 export { SubCategoryCard }

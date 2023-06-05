@@ -3,9 +3,8 @@ import useSWR from 'swr'
 import { AxiosResponse } from "axios"
 import { useDynamicPath } from "@hooks/useDynamicPath"
 import { axiosInstance } from "@utils/axiosInstance"
-import { GrowingSpinner } from "@general-components/spinner"
+import { GrowingSpinner } from "@components/general/spinners"
 import Custom404 from "src/pages/404"
-import { NavBar } from '@components/general/navbar'
 import { IProductContext, ProductDefaultValues, IProductsData } from '@lib/types/product'
 
 
@@ -32,7 +31,6 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     }
     data["activePaths"] = activePaths
     return (<>
-        <NavBar />
 
         <ProductContext.Provider value={{ data }}>
             {children}

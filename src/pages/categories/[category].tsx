@@ -5,7 +5,7 @@ import { Footer } from "@general-components/footer";
 import { CategoryCard } from "@components/category";
 import { BreadCrumbNav } from "@general-components/BreadCrumbNav";
 import { useDynamicPath } from "@hooks/useDynamicPath";
-import { GrowingSpinner } from "@general-components/spinner";
+import { GrowingSpinner } from "@components/general/spinners";
 import { axiosInstance } from "@utils/axiosInstance";
 import Custom404 from "../404";
 
