@@ -15,11 +15,11 @@ const SideBar = () => {
         </div>
         <div className="offcanvas offcanvas-start" tabIndex={-1} id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
             <div className="offcanvas-header">
-                <h5 className="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5>
+                <h5 className="offcanvas-title display-6 fw-bold" id="offcanvasWithBackdropLabel">Explore</h5>
                 <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div className="offcanvas-body">
-                <p>.....</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quos vel vitae placeat officia, architecto aliquam? Facilis nostrum adipisci inventore nulla veniam harum quibusdam reiciendis repellat eveniet, exercitationem error assumenda?</p>
             </div>
         </div>
         <div className="offcanvas offcanvas-start" data-bs-scroll="true" tabIndex={-1} id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">

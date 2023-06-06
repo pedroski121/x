@@ -1,18 +1,29 @@
 import { HomeIcon } from "@components/HomeIcon"
+import Link from "next/link"
+
+
 export const Footer = () => {
   return <>
-    <footer className="footer mt-auto py-3 bg-dark">
-      <div className="container">
-        <section className="row">
-          <section className="col-md-6"><HomeIcon iconColor="text-secondary" /></section>
-          <section className="col-md-6 fw-bold text-secondary">
-            <h5>Contact Us</h5>
-            <p><span className="bi bi-telephone-fill "></span> +234 810 000 0000</p>
-            <p><span className="bi bi-envelope-fill"></span> obipedrodevtest@gmail.com</p>
-          </section>
+    <footer className="mt-5 bg-black text-secondary overflow-hidden">
+      <div className="row  p-5">
+        <section className="col-12 col-md-4">
+          <HomeIcon iconColor="text-white" />
+          <p className="ms-3">Empowering fashion and beauty enthusiasts across Nigeria </p>
+          <p className="ms-3 fw-bold">© 2023 All rights reserved. <span className="text-white">X</span></p>
+        </section>
+        <section className="col-12 col-md-2 ms-3 mt-3 mt-md-0">
+          <h6 className="text-white">SITEMAP</h6>
+          <Link href={'#'} className="link-secondary">About Us</Link><br />
+          <Link href={'#'} className="link-secondary">Become a Vendor</Link><br />
+          <Link href={'#'} className="link-secondary">Terms and Conditions</Link>
+        </section>
+        <section className="col-12 col-md-5 text-center mt-3 mt-md-0 text-md-end h4 text-secondary">
+          <Link href={'#'} className="link-secondary pe-2"><i className="bi bi-facebook"></i></Link>
+          <Link href={'#'} className="link-secondary pe-2"><i className="bi bi-twitter"></i></Link>
+          <Link href={'#'} className="link-secondary"><i className="bi bi-instagram"></i></Link>
 
         </section>
       </div>
-    </footer>
+    </footer >
   </>
 }

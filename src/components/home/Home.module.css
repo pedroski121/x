@@ -2,3 +2,29 @@
     width: 150px !important;
 }
 
+.horizontal_cover {
+    position: relative;
+     width: 100%;
+    height: 200px;
+}
+
+.vertical_cover {
+    position: relative;
+    width:50%;
+    height:100%;
+}
+
+@media screen and (max-width:767px) {
+    .vertical_cover {
+        width: 50%;
+        height: 270px;
+    }
+}
+.horizontal_cover:hover  {
+    opacity:0.9;
+    cursor: pointer;
+}
+.vertical_cover:hover  {
+    opacity:0.9;
+    cursor: pointer;
+}
