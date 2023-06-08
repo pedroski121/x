@@ -1,10 +1,9 @@
 import { HomeIcon } from "@components/HomeIcon"
 import Link from "next/link"
 
-
 export const Footer = () => {
   return <>
-    <footer className="mt-5 bg-black text-secondary overflow-hidden">
+    <footer className={`bg-black text-secondary overflow-hidden mt-5 `}>
       <div className="row  p-5">
         <section className="col-12 col-md-4">
           <HomeIcon iconColor="text-white" />

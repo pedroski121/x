@@ -4,37 +4,59 @@ import Image from "next/image"
 import HomeCss from '../Home.module.css'
 import { FC } from "react"
 import Link from "next/link"
+
 export const OddRow: FC = () => {
-    return <div className="row">
-        <div className="col-md-6">
-            <section>
-                <div className={`p-5 bg-light border rounded-5 ${HomeCss.horizontal_cover}`}>
-                    <Link href={'/'}>
-
-                        <Image src='/okirika.jpg' alt='/' fill className={`rounded-5 ${HomeCss.image}`} style={{ objectFit: "cover" }} />
-                    </Link>
-
+    return (
+        <><div className="row justify-content-center">
+            <div id="homePageIndicators" className="carousel slide col-10 rounded-4" data-bs-ride="true">
+                <div className="carousel-indicators">
+                    <button type="button" data-bs-target="#homePageIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#homePageIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#homePageIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-
-                <div className={`p-5 bg-light border mt-3 rounded-5 ${HomeCss.horizontal_cover}`}>
-                    <Link href={'/'}>
-
-                        <Image src='/suit.jpg' alt='/' fill className={`rounded-5 `} style={{ objectFit: "cover" }} />                </Link>
-
+                <div className={`carousel-inner rounded-4 `}>
+                    <div className={`carousel-item active `}>
+                        <div className={`${HomeCss.carousel_image} `}>
+                            <Link href={'#'}>
+                                <Image src="/face.jpg" alt="Slide 2" fill />
+                            </Link>
+                        </div>
+                    </div>
+                    <div className={`carousel-item`}>
+                        <div className={`${HomeCss.carousel_image}`}>
+                            <Link href={'#'}>
+                                <Image src="/okirika.jpg" alt="Slide 2" fill />
+                            </Link>
+                        </div>
+                    </div>
+                    <div className={`carousel-item`}>
+                        <div className={`${HomeCss.carousel_image}`}>
+                            <Link href={"#"}>
+                                <Image src="/suit.jpg" alt="Slide 2" fill />
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-            </section>
-        </div>
-        <div className="col-md-6 d-flex flex-row mt-3 mt-md-0 align-items-md-center">
-
-            <div className={`p-5 bg-light border me-3 rounded-5 ${HomeCss.vertical_cover}`}>
-                <Link href={'/test'}>
-                    <Image src='/cover1.jpg' alt='/' fill className={`rounded-5 `} style={{ objectFit: "cover" }} />
-
-                </Link>
-            </div>
-            <div className={`p-5 bg-light border  rounded-5 ${HomeCss.vertical_cover}`}>
-                <Image src='/face.jpg' alt='/' fill className={`rounded-5 `} style={{ objectFit: "cover" }} />
+                <button className="carousel-control-prev" type="button" data-bs-target="#homePageIndicators" data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Previous</span>
+                </button>
+                <button className="carousel-control-next" type="button" data-bs-target="#homePageIndicators" data-bs-slide="next">
+                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span className="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-    </div>
+        </>
+    )
+
+
+
+
+
+
+
+
+
+
 }

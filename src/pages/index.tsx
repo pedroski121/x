@@ -11,6 +11,7 @@ const Home = () => {
         <ExploreNav />
         <SideBar />
         <Body />
+
       </div>
       <Footer />
     </>
