@@ -19,10 +19,10 @@ export const ProductsForEachCategory = () => {
     const { data } = useSWR(categories, (categories) => Promise.all(categories.map((category) => fetchProducts('/api/product', category))))
     return <>
         {data?.map((dataItem, key) => {
-            return <div key={key} className={`row px-5 mt-3 gx-3 gx-md-4 gy-2 m-md-5 `}>
+            return <div key={key} className={`row px-2 mt-3 gx-3 gx-md-4 gy-2 m-2`}>
                 <div className="d-flex flex-row justify-content-between border border-secondary rounded-2 pe-4">
                     <h1 className={`${TiltPrism.className} fw-bold`}>{dataItem.category}</h1>
-                    <Link href={`#`} className="link-dark mt-2 mt-md-3">More</Link>
+                    <Link href={`#`} className="link-dark fw-bold mt-2 mt-md-3">More</Link>
                 </div>
                 <div className={`overflow-auto ${HomeCss.category_row} d-flex flex-row`}>
                     {dataItem.data?.map((item: IProductsData, key: number) => {
