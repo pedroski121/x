@@ -33,7 +33,7 @@ const SubCategoryCard: FC<IProductsData> = (props) => {
 
   return (<>
 
-    <div className="col-6 col-md-3 mb-2 ">
+    <div className="col-6 col-md-3 me-3">
       <div className={`card rounded-2 `}>
         <Link href={{ pathname: `/categories/${props.activePaths[0]}/${props.activePaths[1]}/${props.name.split(" ").join("-")}-${props._id}` }} className=" text-decoration-none text-dark">
           <Image src={props.imgURLs ? props.imgURLs[0] : '/default-product-not-found.jpg'} alt={props.imgAltText} width={300} height={200} layout="responsive" className="card-img rounded-2" objectFit="cover" />

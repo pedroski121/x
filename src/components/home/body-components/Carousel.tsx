@@ -5,7 +5,7 @@ import HomeCss from '../Home.module.css'
 import { FC } from "react"
 import Link from "next/link"
 
-export const OddRow: FC = () => {
+export const Carousel: FC = () => {
     return (
         <><div className="row justify-content-center">
             <div id="homePageIndicators" className="carousel slide col-10 rounded-4" data-bs-ride="true">
@@ -16,11 +16,12 @@ export const OddRow: FC = () => {
                 </div>
                 <div className={`carousel-inner rounded-4 `}>
                     <div className={`carousel-item active `}>
-                        <div className={`${HomeCss.carousel_image} `}>
-                            <Link href={'#'}>
+                        <Link href={'#'}>
+                            <div className={`${HomeCss.carousel_image} `}>
+
                                 <Image src="/face.jpg" alt="Slide 2" fill />
-                            </Link>
-                        </div>
+
+                            </div></Link>
                     </div>
                     <div className={`carousel-item`}>
                         <div className={`${HomeCss.carousel_image}`}>
@@ -49,14 +50,5 @@ export const OddRow: FC = () => {
         </div>
         </>
     )
-
-
-
-
-
-
-
-
-
 
 }

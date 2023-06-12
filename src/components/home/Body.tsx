@@ -1,12 +1,12 @@
 
-import { EvenRow, OddRow } from './body-components';
+import { ProductsForEachCategory, Carousel } from './body-components';
 
 
 const Body = () => {
     return <>
-        <OddRow />
+        <Carousel />
 
-        {/* <EvenRow /> */}
+        <ProductsForEachCategory />
     </>
 }
 

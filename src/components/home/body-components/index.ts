@@ -1,2 +1,2 @@
-export {OddRow} from './OddRow';
-export {EvenRow} from './EvenRow';
+export {Carousel} from './Carousel';
+export {ProductsForEachCategory} from './ProductsForEachCategory';
