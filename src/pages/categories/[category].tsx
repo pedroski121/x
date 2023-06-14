@@ -49,9 +49,9 @@ const Category: NextPage = () => {
             return (
               <CategoryCard
                 key={category._id}
-                imgSrc={category.imgURL}
-                queryString={category.name}
-                subCategoryName={category.name}
+                _id={category._id}
+                imgURL={category.imgURL}
+                name={category.name}
                 categoryName={currentCategory.name}
               />
             );

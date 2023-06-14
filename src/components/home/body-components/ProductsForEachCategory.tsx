@@ -17,7 +17,7 @@ export const ProductsForEachCategory = () => {
         {data?.map((dataItem, key) => {
             return dataItem.data.map((categoryItem) => {
 
-                return <div key={key} className={`row px-2 mt-3 gx-3 gx-md-4 gy-2 m-2`}>
+                return <div key={categoryItem._id} className={`row px-2 mt-3 gx-3 gx-md-4 gy-2 m-2`}>
                     <div className="d-flex flex-row justify-content-between border border-secondary rounded-2 pe-4">
                         <h1 className={`${TiltPrism.className} fw-bold`}>{categoryItem.name}</h1>
                         <Link href={`#`} className="link-dark fw-bold mt-2 mt-md-3">More</Link>
