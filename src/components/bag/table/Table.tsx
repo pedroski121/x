@@ -14,7 +14,6 @@ const Table: FC = () => {
     return (
         <div className="overflow-auto">
             <table className="table mt-4">
-
                 <thead>
                     <tr>
                         <th scope="col" className="fw-light"></th >
@@ -25,6 +24,7 @@ const Table: FC = () => {
                         <th scope="col" className="fw-light">Price</th>
                     </tr >
                 </thead >
+
                 <tbody>
 
                     {
@@ -69,7 +69,8 @@ const Table: FC = () => {
                     }
 
                 </tbody>
-            </table ></div>
+            </table >
+        </div>
     )
 }
 

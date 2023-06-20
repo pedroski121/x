@@ -1,6 +1,6 @@
-// import HomeCss from './Home.module.css'
+import { FC } from "react"
 
-const ExploreNav = () => {
+const ExploreNav: FC = () => {
     return <>
         <div className="row mt-3 mx-3 ">
             <section className="col-sm-12 order-2 order-md-1 col-md-3 ">

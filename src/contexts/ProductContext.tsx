@@ -1,4 +1,4 @@
-import { ReactNode, createContext } from 'react'
+import { ReactNode, createContext, useState } from 'react'
 import useSWR from 'swr'
 import { AxiosResponse } from "axios"
 import { useDynamicPath } from "@hooks/useDynamicPath"
@@ -15,6 +15,8 @@ export const ProductContext = createContext<IProductContext>({
 });
 
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
+
+
     // get the paths to this current page 
     const activePaths = useDynamicPath();
 

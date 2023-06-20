@@ -4,6 +4,7 @@ import { RightSide } from './right-side';
 import { NextPage } from 'next';
 
 
+
 const ProductDetails: NextPage = () => {
     return (
         <>

@@ -4,7 +4,7 @@ import Image from "next/legacy/image";
 import { cardTypes } from "./types";
 
 export const HomePageCard: FC<cardTypes> = (props) => {
-    const { name, imageURL, link, altText = "card image on home page" } = props;
+    const { name, imageURL, link, altText = `${name} image on home page` } = props;
     return (
         <div className="col-xs-12 col-sm-6 p-3 ">
             <div className="card bg-dark ">

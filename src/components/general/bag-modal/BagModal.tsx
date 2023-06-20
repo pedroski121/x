@@ -1,7 +1,7 @@
 import { BagContext } from "@contexts/BagContext"
 import { IModalDetails } from "@lib/types/bag"
 import Image from "next/legacy/image"
-import { FC, ReactElement, useContext, useEffect, useState } from "react"
+import { FC, ReactElement, useContext, useState } from "react"
 import { EAvailableBagAction } from "@lib/types/bag/EAvailableBagAction"
 import { BorderSpinner } from "../spinners"
 import BagModalCss from './BagModal.module.css'

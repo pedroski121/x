@@ -6,22 +6,21 @@ import { ISubCategory } from "@lib/types/category";
 import { CategoryCard } from "@components/category";
 import { useFetchMultipleData } from "@hooks/useFetchMultipleData";
 import { BorderSpinner } from "@components/general/spinners";
+import { BodySectionHeader } from "./BodySectionHeader";
+import { FC } from "react";
 
 
-export const ProductsForEachCategory = () => {
+export const ProductsForEachCategory: FC = () => {
     const categories = ['men', 'women']
 
     const { data, isLoading } = useFetchMultipleData('/api/category', categories)
     if (isLoading) return <BorderSpinner />
     return <>
-        {data?.map((dataItem, key) => {
+        {data?.map((dataItem) => {
             return dataItem.data.map((categoryItem) => {
 
                 return <div key={categoryItem._id} className={`row px-2 mt-3 gx-3 gx-md-4 gy-2 m-2`}>
-                    <div className="d-flex flex-row justify-content-between border border-secondary rounded-2 pe-4">
-                        <h1 className={`${TiltPrism.className} fw-bold`}>{categoryItem.name}</h1>
-                        <Link href={`#`} className="link-dark fw-bold mt-2 mt-md-3">More</Link>
-                    </div>
+                    <BodySectionHeader text={categoryItem.name} />
                     <div className={`overflow-auto ${HomeCss.category_row} d-flex flex-row`}>
                         {categoryItem.subCategories.map((subCategoryItem: ISubCategory, key: number) => {
                             if (key >= 5) {

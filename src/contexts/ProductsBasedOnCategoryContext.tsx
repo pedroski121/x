@@ -1,9 +1,8 @@
-import { ReactNode, createContext, FC, useState, Dispatch } from 'react'
+import { ReactNode, createContext, FC, useState } from 'react'
 import useSWR from 'swr'
 import { AxiosResponse } from "axios";
-import { useDynamicPath } from "@hooks/useDynamicPath";
 import { axiosInstance } from "@utils/axiosInstance";
-import { IProductContext, ProductDefaultValues, IProductsData } from '@lib/types/product'
+import { ProductDefaultValues, IProductsData } from '@lib/types/product'
 import { GrowingSpinner } from '@components/general/spinners';
 import Custom404 from 'src/pages/404';
 
@@ -18,9 +17,8 @@ type TProductsBasedOnCategory = {
     children: ReactNode
 }
 
-export const ProductsBasedOnCategoryProvider: FC<TProductsBasedOnCategory> = ({ children }) => {
+export const ProductsBasedOnCategoryProvider: FC<TProductsBasedOnCategory> = ({ children }: { children: ReactNode }) => {
     const [category, setCategory] = useState<string>('')
-    const activePaths = useDynamicPath();
 
     const fetchProducts = async (url: string) => await axiosInstance.get(url, { params: { category } }).then((product: AxiosResponse<IProductsData[]>) => product.data);
     const { data, error, isLoading } = useSWR(`/api/product`, fetchProducts);

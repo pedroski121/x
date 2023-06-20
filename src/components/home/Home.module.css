@@ -24,3 +24,16 @@
   width: 100%;
 }
 
+
+
+.vertical_cover {
+  position: relative;
+  height:350px;
+}
+
+
+
+.vertical_cover:hover  {
+  opacity:0.9;
+  cursor: pointer;
+}

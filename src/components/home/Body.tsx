@@ -1,12 +1,13 @@
 
-import { ProductsForEachCategory, Carousel } from './body-components';
+import { FC } from 'react';
+import { ProductsForEachCategory, Carousel, Extras } from './body-components';
 
-
-const Body = () => {
+const Body: FC = () => {
     return <>
         <Carousel />
-
         <ProductsForEachCategory />
+        {/* <Extras /> */}
+
     </>
 }
 

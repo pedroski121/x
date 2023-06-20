@@ -13,8 +13,9 @@ const SubCategoryCard: FC<IProductsData> = (props) => {
   const [itemInBag, setItemInBag] = useState<boolean>(false);
   const [favorite, setFavorite] = useState<boolean>(false);
   const [modalDetails, setModalDetails] = useState<IModalDetails>({ name: props.name, _id: props._id, price: props.price, imgURLs: props.imgURLs });
-  const { dispatch, bagState } = useContext(BagContext)
 
+  const { dispatch, bagState } = useContext(BagContext)
+  // const { itemInBag, modalDetails, toggleItemInBag, toggleModalDetails } = useContext(BagStateOnCategoryContext);
   const handleToggle = (bag: string) => {
     if (bag === 'bag') {
       const inBagorNot = bagState?.some(bag => bag._id === props._id)
@@ -33,7 +34,7 @@ const SubCategoryCard: FC<IProductsData> = (props) => {
 
   return (<>
 
-    <div className="col-6 col-md-3 me-3">
+    <div className="col-6 col-md-3 mt-3">
       <div className={`card rounded-2 `}>
         <Link href={{ pathname: `/categories/${props.activePaths[0]}/${props.activePaths[1]}/${props.name.split(" ").join("-")}-${props._id}` }} className=" text-decoration-none text-dark">
           <Image src={props.imgURLs ? props.imgURLs[0] : '/default-product-not-found.jpg'} alt={props.imgAltText} width={300} height={200} layout="responsive" className="card-img rounded-2" objectFit="cover" />

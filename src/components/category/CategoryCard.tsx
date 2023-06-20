@@ -6,7 +6,7 @@ import { ISubCategory } from "@lib/types/category";
 export const CategoryCard: FC<ISubCategory> = ({ imgURL, altText = "sub category card image goes here", name, categoryName }) => {
     return (
         <>
-            <div className="col-6 col-md-4 p-2">
+            <div className="col-5 col-md-4 p-2">
                 <div className="card">
                     <Image src={imgURL} alt={altText} width={300} height={200} layout="responsive" className="card-img" objectFit="cover" />
                     <div className="card-body">
