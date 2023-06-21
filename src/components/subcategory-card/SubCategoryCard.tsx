@@ -1,36 +1,14 @@
-import { useState, useContext, FC, useEffect } from "react";
+import { FC } from "react";
 import Link from "next/link";
 import SubCategoryCss from './SubCategoryCard.module.css';
 import Image from "next/legacy/image";
 import { IProductsData } from "@lib/types/product";
 import { BagModal } from "@components/general/bag-modal";
-import { EAvailableBagAction, IModalDetails, BagDefaultValues } from "@lib/types/bag";
-import { BagContext } from "@contexts/BagContext";
 
-
+import { useCardState } from "@hooks/useCardState";
 
 const SubCategoryCard: FC<IProductsData> = (props) => {
-  const [itemInBag, setItemInBag] = useState<boolean>(false);
-  const [favorite, setFavorite] = useState<boolean>(false);
-  const [modalDetails, setModalDetails] = useState<IModalDetails>({ name: props.name, _id: props._id, price: props.price, imgURLs: props.imgURLs });
-
-  const { dispatch, bagState } = useContext(BagContext)
-  // const { itemInBag, modalDetails, toggleItemInBag, toggleModalDetails } = useContext(BagStateOnCategoryContext);
-  const handleToggle = (bag: string) => {
-    if (bag === 'bag') {
-      const inBagorNot = bagState?.some(bag => bag._id === props._id)
-      setItemInBag(inBagorNot)
-      setModalDetails({ ...modalDetails, inBag: inBagorNot })
-    }
-
-  }
-  useEffect(() => {
-    handleToggle('bag')
-  }, [bagState])
-
-  useEffect(() => {
-    dispatch ? dispatch({ type: EAvailableBagAction.IN_BAG }) : BagDefaultValues
-  }, [])
+  const { itemInBag, favorite, modalDetails, handleToggle } = useCardState(props);
 
   return (<>
 

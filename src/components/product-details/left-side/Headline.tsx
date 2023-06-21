@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import ProductDetailsCss from '../ProductDetails.module.css';
 import { starArray } from '@utils/star-array';
 
@@ -7,7 +8,7 @@ interface IHeadlineProps {
     rating: number,
 }
 
-const Headline = (props: IHeadlineProps) => {
+const Headline: FC<IHeadlineProps> = (props) => {
 
     return (
         <>
