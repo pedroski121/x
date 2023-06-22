@@ -22,6 +22,8 @@ const Table: FC = () => {
                         <th scope="col" className="fw-light">Quantity</th>
                         <th scope="col" className="fw-light">Remove</th>
                         <th scope="col" className="fw-light">Price</th>
+                        <th scope="col" className="fw-light">Delivery</th>
+
                     </tr >
                 </thead >
 
@@ -62,7 +64,8 @@ const Table: FC = () => {
                                 <td>
                                     <button type="button" onClick={() => removeItem(bagItem._id)} className="btn btn-light border border-secondary rounded-0">x</button>
                                 </td>
-                                <td>{bagItem.price}</td>
+                                <td>₦{bagItem.price}</td>
+                                <td>₦0</td>
                             </tr>
 
                         })

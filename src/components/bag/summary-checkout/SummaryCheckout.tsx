@@ -1,15 +1,18 @@
 import { FC, useContext } from "react"
 import { BagContext } from "@contexts/BagContext"
 import { EAvailableBagAction } from "@lib/types/bag"
+import Link from "next/link"
 
 
 
-const SummaryCheckout: FC = () => {
-    const { dispatch } = useContext(BagContext)
+const SummaryCheckout: FC<{ sumOfItems: number }> = ({ sumOfItems }) => {
+    const { dispatch, bagState } = useContext(BagContext)
 
     function emptyBag() {
         dispatch ? dispatch({ type: EAvailableBagAction.EMPTY_BAG }) : ''
+        console.log(bagState)
     }
+
     return (
         <>
             <div className="row justify-content-between">
@@ -17,23 +20,23 @@ const SummaryCheckout: FC = () => {
                 <div className="col-7">
                     <div className="row">
                         <div className=" col-5 border border-dark p-3 text-center">
-                            Delivery - <b>₦500</b>
+                            Delivery - <b>₦0</b>
                         </div>
                         <div className="col-7 border border-dark p-3 text-center ">
-                            SubTotal - <b>₦20000</b>
+                            SubTotal - <b>₦{sumOfItems}</b>
                         </div>
                     </div>
                 </div>
                 <div className="col-4 border border-dark p-3 text-center ">
-                    Total - <b>₦20500</b>
+                    Total - <b>₦{sumOfItems}</b>
                 </div>
 
                 <button className="btn btn-dark p-3 text-center rounded-0 col-12 mt-5">
                     Checkout
                 </button>
-                <button className="btn btn-light p-3 text-center rounded-0 col-12 border border-dark">
+                <Link href='/'><button className="btn btn-light p-3 text-center rounded-0 col-12 border border-dark">
                     Continue Shopping
-                </button>
+                </button></Link>
                 <button onClick={emptyBag} className="btn btn-danger mt-2 rounded-0 fw-bold">EMPTY BAG</button>
 
             </div>

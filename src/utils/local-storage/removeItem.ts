@@ -1,4 +1,4 @@
-export const removeItem = (key:string) =>{
+export const removeItem = (key:string):void =>{
     if(typeof window !== undefined) {
         localStorage.removeItem(key);
     }

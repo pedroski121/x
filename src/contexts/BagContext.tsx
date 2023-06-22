@@ -26,11 +26,6 @@ const bagReducer = (state: TBagState[], action: TBagAction): TBagState[] => {
         case EAvailableBagAction.EMPTY_BAG:
             removeItem('bag')
             return [];
-        case EAvailableBagAction.COST_OF_ITEMS:
-            let itemsPrice = 0;
-            state.map((item) => {
-                itemsPrice += item.price
-            })
         case EAvailableBagAction.IN_BAG:
             const itemsInbag = getItem('bag')
             return itemsInbag ? itemsInbag : BagDefaultValues
