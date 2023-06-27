@@ -6,11 +6,10 @@ import Link from "next/link"
 
 
 const SummaryCheckout: FC<{ sumOfItems: number }> = ({ sumOfItems }) => {
-    const { dispatch, bagState } = useContext(BagContext)
+    const { dispatch } = useContext(BagContext)
 
     function emptyBag() {
         dispatch ? dispatch({ type: EAvailableBagAction.EMPTY_BAG }) : ''
-        console.log(bagState)
     }
 
     return (
