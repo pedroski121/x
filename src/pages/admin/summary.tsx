@@ -1,12 +1,18 @@
-import { OffCanvas } from "@components/admin"
+import { SummarySection } from "@components/admin"
+import { Footer } from "@components/general/footer"
 import { NavBar } from "@components/general/navbar"
+import { Header } from "@components/admin"
+
 
 
 const Admin = () => {
     return (<>
         <NavBar />
-        <OffCanvas />
-        Summary
+        <div className="container">
+            <Header />
+            <SummarySection />
+        </div>
+        <Footer />
     </>
     )
 }

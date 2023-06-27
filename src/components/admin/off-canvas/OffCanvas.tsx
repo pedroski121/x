@@ -12,7 +12,7 @@ export const OffCanvas = () => {
     return (
         <>
 
-            <button className="btn btn-dark rounded-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAdmin" aria-controls="offcanvasAdmin">
+            <button className="btn btn-dark rounded-1 px-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAdmin" aria-controls="offcanvasAdmin">
                 Navigate Admin
             </button>
 
