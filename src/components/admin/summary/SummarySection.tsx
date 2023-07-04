@@ -1,5 +1,5 @@
-import { HomeIcon } from "@components/HomeIcon"
 import Link from "next/link"
+import { USER_LINKS } from "@lib/types/admin"
 export const SummarySection = () => {
     return (
         <>
@@ -24,7 +24,7 @@ export const SummarySection = () => {
             </section>
 
             <ol className="list-group mt-5">
-                <Link href={'/admin/users'} className="link-light">
+                <Link href={`${USER_LINKS.BASE_LINK}/1`} className="link-light">
                     <li className="list-group-item d-flex justify-content-between align-items-start">
                         <div className="ms-1 me-auto">
                             <div className="fw-bold">Total Number of Users</div>

@@ -9,7 +9,7 @@ const Admin = () => {
     return (<>
         <NavBar />
         <div className="container">
-            <Header />
+            <Header pageName="Statistics" />
             <SummarySection />
         </div>
         <Footer />

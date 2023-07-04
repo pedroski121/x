@@ -6,7 +6,11 @@ import { ActivePages } from "@lib/types/admin";
 export const OffCanvas = () => {
     const router = useRouter()
     const currentAdminPage = useDynamicPath()[0]
+    console.log(currentAdminPage)
     const changePage = (adminPage: string) => {
+        if (adminPage == "users"){
+            adminPage = "users/1"
+        }
         router.push({ pathname: `/admin/${adminPage}` })
     }
     return (

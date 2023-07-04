@@ -1,5 +1,7 @@
 export  { OffCanvas } from "./off-canvas/OffCanvas";
+export {Header} from './Header'
 export * from './summary'
-export {Users} from './users'
-export {Stock} from './stock'
-export {Orders} from './orders';
+export * from './users'
+export * from './stock'
+export * from './orders';
+

@@ -1,5 +1,1 @@
-export const Users = () => {
-    return <>
-        Users
-    </>
-}
+export { UserTable } from './UserTable'
