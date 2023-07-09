@@ -1,20 +1,20 @@
-import { SummarySection } from "@components/admin"
+import { ActionRow, Header} from "@components/admin"
 import { Footer } from "@components/general/footer"
 import { NavBar } from "@components/general/navbar"
-import { Header } from "@components/admin"
 import { NextPage } from "next"
 
+const Products:NextPage = () => {
 
-const Admin:NextPage = () => {
+
     return (<>
         <NavBar />
         <div className="container">
-            <Header pageName="Statistics" />
-            <SummarySection />
+            <Header pageName="Manage Products"/>
+            <ActionRow/>
         </div>
-        <Footer />
+        <Footer/>
     </>
     )
 }
 
-export default Admin
+export default Products

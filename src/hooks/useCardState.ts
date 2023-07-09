@@ -1,4 +1,4 @@
-import { useState, useContext, FC, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { IProductsData } from "@lib/types/product";
 import { EAvailableBagAction, IModalDetails, BagDefaultValues } from "@lib/types/bag";
 import { BagContext } from "@contexts/BagContext";

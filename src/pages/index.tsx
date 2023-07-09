@@ -1,4 +1,3 @@
-import { ProductsBasedOnCategoryProvider } from "@contexts/ProductsBasedOnCategoryContext"
 import { NavBar } from "@general-components/navbar"
 import { ExploreNav } from "@components/home/ExploreNav"
 import { SideBar } from "@components/general/sidebar"

@@ -1,8 +1,8 @@
 import { OffCanvas } from "@components/admin"
 import { NavBar } from "@components/general/navbar"
+import { NextPage } from "next"
 
-
-const Orders = () => {
+const Orders:NextPage = () => {
     return (<>
         <NavBar />
         <OffCanvas />

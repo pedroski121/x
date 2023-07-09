@@ -1,22 +1,16 @@
-import { axiosInstance } from "@utils/axiosInstance"
-import { AxiosResponse } from "axios"
 import { FC } from "react"
-import useSWR from 'swr'
 import Link from "next/link"
 import { USER_LINKS } from "@lib/types/admin"
 import { useRouter } from "next/router"
+import { useFetchUserPageCount } from "@hooks/useFetchUserPageCount"
 
 const UserPagination: FC<{limit:number}> = ({limit}) => {
-   const router = useRouter()
-    const userCount = async (url: string) => await axiosInstance.get(url).then((userNumbers: AxiosResponse<{ userCount: number }>): number => {
-        const { userCount } = userNumbers.data
-        const pages = Math.ceil(userCount / limit)
-        return pages
-    })
-    const fetchUserCount = useSWR('/api/user/count', userCount)
-    // create an array for the number of pages 
-    const userCountData = Array(fetchUserCount.data).fill(0).map((_, i) => i + 1);
+    const router = useRouter()
+    const {data} = useFetchUserPageCount(limit)
     const currentPage = router.query.page
+
+    // create an array for the number of pages 
+    const userCountData = Array(data?.pages).fill(0).map((_, i) => i + 1);
     return  (
     <nav aria-label="Admin Userpage navigation" className="d-flex justify-content-center mt-4">
     <ul className="pagination">

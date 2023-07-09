@@ -3,3 +3,8 @@ export type TUserData = {
     fullName: string;
     email: string;
 }
+
+export type TUserCount = {
+    pages:number;
+    userCount:number;
+   }

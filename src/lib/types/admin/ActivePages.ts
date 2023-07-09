@@ -3,5 +3,4 @@
     USERS = 'users',
     PRODUCTS = 'products',
     ORDERS = 'orders',
-    STOCK = 'stock'
 }

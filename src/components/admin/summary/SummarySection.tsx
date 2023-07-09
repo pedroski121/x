@@ -1,6 +1,10 @@
 import Link from "next/link"
 import { USER_LINKS } from "@lib/types/admin"
+import { useFetchUserPageCount } from "@hooks/useFetchUserPageCount"
+
 export const SummarySection = () => {
+    const {data} = useFetchUserPageCount(30)
+    
     return (
         <>
             <section className="row m-3">
@@ -24,28 +28,18 @@ export const SummarySection = () => {
             </section>
 
             <ol className="list-group mt-5">
-                <Link href={`${USER_LINKS.BASE_LINK}/1`} className="link-light">
+                <Link href={`${USER_LINKS.BASE_LINK}/1`} className="link-light my-1">
                     <li className="list-group-item d-flex justify-content-between align-items-start">
                         <div className="ms-1 me-auto">
                             <div className="fw-bold">Total Number of Users</div>
-                            0
+                            {data?.userCount}
                         </div>
                     </li>
                 </Link>
                 <Link href={'/admin/products'} className="link-light">
-
                     <li className="list-group-item d-flex justify-content-between align-items-start">
                         <div className="ms-1 me-auto">
                             <div className="fw-bold">Total Number of Products</div>
-                            0
-                        </div>
-                    </li>
-                </Link>
-                <Link href={'/admin/vendors'} className="link-light">
-
-                    <li className="list-group-item d-flex justify-content-between align-items-start">
-                        <div className="ms-1 me-auto">
-                            <div className="fw-bold">Total number of Vendors</div>
                             0
                         </div>
                     </li>

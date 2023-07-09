@@ -4,8 +4,10 @@ import { Header } from "@components/admin"
 import { UserTable } from "@components/admin"
 import { UserPagination } from "@components/admin/users/UserPagination"
 import { useState } from "react"
+import { NextPage } from "next"
 
-const Users = () => {
+
+const Users:NextPage = () => {
     const [limit, setLimit] = useState<number>(30)
 
     return (<>

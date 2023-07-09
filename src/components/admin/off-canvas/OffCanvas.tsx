@@ -6,7 +6,6 @@ import { ActivePages } from "@lib/types/admin";
 export const OffCanvas = () => {
     const router = useRouter()
     const currentAdminPage = useDynamicPath()[0]
-    console.log(currentAdminPage)
     const changePage = (adminPage: string) => {
         if (adminPage == "users"){
             adminPage = "users/1"
@@ -31,7 +30,6 @@ export const OffCanvas = () => {
                         <button type="button" onClick={() => changePage(ActivePages.USERS)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.USERS ? 'active' : ''} `}>{ActivePages.USERS}</button>
                         <button type="button" onClick={() => changePage(ActivePages.PRODUCTS)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.PRODUCTS ? 'active' : ''} `}>{ActivePages.PRODUCTS}</button>
                         <button type="button" onClick={() => changePage(ActivePages.ORDERS)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.ORDERS ? 'active' : ''} `}>{ActivePages.ORDERS}</button>
-                        <button type="button" onClick={() => changePage(ActivePages.STOCK)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.STOCK ? 'active' : ''} `}>{ActivePages.STOCK}</button>
                     </div>
                 </div>
             </div>
