@@ -19,7 +19,7 @@ const AddProduct:NextPage = () =>{
 
         <div className="container">
             <Header pageName="New Product"/>
-            <UploadImage appendToImgURLs={appendToImgURLs}/>
+            <UploadImage appendToImgURLs={appendToImgURLs} section="product"/>
             <AddProductForm imgURLs={imgURLs} emptyImgURLsArrays={emptyImgURLsArrays}/>
         </div>
         <Footer/>

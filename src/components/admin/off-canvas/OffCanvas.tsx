@@ -7,7 +7,7 @@ export const OffCanvas = () => {
     const router = useRouter()
     const currentAdminPage = useDynamicPath()[0]
     const changePage = (adminPage: string) => {
-        if (adminPage == "users"){
+        if (adminPage === "users"){
             adminPage = "users/1"
         }
         router.push({ pathname: `/admin/${adminPage}` })
@@ -29,6 +29,7 @@ export const OffCanvas = () => {
                         <button type="button" onClick={() => changePage(ActivePages.SUMMARY)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.SUMMARY ? 'active' : ''}`}>{ActivePages.SUMMARY}</button>
                         <button type="button" onClick={() => changePage(ActivePages.USERS)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.USERS ? 'active' : ''} `}>{ActivePages.USERS}</button>
                         <button type="button" onClick={() => changePage(ActivePages.PRODUCTS)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.PRODUCTS ? 'active' : ''} `}>{ActivePages.PRODUCTS}</button>
+                        <button type="button" onClick={() => changePage(ActivePages.CATEGORY)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.CATEGORY ? 'active' : ''} `}>{ActivePages.CATEGORY}</button>
                         <button type="button" onClick={() => changePage(ActivePages.ORDERS)} data-bs-dismiss="offcanvas" className={`btn btn-outline-dark rounded-0 text-capitalize ${currentAdminPage == ActivePages.ORDERS ? 'active' : ''} `}>{ActivePages.ORDERS}</button>
                     </div>
                 </div>

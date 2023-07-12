@@ -3,7 +3,7 @@ import {  AxiosResponse } from "axios"
 import useSWR from 'swr'
 import { ICategory } from "@lib/types/category"
 import { useAddProduct } from "@hooks/useAddProduct"
-import { ProductFormAlert } from "./ProductFormAlert"
+import { ProductFormAlert } from "../ProductFormAlert"
 import { CategorySelect } from "./CategorySelect"
 import { SubCategorySelect } from "./SubCategorySelect"
 
@@ -16,17 +16,16 @@ const AddProductForm = ({imgURLs, emptyImgURLsArrays}:{imgURLs:string[], emptyIm
         quantity,setQuantity,
         description,setDescription,
         storeID,setStoreID,
-        showAlert,setShowAlert,
-        addState,setAddState,
+        showAlert,
+        addState,setShowAlert,
         addToProductFormSubmit
        } = useAddProduct(imgURLs, emptyImgURLsArrays)
-
 
     const fetchCategories = async (url:string) => await axiosInstance.get(url).then((response:AxiosResponse):ICategory[]=>response.data)
     const {data} = useSWR('api/category/all', fetchCategories)
 
     return <>
-        { showAlert ?  <ProductFormAlert addState={addState}/> : <></> } 
+        { showAlert ?  <ProductFormAlert addState={addState} setShowAlert={setShowAlert} /> : <></>} 
         <div>
             <ul>
             {imgURLs.map((imgUrl, key)=>{

@@ -1,4 +1,3 @@
-import { FC } from "react"
 import { ICategory } from "@lib/types/category"
 
 export const CategorySelect = ({data}:{data:ICategory[]}) =>{

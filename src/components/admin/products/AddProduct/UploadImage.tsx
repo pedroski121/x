@@ -2,7 +2,7 @@ import { CldUploadWidget, CldUploadWidgetPropsOptions } from 'next-cloudinary';
 
 
 
-const UploadImage = ({appendToImgURLs}:{appendToImgURLs(url:string):void}) =>{
+const UploadImage = ({appendToImgURLs, section}:{appendToImgURLs(url:string):void, section:string}) =>{
 
   const cloudUploadWidgetOptions:CldUploadWidgetPropsOptions = {
     maxFiles:3,
@@ -10,8 +10,8 @@ const UploadImage = ({appendToImgURLs}:{appendToImgURLs(url:string):void}) =>{
     defaultSource:"local",
     sources:["camera","local", "url"],
   }
-    const uploadSuccess = (result:any) => { appendToImgURLs(result["info"]["url"])
-    }
+    const uploadSuccess = (result:any) => appendToImgURLs(result["info"]["url"])
+    
 
     return (
 <CldUploadWidget uploadPreset={`${process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}`} options={cloudUploadWidgetOptions}
@@ -23,7 +23,7 @@ onUpload={uploadSuccess} >
     }
     return (
       <button className="btn btn-outline-dark rounded-0" onClick={handleOnClick}>
-        Upload Image
+        Upload {section} Image
       </button>
     );
   }}
