@@ -4,4 +4,5 @@ export interface ISubCategory {
     imgURL: string;
     altText?:string;
     categoryName?:string;
+    altImgText?:string;
 }

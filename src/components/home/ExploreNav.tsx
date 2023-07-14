@@ -15,7 +15,7 @@ const ExploreNav: FC = () => {
                         <button type="button" className="btn btn-outline-dark fw-bold">Men</button>
                     </div>
                     <button type="button" className="btn btn-outline-dark fw-bold me-1">Filter</button>
-                    <button className="btn btn-outline-dark fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><span> Explore</span></button>
+                    {/* <button className="btn btn-outline-dark fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><span> Explore</span></button> */}
                 </div>
             </section>
         </div>
