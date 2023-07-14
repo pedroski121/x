@@ -3,5 +3,5 @@
     USERS = 'users',
     PRODUCTS = 'products',
     ORDERS = 'orders',
-    CATEGORY='category'
+    CATEGORIES='categories'
 }

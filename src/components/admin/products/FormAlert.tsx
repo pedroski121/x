@@ -1,6 +1,6 @@
 import { SetStateAction, Dispatch } from "react"
 
-export const ProductFormAlert = ({ addState, setShowAlert }: { addState: boolean, setShowAlert:Dispatch<SetStateAction<boolean>>; }) => {
+export const FormAlert = ({ addState, setShowAlert }: { addState: boolean, setShowAlert:Dispatch<SetStateAction<boolean>>; }) => {
 
     return (
       <div className={`alert ${addState ? 'alert-success' : 'alert-danger'} alert-dismissible fade show mt-2`} id={"scrollTo"}>

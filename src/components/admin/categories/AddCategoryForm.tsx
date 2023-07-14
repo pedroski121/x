@@ -1,13 +1,12 @@
 import { FormEvent, useState } from "react"
-import { NavBar } from "@components/general/navbar"
-import { Footer } from "@components/general/footer"
-import { Header } from "@components/admin"
 import { UploadImage } from "@components/admin"
 import { axiosInstance } from "@utils/axiosInstance"
-import { ProductFormAlert } from "@components/admin/products/ProductFormAlert"
+import { FormAlert } from "@components/admin/products/FormAlert"
+import { AxiosError, AxiosResponse } from "axios"
 
 
-const AddCategory = () => {
+export const AddCategoryForm = () => {
+
     const [categoryName, setCategoryName] = useState<string>('')
     const [categoryImageURL, setCategoryImageURL] = useState<string>('')
     const [showAlert, setShowAlert] = useState<boolean>(false)
@@ -19,20 +18,17 @@ const AddCategory = () => {
         setAddState(false)
         if(categoryImageURL.length !== 0 && categoryName.length !== 0){
             await axiosInstance.post('/api/category/add',{name:categoryName, imgURL:categoryImageURL})
-            .then((response)=>{
+            .then((response:AxiosResponse)=>{
                 setAddState(true)
             })
-
+            .catch((err:AxiosError)=>{
+                setCategoryImageURL('')
+                setCategoryName('')
+            })
         }
-        setCategoryImageURL('')
-        setCategoryName('')
-    }
-
+    } 
     return <>
-        <NavBar/>
-        <div className="container mt-3">
-        <Header pageName="New Category"/>
-       { showAlert ? <ProductFormAlert addState={addState} setShowAlert={setShowAlert}/> : <></>}
+               { showAlert ? <FormAlert addState={addState} setShowAlert={setShowAlert}/> : <></>}
         <form className="mt-3 px-1" method="POST" onSubmit={newCategoryFormSubmit}>
 
         <UploadImage appendToImgURLs={(url:string)=>setCategoryImageURL(url)} section="Category"/>
@@ -51,9 +47,5 @@ const AddCategory = () => {
             </div>
         </form>
         
-        </div>
-        <Footer/>
     </>
 }
-
-export default AddCategory

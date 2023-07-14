@@ -6,6 +6,7 @@ import NavbarCss from './NavBar.module.css';
 import { useBagCheck } from '@hooks/useBagCheck';
 export const NavBar = () => {
    const { bagEmptyStatus } = useBagCheck()
+   
    return (<>
       <nav className="py-1 bg-light border-bottom" data-testid="nav_bar">
          <div className="container d-flex flex-wrap justify-content-between">
@@ -32,10 +33,6 @@ export const NavBar = () => {
 
                      <Link href="#" className="dropdown-item">
                         Wishlist
-                     </Link>
-
-                     <Link href="#" className="dropdown-item">
-                        Settings
                      </Link>
 
                      <Link href="#" className="dropdown-item">
