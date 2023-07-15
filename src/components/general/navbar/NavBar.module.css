@@ -3,3 +3,7 @@
     font-weight: bolder;
     color: #292626;
 }
+
+.dropdown_link:active {
+    background-color: #181616;
+}

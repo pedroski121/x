@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext } from 'react'
 import useSWR from 'swr'
 import { AxiosResponse } from "axios"
 import { useDynamicPath } from "@hooks/useDynamicPath"
@@ -18,10 +18,10 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
 
 
     // get the paths to this current page 
-    const activePaths = useDynamicPath();
+    const {pages} = useDynamicPath();
 
     // get the product ID for the current page
-    const productIdAndName = activePaths[activePaths.length - 1].split('-');
+    const productIdAndName = pages[pages.length - 1].split('-');
     const productId = productIdAndName[productIdAndName.length - 1];
 
 
@@ -31,7 +31,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     if (error || !data) {
         return <Custom404 />
     }
-    data["activePaths"] = activePaths
+    data["activePaths"] = pages
     return (<>
 
         <ProductContext.Provider value={{ data }}>

@@ -8,5 +8,5 @@ export const useDynamicPath = ()=>{
     const router = useRouter();
     const currentPagePath:string = router.asPath;
     let pages:string[] = currentPagePath.split('/').slice(2);
-    return pages
+    return {pages, currentPagePath}
 }
