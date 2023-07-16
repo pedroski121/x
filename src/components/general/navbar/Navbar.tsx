@@ -24,7 +24,7 @@ export const NavBar = () => {
                <li className="nav-item dropdown">
                   <Link href="#" className="nav-link dropdown-toggle link-dark" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                      aria-expanded="false" >
-                     Hi <span className='fw-bold'>Pedro</span>
+                     Hi <span className='fw-bold'>John</span>
                   </Link>
 
                   <ul className="dropdown-menu dropdown-menu-dark text-center p-0" aria-labelledby="navbarDarkDropdownMenuLink">
@@ -32,7 +32,7 @@ export const NavBar = () => {
                         My Account
                      </Link>
 
-                     <Link href="#" className={`dropdown-item fw-bold ${NavbarCss.dropdown_link}`}>
+                     <Link href="/account/orders" className={`dropdown-item fw-bold ${NavbarCss.dropdown_link} ${currentPagePath === '/account/orders' ? 'bg-black': ''}`}>
                         Orders
                      </Link>
 

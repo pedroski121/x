@@ -1,1 +1,1 @@
-export {AccountBody} from './AccountBody'
+export {AccountOverviewDetails} from './AccountOverviewDetails'
