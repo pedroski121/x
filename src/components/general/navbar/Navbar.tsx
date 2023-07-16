@@ -36,7 +36,7 @@ export const NavBar = () => {
                         Orders
                      </Link>
 
-                     <Link href="#" className={`dropdown-item fw-bold ${NavbarCss.dropdown_link}`}>
+                     <Link href="/account/wish-list" className={`dropdown-item fw-bold ${NavbarCss.dropdown_link} ${currentPagePath === '/account/wish-list' ? 'bg-black': ''}`}>
                         Wishlist
                      </Link>
                      <li><hr className="dropdown-divider"/></li>
