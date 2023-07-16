@@ -3,11 +3,11 @@ import Image from "next/image"
 export const OrderList = () =>{
     return( <>
                      <div style={{height:"65vh", overflowY:'scroll', overflowX:'hidden'}}>
-            <ul className="list-group gap-3 ">
-              <li className="list-group-item border border-secondary overflow-auto rounded-0 p-0 m-0 d-flex flex-row justify-content-between">
+            <ul className="list-group">
+              <li style={{whiteSpace: "nowrap"}} className="list-group-item overflow-auto border border-secondary rounded-0 p-0 mb-3 d-flex flex-row justify-content-between">
                     <div className=" d-flex flex-row">
                         <div style={{height:"100%", width:"140px", position:"relative"}}>
-                         <Image src='/face.jpg' style={{ objectFit: "contain" }} alt="An item in the bag image" fill />
+                         <Image src='/face.jpg' style={{ objectFit: "cover" }} alt="An item in the bag image" fill />
                          </div>
                          <div className=" text-center text-md-start px-3 ">
                         <p className={`fw-bold `}>15 Inch AMD RYZEN™ 3 - 2.6GHz - 3.5GHz- <br/>
@@ -21,10 +21,10 @@ export const OrderList = () =>{
                             <button className="btn btn-outline-dark py-1 mt-3 rounded-0">See Details</button>
                           </div>
               </li>
-              <li className="list-group-item border border-secondary overflow-auto rounded-0 p-0 m-0 d-flex flex-row justify-content-between">
+              <li style={{whiteSpace: "nowrap"}} className="list-group-item mb-3 border border-secondary overflow-auto rounded-0 p-0 m-0 d-flex flex-row justify-content-between">
                     <div className=" d-flex flex-row">
                         <div style={{height:"100%", width:"140px", position:"relative"}}>
-                         <Image src='/okirika.jpg' style={{ objectFit: "contain" }} alt="An item in the bag image" fill />
+                         <Image src='/okirika.jpg' style={{ objectFit: "cover" }} alt="An item in the bag image" fill />
                          </div>
                          <div className=" text-center text-md-start px-3 ">
                         <p className="fw-bold">My Face is Beautiful <br/>
@@ -38,10 +38,10 @@ export const OrderList = () =>{
                             <button className="btn btn-outline-dark py-1 mt-3 rounded-0">See Details</button>
                           </div>
               </li>
-              <li className="list-group-item border border-secondary overflow-auto rounded-0 p-0 m-0 d-flex flex-row justify-content-between">
+              <li style={{whiteSpace: "nowrap"}} className="list-group-item mb-3 border border-secondary overflow-auto rounded-0 p-0 m-0 d-flex flex-row justify-content-between">
                     <div className=" d-flex flex-row">
                         <div style={{height:"100%", width:"140px", position:"relative"}}>
-                         <Image src='/suit.jpg' style={{ objectFit: "contain" }} alt="An item in the bag image" fill />
+                         <Image src='/suit.jpg' style={{ objectFit: "cover" }} alt="An item in the bag image" fill />
                          </div>
                          <div className=" text-center text-md-start px-3 ">
                         <p className="fw-bold">Doper Suit. Looks Good <br/>
@@ -55,10 +55,10 @@ export const OrderList = () =>{
                             <button className="btn btn-outline-dark py-1 mt-3 rounded-0">See Details</button>
                           </div>
               </li>
-              <li className="list-group-item border border-secondary overflow-auto rounded-0 p-0 m-0 d-flex flex-row justify-content-between">
+              <li style={{whiteSpace: "nowrap"}} className="list-group-item mb-3 border border-secondary overflow-auto rounded-0 p-0 m-0 d-flex flex-row justify-content-between">
                     <div className=" d-flex flex-row">
                         <div style={{height:"100%", width:"140px", position:"relative"}}>
-                         <Image src='/face.jpg' style={{ objectFit: "contain" }} alt="An item in the bag image" fill />
+                         <Image src='/face.jpg' style={{ objectFit: "cover" }} alt="An item in the bag image" fill />
                          </div>
                          <div className=" text-center text-md-start px-3 ">
                         <p className="fw-bold">Need to try On <br/>
