@@ -25,7 +25,7 @@ export const AccountOverviewDetails = () =>{
             <div className="card rounded-0 border-0" style={{height:"220px"}}>
             <div className="card-header border border-dark text-dark fw-bold rounded-0 fs-6 d-flex flex-row justify-content-between">
                 ADDRESS BOOK
-                <Link href="#" className="btn btn-outline-dark p-0 border-0 px-1"><i className="bi bi-vector-pen"></i></Link>
+                <Link href="#" className="btn btn-outline-dark rounded-5 p-0 border-0 px-1"><i className="bi bi-pencil"></i></Link>
             </div>
             <div className="card-body border border-dark border-top-0">
                 <h5 className="card-title">Shipping Address</h5>

@@ -3,7 +3,7 @@ import Image from "next/image"
 export const WishListItems = () =>{
     return <>
          <ul className="list-group">
-              <li style={{whiteSpace: "nowrap", height:"150px"}} className={`list-group-item overflow-auto border border-secondary  rounded-0 p-0 mb-3 d-flex flex-row justify-content-between `}>
+              <li style={{whiteSpace: "nowrap", height:"150px"}} className={`list-group-item overflow-auto border border-secondary rounded-1 p-0 mb-3 d-flex flex-row justify-content-between `}>
                   <div className={` d-flex flex-row ` }>
                         <div style={{height:"100%", width:"140px", position:"relative"}}>
                          <Image src='/face.jpg' style={{ objectFit: "cover" }} alt="An item in the bag image" fill />
@@ -21,7 +21,7 @@ export const WishListItems = () =>{
                             <button className="btn btn-outline-danger py-1 rounded-0">Remove</button>
                     </div>
               </li>
-              <li style={{whiteSpace: "nowrap", height:"150px"}} className={`list-group-item overflow-auto border border-secondary  rounded-0 p-0 mb-3 d-flex flex-row justify-content-between `}>
+              <li style={{whiteSpace: "nowrap", height:"150px"}} className={`list-group-item overflow-auto border border-secondary rounded-1 p-0 mb-3 d-flex flex-row justify-content-between `}>
                   <div className={` d-flex flex-row ` }>
                         <div style={{height:"100%", width:"140px", position:"relative"}}>
                          <Image src='/child.jpg' style={{ objectFit: "cover" }} alt="An item in the bag image" fill />
@@ -39,7 +39,7 @@ export const WishListItems = () =>{
                             <button className="btn btn-outline-danger py-1 rounded-0">Remove</button>
                     </div>
               </li>
-              <li style={{whiteSpace: "nowrap", height:"150px"}} className={`list-group-item overflow-auto border border-secondary  rounded-0 p-0 mb-3 d-flex flex-row justify-content-between `}>
+              <li style={{whiteSpace: "nowrap", height:"150px"}} className={`list-group-item overflow-auto border border-secondary rounded-1 p-0 mb-3 d-flex flex-row justify-content-between `}>
                   <div className={` d-flex flex-row ` }>
                         <div style={{height:"100%", width:"140px", position:"relative"}}>
                          <Image src='/women/gelle.jpg' style={{ objectFit: "cover" }} alt="An item in the bag image" fill />
