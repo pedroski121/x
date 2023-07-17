@@ -3,8 +3,8 @@ export const AccountOverviewDetails = () =>{
     return (
         <>
         <div className="mx-5 d-block d-md-none">
+          <Link href={"/account/address-book"}> <button type="button" className="btn btn-outline-dark m-1 rounded-0">Address Book</button></Link>
            <button type="button" className="btn btn-outline-dark m-1 rounded-0">Manage Account</button>
-           <button type="button" className="btn btn-outline-dark m-1 rounded-0">Address Book</button>
         </div>
         <section className="row gap-2 justify-content-center mt-3">
 
