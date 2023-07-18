@@ -22,7 +22,7 @@ export const AccountSideBar = () => {
             <button onClick={()=>navigateTo('/account/wish-list')} className={`btn btn-outline-dark rounded-0 ${currentPagePath === '/account/wish-list' ? 'active' : ''} border-end-0 border-bottom-0 fw-bold`}>
                 WishList
             </button>
-            <button onClick={()=>navigateTo('/account/address-book')} className={`btn btn-outline-dark rounded-0  ${currentPagePath === '/account/address-book' ? 'active' : ''} border-end-0 border-bottom-0 fw-bold`}>
+            <button onClick={()=>navigateTo('/account/address-book')} className={`btn btn-outline-dark rounded-0  ${currentPagePath === '/account/address-book' || currentPagePath === '/account/address-book/edit' ? 'active' : ''} border-end-0 border-bottom-0 fw-bold`}>
                 Address Book
             </button>
             <button className="btn btn-outline-dark rounded-0 border-end-0 fw-bold">

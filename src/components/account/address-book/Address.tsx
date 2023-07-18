@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export const Address = () =>{
     return (<>
               <div className="d-flex justify-content-center">
@@ -14,7 +16,9 @@ export const Address = () =>{
 
   </ul>
 <div className="card-footer text-end">
+<Link href={'/account/address-book/edit'}>
 <button className="btn btn-outline-dark rounded-5 p-0 border border-0 px-2 py-1"><i className="bi bi-pencil"></i></button>
+</Link>
 </div>
             </div>
             </div>
