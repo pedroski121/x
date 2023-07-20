@@ -12,7 +12,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
 
       <BagProvider>
+       
         <Component {...pageProps} />
       </BagProvider>
     </>)
 }
+
+

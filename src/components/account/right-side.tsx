@@ -10,8 +10,8 @@ const RightSide =() =>{
         <>
             <div className={styles.bgWrap}>
       <Image
-        alt="travel"
-        src={router.pathname === '/account/sign-up' ? '/girl-on-hat.jpg' : '/face.jpg'}
+        alt="sign up"
+        src={router.pathname === '/account/sign-up' ? '/face.jpg' : '/women/gelle.jpg'}
         fill
       />
 </div>

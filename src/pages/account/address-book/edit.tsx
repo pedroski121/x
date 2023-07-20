@@ -7,26 +7,26 @@ const EditAddress = () =>{
         <NavBar/>
         <AccountBody sectionHeading="Edit Address" >
         <form className="row justify-content-center p-4">
-  <div className="col-6">
+  <div className="col-12 col-md-6">
     <label htmlFor="firstName" className="form-label m-0 fw-bold m-0 fw-bold">First Name</label>
     <input  type="text" className="form-control shadow-none border border-secondary p-0 px-2 py-1 rounded-1 shadow-none border border-secondary p-0 px-2 py-1 rounded-1" id="firstName"/>
   </div>
-  <div className="col-6 col-md-6">
+  <div className="col-12 col-md-6 mt-2 mt-md-0">
     <label htmlFor="lastName" className="form-label m-0 fw-bold m-0">Last Name</label>
-    <input type="text" className="form-control shadow-none border border-secondary p-0 px-2 py-1 rounded-1" id="lastName"/>
+    <input type="text"  className="form-control shadow-none border border-secondary p-0 px-2 py-1 rounded-1" id="lastName"/>
   </div>
   <div className="col-12 col-md-6 mt-2">
   <label htmlFor="phoneNumber" className="form-label m-0 fw-bold m-0">Phone Number</label>
-  <div className="input-group">
+ <div className="input-group">
   <span className="input-group-text bg-dark text-light fw-bold">+234</span>
-  <input type="text" className="form-control shadow-none border border-secondary" aria-label="Phone Number"/>
+  <input type="number"  min={0} className="form-control shadow-none border border-secondary" aria-label="Phone Number"/>
 </div>
   </div>
   <div className="col-12 col-md-6 mt-2">
   <label htmlFor="additionalPhoneNumber" className="form-label m-0 fw-bold m-0">Additional Phone Number</label>
   <div className="input-group">
   <span className="input-group-text bg-dark text-light fw-bold">+234</span>
-  <input type="text" className="form-control shadow-none border border-secondary" aria-label="Phone Number"/>
+  <input type="number" min={0} className="form-control shadow-none border border-secondary" aria-label="Additional Phone Number"/>
 </div>
   </div>
 

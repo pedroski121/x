@@ -1,4 +1,4 @@
-export enum ACTION_KIND {
+export enum ACTION {
     TOGGLE_SPINNER = 'toggle-spinner',
     CHANGE_ACC_INVALID_MESSAGE = 'change-account-invalid-message',
     CHANGE_PSWD_INVALID_MESSAGE = 'change-password-invalid-message',

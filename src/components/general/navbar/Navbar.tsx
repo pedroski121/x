@@ -11,7 +11,7 @@ export const NavBar = () => {
    return (<>
       <nav className="py-1 bg-light border-bottom" data-testid="nav_bar">
          <div className="container d-flex flex-wrap justify-content-between">
-            <HomeIcon iconColor='text-dark' />
+            <div> <HomeIcon /></div>
             <ul className="nav">
                <li className="nav-item position-relative">
                   <Link href="/bag" className='nav-link link-dark px-2'>

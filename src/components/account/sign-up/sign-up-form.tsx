@@ -1,59 +1,19 @@
-import React,{useState} from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import {AxiosResponse} from 'axios';
 import styles from './sign-up-form.module.css';
-import { axiosInstance } from '@utils/axiosInstance';
 import accountStyles from '@components/account/account.module.css';
-import { HomeIcon } from '@components/HomeIcon';
 import { dancingScript} from '@utils/font';
+import { NavBar } from '@components/general/navbar';
+import { useSignUp } from '@hooks/useSignUp';
 const SignUpForm = () => {
-
-  const [fullName, setFullName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [spinner, setSpinner] = useState<boolean>(false);
-
-  const [accountInValidityMessage, setAccountInValidityMessage] = useState<string>('');
-  const [passwordInValidityMessage, setPasswordInvalidityMessage] = useState<string>('');
-  const [fullNameInValidityMessage, setFullNameInValidityMessage] = useState<string>('');
-  const router = useRouter();
+  const { handleSignUpFormSumbit,fullName,setFullName,fullNameInValidityMessage,email,accountInValidityMessage,spinner, password,passwordInValidityMessage, setPassword,setEmail} = useSignUp()
   
-  async function handleSignUpFormSumbit(e:React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSpinner(true); 
-    setAccountInValidityMessage(''); setPasswordInvalidityMessage(''); setFullNameInValidityMessage('')
-    const data = {email, fullName, password};
-
-    await axiosInstance.post('/api/auth/sign-up', data)
-    .then((response: AxiosResponse)=>{
-      router.push('/account/sign-in')
-    })
-    .catch((err)=>{
-      err.response?.data.map((obj:{message:'string', success:boolean, field?:string})=>{
-        if(obj.field == 'password'){
-          setPasswordInvalidityMessage(obj.message)
-        }
-        else if (obj.field == 'email') {
-          setAccountInValidityMessage(obj.message)
-        }
-        else if(obj.field == 'fullName') {
-          setFullNameInValidityMessage(obj.message)
-        }
-        else {
-          setPasswordInvalidityMessage(obj.message); setAccountInValidityMessage(obj.message); setFullName(obj.message);
-        }
-      })
-    });
-    setSpinner(false); setEmail(''); setPassword(''); setFullName('');
-  }
     return (
     <div className={`d-flex flex-column justify-content-between ${accountStyles.side}`}>
-      <HomeIcon/>
+      <NavBar/>
       <div className={`p-1 ${styles.sign_up_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
       <h1>Welcome</h1>
-      <p className='text-secondary'>Elevate your style with our latest fashion finds.</p>
+      <p className={`text-secondary fs-6 ${dancingScript.className}`}>Elevate your style with our latest fashion finds.</p>
          </div>
          <form data-testid="sign-up-form" onSubmit={handleSignUpFormSumbit} noValidate>
             <div className="mb-1">
@@ -90,9 +50,7 @@ const SignUpForm = () => {
          </form>
       </div>
       <p className='align-self-center'><span className='text-secondary'>Have an account? </span> 
-      <Link href="/account/sign-in" legacyBehavior>
-          <a className='link-dark pe-auto'>Sign In</a>
-      </Link>
+      <Link href="/account/sign-in" className="link-dark pe-auto">   Sign In   </Link>
       </p>
     </div>
  )

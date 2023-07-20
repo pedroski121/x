@@ -7,8 +7,8 @@ type THomeIcon = {
 const HomeIcon: FC<THomeIcon> = (prop) => {
     const { iconColor = 'text-dark' } = prop;
     return (
-        <Link href="/" className={`align-items-center ${iconColor} text-decoration-none border border-dark`}>
-            <span className="fs-4 p-3 fw-bold">X</span>
+        <Link href="/" className={`align-items-center ${iconColor} text-decoration-none  px-2 py-1 border border-dark`}>
+            <span className="fs-4 fw-bold">X</span>
         </Link>
     )
 }

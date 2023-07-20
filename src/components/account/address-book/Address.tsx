@@ -3,7 +3,7 @@ import Link from "next/link"
 export const Address = () =>{
     return (<>
               <div className="d-flex justify-content-center">
-        <div className="card rounded-0 border-0 shadow-lg mt-3" style={{height:"220px", width:"70%"}}>
+        <div className="card rounded-0 border-0 shadow-lg mt-3" style={{height:"220px", width:"90%"}}>
 
         <div className="card-body">
     <h5 className="card-title">John Doe</h5>
