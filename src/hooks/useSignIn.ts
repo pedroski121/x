@@ -22,7 +22,7 @@ export const useSignIn = () => {
     dispatch({type:ACTION.CHANGE_PSWD_INVALID_MESSAGE,payload:''})
 
     const data = {email, password};
-    await axiosInstance.post('/api/auth/sign-in', data)
+    await axiosInstance.post('/api/auth/sign-in', data, {withCredentials:true})
     .then((response: AxiosResponse<TResponse>)=>{
       router.push('/')
     }).catch((err)=>{
