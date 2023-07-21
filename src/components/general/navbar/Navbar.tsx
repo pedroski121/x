@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Link from 'next/link'
 import { HomeIcon } from '@components/HomeIcon'
 import NavbarCss from './NavBar.module.css';
 import { useDynamicPath } from '@hooks/useDynamicPath';
-
 import { useBagCheck } from '@hooks/useBagCheck';
-export const NavBar = () => {
+
+
+export const NavBar:FC<{userId?:string}> = ({userId}) => {
    const { bagEmptyStatus } = useBagCheck()
    const {currentPagePath}:{currentPagePath:string} = useDynamicPath()
+
    return (<>
       <nav className="py-1 bg-light border-bottom" data-testid="nav_bar">
          <div className="container d-flex flex-wrap justify-content-between">

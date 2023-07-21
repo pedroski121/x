@@ -5,8 +5,11 @@ import styles from './sign-in-form.module.css';
 import { NavBar } from '@components/general/navbar';
 import { useSignIn } from '@hooks/useSignIn';
 
+
 const SignInForm = () => {
   const {handleSignInFormSubmit, email, setEmail, state, password, setPassword} = useSignIn()
+
+
     return (
     <div className={`d-flex flex-column justify-content-between ${accountStyles.side}`}>
     <NavBar/>   
