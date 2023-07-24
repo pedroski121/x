@@ -15,7 +15,7 @@ const SignInForm = () => {
     <NavBar/>   
        <div className={`p-3 ${styles.sign_in_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
-      <h1>Welcome back</h1>
+      <h1>Welcome</h1>
       <p className='text-secondary'>Stay ahead of the fashion curve with our latest collection</p>
          </div>
          <form data-testid="sign-in-form" onSubmit={handleSignInFormSubmit} noValidate>
@@ -51,7 +51,6 @@ const SignInForm = () => {
                 <button type="submit" role="signIn" className="btn btn-dark rounded-0">Sign In  &nbsp;
                 <span className={state.spinner ? "spinner-border spinner-border-sm" : "invisible"} role="status" aria-hidden="true"> </span>
                 </button>
-                <button type="submit" className="btn btn-light rounded-0 border border-secondary">Sign In with Google</button>
             </div>
          </form>
       </div>

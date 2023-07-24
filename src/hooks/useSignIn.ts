@@ -22,8 +22,12 @@ export const useSignIn = () => {
     dispatch({type:ACTION.CHANGE_PSWD_INVALID_MESSAGE,payload:''})
 
     const data = {email, password};
-    await axiosInstance.post('/api/auth/sign-in', data, {withCredentials:true})
+    await axiosInstance.post('/api/auth/sign-in', data, {withCredentials:true, headers:{
+      'Content-Type': 'application/json',
+  'X-CSRFToken': 'csrfToken'
+    }})
     .then((response: AxiosResponse<TResponse>)=>{
+      console.log(response.headers)
       router.push('/')
     }).catch((err)=>{
       err.response?.data.map((obj:{message:'string', success:boolean, field?:string})=>{

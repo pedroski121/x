@@ -45,7 +45,6 @@ const SignUpForm = () => {
                 <button type="submit" role="signUp" className="btn btn-dark rounded-0">Sign Up  &nbsp;
                 <span className={spinner ? "spinner-border spinner-border-sm" : "invisible"} role="status" aria-hidden="true"> </span>
                 </button>
-                <button type="submit" className="btn btn-light rounded-0 border border-secondary">Sign Up with Google</button>
             </div>
          </form>
       </div>
