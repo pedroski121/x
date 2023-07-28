@@ -1,8 +1,12 @@
 import { NavBar } from "@components/general/navbar"
 import { AccountBody} from "@components/account"
 import { Footer } from "@components/general/footer"
+import { getServerSideProps } from "@utils/user-session"
+import { NextPage } from "next/types"
+import { TAccountPageProps } from "@lib/types/account"
 
-const EditAddress = () =>{
+
+const EditAddress:NextPage<TAccountPageProps> = (session) =>{
     return <>
         <NavBar/>
         <AccountBody sectionHeading="Edit Address" >
@@ -41,16 +45,16 @@ const EditAddress = () =>{
   <div className="col-md-6 mt-2">
     <label htmlFor="inputState" className="form-label m-0 fw-bold m-0">State</label>
     <select id="inputState" className="form-select shadow-none border border-secondary rounded-1">
-      <option selected disabled>Choose</option>
+      <option defaultValue={'Choose'} disabled>Choose</option>
       <option>Abia</option>
       <option>Adamawa</option>
 
     </select>
   </div>
   <div className="col-md-6 mt-2">
-    <label htmlFor="city" className="form-label m-0 fw-bold m-0">State</label>
+    <label htmlFor="city" className="form-label m-0 fw-bold m-0">City</label>
     <select id="city" className="form-select shadow-none border border-secondary rounded-1">
-      <option selected disabled> Please Select</option>
+      <option defaultValue={'Please Select'} disabled> Please Select</option>
       <option value="arochukwu">Arochukwu</option>
       <option value="umuahia">Umuahia</option>
 
@@ -67,4 +71,6 @@ const EditAddress = () =>{
     </>
 }
 
+
+export {getServerSideProps}
 export default EditAddress
