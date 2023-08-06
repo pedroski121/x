@@ -1,12 +1,26 @@
 import Link from "next/link"
-export const AccountOverviewDetails = () =>{
+export type TAccountData = {
+    firstName:string, 
+    lastName:string,
+    email : string,
+    password:string,
+    phoneNumber?:number,
+    additionalPhoneNumber?:number,
+    address1?:string,
+    address2?:string, 
+    state?:string, 
+    city?:string
+}
+export const AccountOverviewDetails = ({data}:{data:TAccountData}) =>{
     return (
         <>
         <div className="mx-5 d-block d-md-none">
           <Link href={"/account/address-book"}> <button type="button" className="btn btn-outline-dark m-1 rounded-0">Address Book</button></Link>
            <button type="button" className="btn btn-outline-dark m-1 rounded-0">Manage Account</button>
         </div>
-        <section className="row gap-2 justify-content-center mt-3">
+        {
+            data 
+            ? <section className="row gap-2 justify-content-center mt-3">
 
             <div className="col-10 col-md-5 ">
             <div className="card border-0" style={{height:"220px"}}>
@@ -14,9 +28,11 @@ export const AccountOverviewDetails = () =>{
                 ACCOUNT DETAILS
             </div>
             <div className="card-body border border-dark border-top-0">
-                <h5 className="card-title">John Doe</h5>
-                <p className="card-text"><span className="bi bi-envelope-fill"></span> obipedrodevtest@gmail.com <br></br>
-                <span className="bi bi-telephone-fill"></span> +234 816 000 0000</p>
+                <h5 className="card-title">{ `${data.firstName} ${data.lastName}`}</h5>
+            <p className="card-text">
+                <span className="bi bi-envelope-fill"></span> {data.email}<br></br>
+                {data.phoneNumber ?<> <span className="bi bi-telephone-fill"></span> <span></span>0{data.phoneNumber}</> : <></>}
+            </p>
             </div>
             </div>
             </div>
@@ -29,13 +45,17 @@ export const AccountOverviewDetails = () =>{
             </div>
             <div className="card-body border border-dark border-top-0">
                 <h5 className="card-title">Shipping Address</h5>
-                <p className="card-text">...</p>
-                <p> Umuahia, Abia</p>
+                <p className="card-text">{data.address1}</p>
+                <p>{data.city}, {data.state}</p>
 
             </div>
             </div>
             </div>
-        </section>
+        </section> 
+        
+        : <></>
+        }
+
         </>
     )
 }

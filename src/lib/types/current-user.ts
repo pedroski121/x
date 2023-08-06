@@ -5,3 +5,10 @@ export type TCurrentUser = {
    exp: number,
    success:boolean
 }
+
+export type TUserSession = {
+    currentUser: {
+        _id:string, 
+    }, 
+    success:boolean
+}[]

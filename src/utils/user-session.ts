@@ -1,9 +1,16 @@
-import {GetServerSidePropsContext, GetServerSideProps} from 'next'
+import {GetServerSidePropsContext, GetServerSideProps, GetServerSidePropsResult} from 'next'
 import { axiosInstance } from "@utils/axiosInstance"
-import { TCurrentUser } from '@lib/types/current-user'
-import { TAccountPageProps } from '@lib/types/account'
+import { TUserSession } from '@lib/types/current-user'
 
-export const fetchUserSessionData =async (context:GetServerSidePropsContext):Promise<TCurrentUser[] | [{message:string, success:boolean}]> =>{
+export function isCurrentUser(user: any):user is TUserSession {
+     let userSession = user[0].currentUser
+     if(userSession) {
+        return '_id' in userSession
+     }
+     return false
+}
+
+export const fetchUserSessionData = async (context:GetServerSidePropsContext):Promise<TUserSession | [{message:string, success:boolean}]> => {
     try {
         const userSession = await axiosInstance.get('/api/auth/current-user', {
             withCredentials: true,
@@ -22,15 +29,18 @@ export const fetchUserSessionData =async (context:GetServerSidePropsContext):Pro
     }
 }
 
-export const getServerSideProps: GetServerSideProps<TAccountPageProps> = async (context: GetServerSidePropsContext) => {
+
+
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext):Promise<GetServerSidePropsResult<{session:TUserSession}>> => {
     const userSession = await fetchUserSessionData(context);
-    if(!userSession[0].success){
-        return {
-            redirect:{
-                destination:'/account/sign-in', 
-                permanent:false
-            }
+    if(isCurrentUser(userSession)) {
+        return {props: {session:userSession}}
+    }
+    return {
+        redirect:{
+            destination:'/account/sign-in', 
+            permanent:false
         }
     }
-    return { props: { userSession } };
 }
+

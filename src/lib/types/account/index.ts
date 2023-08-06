@@ -1,5 +1,5 @@
-import { TCurrentUser } from "../current-user"
+import { TUserSession } from "../current-user"
 
 export type TAccountPageProps = {
-    userSession: TCurrentUser[] | { message: string, success: boolean }[];
+    userSession: TUserSession[] | { message: string, success: boolean }[];
 }

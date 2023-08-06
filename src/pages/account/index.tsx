@@ -1,32 +1,26 @@
-import { useEffect, useState } from "react"
 import {NextPage } from 'next'
 import { Footer } from "@components/general/footer"
 import { NavBar } from "@components/general/navbar"
 import { AccountBody } from "@components/account"
 import { AccountOverviewDetails } from "@components/account"
-import { TAccountPageProps } from "@lib/types/account"
-import { shouldRender } from "@utils/should-render"
 import { getServerSideProps } from "@utils/user-session"
+import { TUserSession } from "@lib/types/current-user"
+import { useFetch } from "@hooks/useFetch"
+import { TAccountData } from '@components/account/overview/AccountOverviewDetails'
 
-const AccountOverview: NextPage<TAccountPageProps> = ( session ) => {
-    const [render, setRender] = useState<boolean>(false);
-    useEffect(()=>{
-        setRender(()=>shouldRender(session))
-    }, [])
-
-    if(render){
+const AccountOverview: NextPage<{session:TUserSession}> = (session) => {
+        const {currentUser} = session.session[0]
+        const {data}:{data:TAccountData} = useFetch(`/api/user/${currentUser._id}`)
         return (
             <>
-            <NavBar userId={ //@ts-ignore
-             session.userSession._id }/>
+            <NavBar firstName={data?.firstName}/>
             <AccountBody sectionHeading="Account Overview">
-                <AccountOverviewDetails /> 
+                <AccountOverviewDetails data={data} /> 
             </AccountBody>
             <Footer />
         </>
         )
-    } return (<><NavBar/><p>Not Authorized</p></>);
-}
+    }
 
 
 export {getServerSideProps}

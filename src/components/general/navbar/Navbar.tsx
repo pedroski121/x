@@ -4,9 +4,15 @@ import { HomeIcon } from '@components/HomeIcon'
 import NavbarCss from './NavBar.module.css';
 import { useDynamicPath } from '@hooks/useDynamicPath';
 import { useBagCheck } from '@hooks/useBagCheck';
+import { useContext } from 'react';
+import { CurrentUserContext } from '@contexts/CurrentUserContext';
+import { useEffect } from 'react';
 
-
-export const NavBar:FC<{userId?:string}> = ({userId}) => {
+export const NavBar:FC = () => {
+   const {userState} = useContext(CurrentUserContext)
+   useEffect(()=>{
+      
+   }, [userState])
    const { bagEmptyStatus } = useBagCheck()
    const {currentPagePath}:{currentPagePath:string} = useDynamicPath()
 
@@ -23,12 +29,14 @@ export const NavBar:FC<{userId?:string}> = ({userId}) => {
                   </Link>
 
                </li>
-               <li className="nav-item dropdown">
-                  <Link href="#" className="nav-link dropdown-toggle link-dark" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+               <li className="nav-item dropdown"> {
+                  userState.firstName !== '' && userState 
+                  ? 
+                  <> <Link href="#" className="nav-link dropdown-toggle link-dark" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                      aria-expanded="false" >
-                     Hi <span className='fw-bold'>John</span>
+                     <>Hi <span className='fw-bold'>{userState.firstName}</span></> 
+                     
                   </Link>
-
                   <ul className="dropdown-menu dropdown-menu-dark text-center p-0" aria-labelledby="navbarDarkDropdownMenuLink">
                      <Link href="/account" className={`dropdown-item ${NavbarCss.dropdown_link} fw-bold rounded-1 ${currentPagePath === '/account' ? 'bg-black': ''}`}>
                         My Account
@@ -47,8 +55,16 @@ export const NavBar:FC<{userId?:string}> = ({userId}) => {
                         Sign Out
                      </Link>
 
-                  </ul>
-               </li>
+                  </ul></>
+               
+                  :
+                  <Link href="/account/sign-in" className="nav-link link-dark"
+                  aria-expanded="false" >
+                     <span className='fw-bold'>Sign In</span>
+                  
+                   </Link>
+               }</li>
+               
             </ul>
 
 

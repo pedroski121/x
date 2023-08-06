@@ -28,7 +28,6 @@ export const useSignIn = () => {
   })
     .then((response: AxiosResponse<TResponse>)=>{
       router.push('/')
-      console.log(response)
     }).catch((err)=>{
       err.response?.data.map((obj:{message:'string', success:boolean, field?:string})=>{
         if(obj.field == 'password'){
