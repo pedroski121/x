@@ -11,13 +11,13 @@ import { useEffect } from 'react';
 export const NavBar:FC = () => {
    const {userState} = useContext(CurrentUserContext)
    useEffect(()=>{
-      
+
    }, [userState])
    const { bagEmptyStatus } = useBagCheck()
    const {currentPagePath}:{currentPagePath:string} = useDynamicPath()
 
    return (<>
-      <nav className="py-1 bg-light border-bottom" data-testid="nav_bar">
+      <nav className="py-1 bg-light border-bottom fixed-top" data-testid="nav_bar">
          <div className="container d-flex flex-wrap justify-content-between">
             <div> <HomeIcon /></div>
             <ul className="nav">
@@ -61,7 +61,7 @@ export const NavBar:FC = () => {
                   <Link href="/account/sign-in" className="nav-link link-dark"
                   aria-expanded="false" >
                      <span className='fw-bold'>Sign In</span>
-                  
+      
                    </Link>
                }</li>
                

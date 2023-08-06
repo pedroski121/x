@@ -5,7 +5,6 @@ import { useDynamicPath } from "@hooks/useDynamicPath";
 import { axiosInstance } from "@utils/axiosInstance";
 import { SubCategoryCard } from "@components/subcategory-card";
 import { GrowingSpinner } from "@components/general/spinners";
-import { NavBar } from "@general-components/navbar";
 import { BreadCrumbNav } from "@general-components/BreadCrumbNav";
 import { Footer } from "@general-components/footer";
 import Custom404 from "src/pages/404";
@@ -22,7 +21,6 @@ const CategoryProducts = () => {
   return (
     <>
 
-      <NavBar />
       <div className="container-fluid ">
         <BreadCrumbNav pages={pages} />
         <div className="row mt-3">

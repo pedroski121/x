@@ -1,5 +1,4 @@
 import { NextPage } from "next"
-import { NavBar } from "@general-components/navbar"
 import { Table, SummaryCheckout, EmptyBag } from "@components/bag"
 import { SideBar } from "@components/general/sidebar"
 import { useBagCheck } from "@hooks/useBagCheck"
@@ -8,7 +7,6 @@ const Bag: NextPage = () => {
     const { sumOfItems, bagEmptyStatus } = useBagCheck()
     return (
         <>
-            <NavBar />
             <div className="container-fluid">
                 <div className="overflow-hidden p-4">
                     <h1 className="text-center fst-italic">My Shopping Bag</h1>

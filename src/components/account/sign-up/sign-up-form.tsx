@@ -2,14 +2,12 @@ import Link from 'next/link';
 import styles from './sign-up-form.module.css';
 import accountStyles from '@components/account/account.module.css';
 import { dancingScript} from '@utils/font';
-import { NavBar } from '@components/general/navbar';
 import { useSignUp } from '@hooks/useSignUp';
 const SignUpForm = () => {
   const { handleSignUpFormSumbit,fullName,setFullName,fullNameInValidityMessage,email,accountInValidityMessage,spinner, password,passwordInValidityMessage, setPassword,setEmail} = useSignUp()
   
     return (
-    <div className={`d-flex flex-column justify-content-between ${accountStyles.side}`}>
-      <NavBar/>
+    <div className={`d-flex flex-column justify-content-center ${accountStyles.side}`}>
       <div className={`p-1 ${styles.sign_up_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
       <h1>Welcome</h1>
@@ -48,9 +46,10 @@ const SignUpForm = () => {
             </div>
          </form>
       </div>
-      <p className='align-self-center'><span className='text-secondary'>Have an account? </span> 
+      <p className='align-self-center mt-3'><span className='text-secondary'>Have an account? </span> 
       <Link href="/account/sign-in" className="link-dark pe-auto">   Sign In   </Link>
       </p>
+
     </div>
  )
 }

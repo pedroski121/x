@@ -1,4 +1,3 @@
-import { NavBar } from "@components/general/navbar"
 import { AccountBody, WishListItems } from "@components/account"
 import { Footer } from "@components/general/footer"
 import { getServerSideProps } from "@utils/user-session"
@@ -7,7 +6,6 @@ import { NextPage } from "next/types"
 
 const WishList:NextPage<TAccountPageProps>= (session) =>{
     return <>
-        <NavBar/>
         <AccountBody sectionHeading="WishList">
             <WishListItems/>
         </AccountBody>

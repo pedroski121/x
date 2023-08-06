@@ -1,5 +1,4 @@
 import { NextPage } from "next";
-import { NavBar } from "@general-components/navbar";
 import { Footer } from "@general-components/footer";
 import { CategoryCard } from "@components/category";
 import { BreadCrumbNav } from "@general-components/BreadCrumbNav";
@@ -26,7 +25,6 @@ const Category: NextPage = () => {
 
   return (
     <>
-      <NavBar />
       <div className="container-fluid">
 
         <BreadCrumbNav pages={pages} />

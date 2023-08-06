@@ -1,11 +1,11 @@
-import { NavBar } from "@general-components/navbar"
 import { ExploreNav } from "@components/home/ExploreNav"
 import { SideBar } from "@components/general/sidebar"
 import { Body } from "@components/home/Body"
 import { Footer } from "@components/general/footer"
-import { CurrentUserContext, IUser } from "@contexts/CurrentUserContext"
+import { IUser } from "@lib/types/current-user"
+import { CurrentUserContext} from "@contexts/CurrentUserContext"
 import { useContext, useState } from "react"
-import { UserAction } from "@contexts/CurrentUserContext"
+import { UserSessionAction } from "@lib/enums"
 import { TUserSession } from "@lib/types/current-user"
 import { NextPage } from "next/types"
 import { useEffect } from "react"
@@ -17,7 +17,7 @@ const Home:NextPage = () => {
   const {dispatch} = useContext(CurrentUserContext)
   const callDispatch = () =>{
     if(!!currentUser && dispatch){
-       dispatch({type:UserAction.SET_USER, payload:{user:currentUser}})   
+       dispatch({type:UserSessionAction.SET_USER, payload:{user:currentUser}})   
     }
   }
 
@@ -48,7 +48,6 @@ useEffect(()=>{
   return (
     <>
       <div className="overflow-hidden">
-        <NavBar />
         <ExploreNav />
         <SideBar />
         <Body />

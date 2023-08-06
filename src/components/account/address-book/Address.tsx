@@ -1,18 +1,35 @@
 import Link from "next/link"
+import { useContext } from "react"
+import { CurrentUserContext } from "@contexts/CurrentUserContext"
 
-export const Address = () =>{
+export const Address = () => {
+  const {userState} = useContext(CurrentUserContext)
     return (<>
               <div className="d-flex justify-content-center">
         <div className="card rounded-0 border-0 shadow-lg mt-3" style={{height:"220px", width:"90%"}}>
 
         <div className="card-body">
-    <h5 className="card-title">John Doe</h5>
+    <h5 className="card-title">{userState.firstName && userState.lastName ? <>{userState.firstName} {userState.lastName}</> : <></>}</h5>
   </div>
-  <ul className="list-group ">
-    <li className="list-group-item list-group-item-dark">No.6 John Downey Street</li>
-    <li className="list-group-item">London, England</li>
-    <li className="list-group-item list-group-item-dark">johndoe@x.com</li>
-    <li className="list-group-item">+234 816 000 0000</li>
+  <ul className="list-group">
+    {
+      userState.address1
+      ? <li className="list-group-item list-group-item-dark">{userState.address1}</li> 
+      : <></>
+    }
+    
+    {
+      userState.state && userState.city 
+      ? <li className="list-group-item">{userState.city}, {userState.state}</li>
+      :<></>
+    }
+    <li className="list-group-item list-group-item-dark">{
+      userState.email
+    }</li>
+    {userState.phoneNumber 
+    ?<li className="list-group-item">0{userState.phoneNumber}</li>
+    : <></> 
+    }
 
   </ul>
 <div className="card-footer text-end">

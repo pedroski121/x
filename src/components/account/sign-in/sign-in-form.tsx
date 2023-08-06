@@ -11,8 +11,7 @@ const SignInForm = () => {
 
 
     return (
-    <div className={`d-flex flex-column justify-content-between ${accountStyles.side}`}>
-    <NavBar/>   
+    <div className={`d-flex flex-column justify-content-center ${accountStyles.side}`}>
        <div className={`p-3 ${styles.sign_in_form} align-self-center`}>
          <div className={`text-center ${dancingScript.className}`}>
       <h1>Welcome</h1>
