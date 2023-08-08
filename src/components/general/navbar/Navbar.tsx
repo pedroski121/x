@@ -1,20 +1,15 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
+import { useBagCheck } from '@hooks/useBagCheck';
+import { useCurrentUser } from '@hooks/useCurrentUser';
+import { useDynamicPath } from '@hooks/useDynamicPath';
 import { HomeIcon } from '@components/HomeIcon'
 import NavbarCss from './NavBar.module.css';
-import { useDynamicPath } from '@hooks/useDynamicPath';
-import { useBagCheck } from '@hooks/useBagCheck';
-import { useContext } from 'react';
-import { CurrentUserContext } from '@contexts/CurrentUserContext';
-import { useEffect } from 'react';
 
 export const NavBar:FC = () => {
-   const {userState} = useContext(CurrentUserContext)
-   useEffect(()=>{
-
-   }, [userState])
    const { bagEmptyStatus } = useBagCheck()
    const {currentPagePath}:{currentPagePath:string} = useDynamicPath()
+   const currentUser = useCurrentUser()
 
    return (<>
       <nav className="py-1 bg-light border-bottom fixed-top" data-testid="nav_bar">
@@ -30,11 +25,11 @@ export const NavBar:FC = () => {
 
                </li>
                <li className="nav-item dropdown"> {
-                  userState.firstName !== '' && userState 
+                  currentUser 
                   ? 
                   <> <Link href="#" className="nav-link dropdown-toggle link-dark" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                      aria-expanded="false" >
-                     <>Hi <span className='fw-bold'>{userState.firstName}</span></> 
+                     <>Hi <span className='fw-bold'>{currentUser.firstName}</span></> 
                      
                   </Link>
                   <ul className="dropdown-menu dropdown-menu-dark text-center p-0" aria-labelledby="navbarDarkDropdownMenuLink">

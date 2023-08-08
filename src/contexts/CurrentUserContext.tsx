@@ -7,6 +7,7 @@ const userDefaultValues = {
     firstName:'', 
     lastName:'',
     email:'',
+    _id:''
 }
 
 export const CurrentUserContext = React.createContext<TCurrentUserContextState>({userState:userDefaultValues})
