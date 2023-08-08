@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { Footer } from "@general-components/footer";
 import { CategoryCard } from "@components/category";
 import { BreadCrumbNav } from "@general-components/BreadCrumbNav";
-import { useDynamicPath } from "@hooks/useDynamicPath";
+import { useDynamicPath } from "@hooks/general/useDynamicPath";
 import { GrowingSpinner } from "@components/general/spinners";
 import Custom404 from "../404";
 import { IPath } from "@lib/types/category";

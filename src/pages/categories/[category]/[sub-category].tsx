@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import { AxiosResponse } from "axios";
 import { IProductsData } from '@lib/types/product'
-import { useDynamicPath } from "@hooks/useDynamicPath";
+import { useDynamicPath } from "@hooks/general/useDynamicPath";
 import { axiosInstance } from "@utils/axiosInstance";
 import { SubCategoryCard } from "@components/subcategory-card";
 import { GrowingSpinner } from "@components/general/spinners";

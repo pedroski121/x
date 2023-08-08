@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { HomeIcon } from "@components/HomeIcon"
-import { useDynamicPath } from "@hooks/useDynamicPath";
+import { useDynamicPath } from "@hooks/general/useDynamicPath";
 import { ActivePages } from "@lib/types/admin";
 
 export const OffCanvas = () => {
