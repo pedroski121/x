@@ -1,4 +1,4 @@
-import { useFetch } from "@hooks/useFetch"
+import { useFetch } from "@hooks/general/useFetch"
 import { IProductsData } from "@lib/types/product"
 import { axiosInstance } from "@utils/axiosInstance"
 import  { AxiosError, AxiosResponse } from "axios"

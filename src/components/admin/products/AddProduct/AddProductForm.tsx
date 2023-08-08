@@ -2,7 +2,7 @@ import { axiosInstance } from "@utils/axiosInstance"
 import {  AxiosResponse } from "axios"
 import useSWR from 'swr'
 import { ICategory } from "@lib/types/category"
-import { useAddProduct } from "@hooks/useAddProduct"
+import { useAddProduct } from "@hooks/admin/useAddProduct"
 import { FormAlert } from "../FormAlert"
 import { CategorySelect } from "./CategorySelect"
 import { SubCategorySelect } from "./SubCategorySelect"

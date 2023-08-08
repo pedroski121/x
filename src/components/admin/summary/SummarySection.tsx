@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { USER_LINKS } from "@lib/types/admin"
-import { useFetchUserPageCount } from "@hooks/useFetchUserPageCount"
+import { useFetchUserPageCount } from "@hooks/admin/useFetchUserPageCount"
 
 export const SummarySection = () => {
     const {data} = useFetchUserPageCount(30)

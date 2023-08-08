@@ -3,7 +3,7 @@ import { BagModal } from '@components/general/bag-modal';
 import { ProductContext } from '@contexts/ProductContext';
 import { useContext } from 'react';
 
-import { useCardState } from '@hooks/useCardState';
+import { useCardState } from '@hooks/sub-category/useCardState';
 
 const BagAndFavoriteButton = () => {
     const productsData = useContext(ProductContext).data

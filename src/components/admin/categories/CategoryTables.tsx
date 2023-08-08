@@ -1,4 +1,4 @@
-import { useFetch } from "@hooks/useFetch"
+import { useFetch } from "@hooks/general/useFetch"
 import { ICategory, ISubCategory } from "@lib/types/category"
 
 export const CategoryTables = () =>{

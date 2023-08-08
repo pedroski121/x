@@ -2,7 +2,7 @@ import { FC } from "react"
 import Link from "next/link"
 import { USER_LINKS } from "@lib/types/admin"
 import { useRouter } from "next/router"
-import { useFetchUserPageCount } from "@hooks/useFetchUserPageCount"
+import { useFetchUserPageCount } from "@hooks/admin/useFetchUserPageCount"
 
 const UserPagination: FC<{limit:number}> = ({limit}) => {
     const router = useRouter()

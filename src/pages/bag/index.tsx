@@ -1,7 +1,7 @@
 import { NextPage } from "next"
 import { Table, SummaryCheckout, EmptyBag } from "@components/bag"
 import { SideBar } from "@components/general/sidebar"
-import { useBagCheck } from "@hooks/useBagCheck"
+import { useBagCheck } from "@hooks/bag/useBagCheck"
 
 const Bag: NextPage = () => {
     const { sumOfItems, bagEmptyStatus } = useBagCheck()

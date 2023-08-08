@@ -1,7 +1,7 @@
 import { ReactNode, createContext } from 'react'
 import useSWR from 'swr'
 import { AxiosResponse } from "axios"
-import { useDynamicPath } from "@hooks/useDynamicPath"
+import { useDynamicPath } from "@hooks/general/useDynamicPath"
 import { axiosInstance } from "@utils/axiosInstance"
 import { GrowingSpinner } from "@components/general/spinners"
 import Custom404 from "src/pages/404"

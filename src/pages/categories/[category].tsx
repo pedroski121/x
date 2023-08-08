@@ -6,7 +6,7 @@ import { useDynamicPath } from "@hooks/useDynamicPath";
 import { GrowingSpinner } from "@components/general/spinners";
 import Custom404 from "../404";
 import { IPath } from "@lib/types/category";
-import { useFetch } from "@hooks/useFetch";
+import { useFetch } from "@hooks/general/useFetch";
 
 const Category: NextPage = () => {
   // Get  the exact page your on

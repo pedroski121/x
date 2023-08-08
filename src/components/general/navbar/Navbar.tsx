@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
-import { useBagCheck } from '@hooks/useBagCheck';
-import { useCurrentUser } from '@hooks/useCurrentUser';
-import { useDynamicPath } from '@hooks/useDynamicPath';
+import { useBagCheck } from '@hooks/bag/useBagCheck';
+import { useCurrentUser } from '@hooks/account/auth/useCurrentUser';
+import { useDynamicPath } from '@hooks/general/useDynamicPath';
 import { HomeIcon } from '@components/HomeIcon'
 import NavbarCss from './NavBar.module.css';
 

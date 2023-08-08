@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './sign-up-form.module.css';
 import accountStyles from '@components/account/account.module.css';
 import { dancingScript} from '@utils/font';
-import { useSignUp } from '@hooks/useSignUp';
+import { useSignUp } from '@hooks/account/auth/useSignUp';
 const SignUpForm = () => {
   const { handleSignUpFormSumbit,fullName,setFullName,fullNameInValidityMessage,email,accountInValidityMessage,spinner, password,passwordInValidityMessage, setPassword,setEmail} = useSignUp()
   

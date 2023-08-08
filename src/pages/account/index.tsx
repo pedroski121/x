@@ -4,7 +4,7 @@ import { AccountBody } from "@components/account"
 import { AccountOverviewDetails } from "@components/account"
 import { getServerSideProps } from "@utils/user-session"
 import { TUserSession } from "@lib/types/current-user"
-import { useFetch } from "@hooks/useFetch"
+import { useFetch } from "@hooks/general/useFetch"
 import { TAccountData } from '@components/account/overview/AccountOverviewDetails'
 
 const AccountOverview: NextPage<{session:TUserSession}> = (session) => {

@@ -5,7 +5,7 @@ import Image from "next/legacy/image";
 import { IProductsData } from "@lib/types/product";
 import { BagModal } from "@components/general/bag-modal";
 
-import { useCardState } from "@hooks/useCardState";
+import { useCardState } from "@hooks/sub-category/useCardState";
 
 const SubCategoryCard: FC<IProductsData> = (props) => {
   const { itemInBag, favorite, modalDetails, handleToggle } = useCardState(props);

@@ -1,10 +1,7 @@
-
-import Link from "next/link";
-import { TiltPrism } from "@utils/font";
 import HomeCss from '../Home.module.css'
 import { ISubCategory } from "@lib/types/category";
 import { CategoryCard } from "@components/category";
-import { useFetchMultipleData } from "@hooks/useFetchMultipleData";
+import { useFetchMultipleData } from "@hooks/general/useFetchMultipleData";
 import { BorderSpinner } from "@components/general/spinners";
 import { BodySectionHeader } from "./BodySectionHeader";
 import { FC } from "react";

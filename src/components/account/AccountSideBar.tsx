@@ -1,4 +1,4 @@
-import { useDynamicPath } from "@hooks/useDynamicPath"
+import { useDynamicPath } from "@hooks/general/useDynamicPath"
 import { useRouter } from "next/router"
 
 export const AccountSideBar = () => {
