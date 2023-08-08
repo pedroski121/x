@@ -3,41 +3,74 @@ import { FormEvent } from "react"
 import { CurrentUserContext } from "@contexts/CurrentUserContext"
 import { axiosInstance } from "@utils/axiosInstance"
 import { AxiosError } from "axios"
-import { TResponse } from "@lib/types/response"
+import { TFormError, TResponse } from "@lib/types/response"
+
 export const EditForm = () =>{
     const {userState} = useContext(CurrentUserContext)
 
-    const [phoneNumber, setPhoneNumber] = useState<number>()
-    const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState<number>()
-    const [address, setAddress] = useState<string>('')
+    const [phoneNumber, setPhoneNumber] = useState<number>(0)
+    const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState<number | undefined>(0)
+    const [address1, setAddress1] = useState<string>('')
     const [city, setCity] = useState<string>('')
     const [state, setState] = useState<string>('')   
-    
+    const [phoneNumberErrorMsg, setPhoneNumberErrorMsg] = useState<string>('')
+    const [additionalPhoneNumberErrorMsg, setAdditionalPhoneNumberErrorMsg] = useState<string>('')
+
+    const [address1ErrorMsg, setAddress1ErrorMsg] = useState<string>('')
+    const [cityErrorMsg, setCityErrorMsg] = useState<string>('')
+    const [stateErrorMsg, setStateErrorMsg] = useState<string>('')
+
+    const [saving, setSaving] = useState<boolean>(false)
+    const [notSaved, setNotSaved] = useState<boolean>(false)
     
     const onEditFormRender = () => {
-        const {phoneNumber, additionalPhoneNumber, state, city} = userState
+        const {phoneNumber, additionalPhoneNumber, state, city,address1} = userState
         phoneNumber && setPhoneNumber(phoneNumber)
         additionalPhoneNumber && setAdditionalPhoneNumber(additionalPhoneNumber)
         state && setState(state)
         city && setCity(city)
+        address1 && setAddress1(address1)
     }
 
     const editFormSubmit = async (e:FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
-    
-        await axiosInstance.patch(`/api/user/${userState._id}/update-details`, {
-            phoneNumber, 
-            additionalPhoneNumber, 
-            state, 
-            city 
-        }, {withCredentials:true})
-        .catch((err:AxiosError<TResponse[]>)=>{
-            console.log(err.response?.data[0].message)
+        setPhoneNumberErrorMsg(''); setAdditionalPhoneNumberErrorMsg(''); setAddress1ErrorMsg(''); setCityErrorMsg(''); setStateErrorMsg('') 
+        setSaving(true)
+        setNotSaved(false)
+        const userInfoObject = {phoneNumber, additionalPhoneNumber, state, city, address1}
+        if(!additionalPhoneNumber){
+          delete userInfoObject.additionalPhoneNumber
+        }
+        await axiosInstance.patch(`/api/user/${userState._id}/update-details`, userInfoObject, {withCredentials:true})
+        .then(()=>{
+          setSaving(false)
+        })
+        .catch((err:AxiosError<TFormError[]>)=>{
+          setNotSaved(true)
+          setSaving(false)
+          const errors = err.response?.data
+          errors && errors.map((error)=>{
+            if(error.field === 'phoneNumber') {
+              setPhoneNumberErrorMsg(error.message)
+            }
+            else if(error.field === 'additionalPhoneNumber') {
+              setAdditionalPhoneNumberErrorMsg(error.message)
+            }
+            else if(error.field === 'address1'){
+              setAddress1ErrorMsg(error.message)
+            }
+            else if(error.field === 'city'){
+              setCityErrorMsg(error.message)
+            }
+            else if(error.field === 'state'){
+              setStateErrorMsg(error.message)
+            }
+          })
         })
     }
     useEffect(()=>{
         onEditFormRender()
-    }, [])
+    }, [userState])
 
     return <>
 <form className="row justify-content-center p-4" onSubmit={editFormSubmit} method="POST">
@@ -45,44 +78,68 @@ export const EditForm = () =>{
   <label htmlFor="phoneNumber" className="form-label m-0 fw-bold m-0">Phone Number<sup>*</sup></label>
  <div className="input-group">
   <span className="input-group-text bg-dark text-light fw-bold">+234</span>
-  <input type="number" value={phoneNumber} onChange={e=>setPhoneNumber(Number(e.target.value))} min={0} className="form-control shadow-none border border-secondary" aria-label="Phone Number"/>
+  <input type="number" value={phoneNumber} 
+  onChange={e=>setPhoneNumber(e.target.value ? parseInt(e.target.value) : 0)} min={0} 
+  className={`form-control shadow-none ${phoneNumberErrorMsg ? 'is-invalid border border-danger' :'border border-secondary'}`}  aria-label="Phone Number"/>
+  <div  className="invalid-feedback">
+    {phoneNumberErrorMsg}               
+  </div>
 </div>
   </div>
   <div className="col-12 col-md-6 mt-2">
   <label htmlFor="additionalPhoneNumber" className="form-label m-0 fw-bold m-0">Additional Phone Number</label>
   <div className="input-group">
   <span className="input-group-text bg-dark text-light fw-bold">+234</span>
-  <input type="number" min={0} value={additionalPhoneNumber} onChange={e=>setAdditionalPhoneNumber(Number(e.target.value))} className="form-control shadow-none border border-secondary" aria-label="Additional Phone Number"/>
+  <input type="number" min={0} value={additionalPhoneNumber}
+   onChange={e=>setAdditionalPhoneNumber( e.target.value ? parseInt(e.target.value) : 0)}
+    className={`form-control shadow-none ${additionalPhoneNumberErrorMsg ? 'is-invalid border border-danger' :'border border-secondary'}`} aria-label="Additional Phone Number"/>
+  <div  className="invalid-feedback">
+    {additionalPhoneNumberErrorMsg}               
+  </div>
 </div>
   </div>
 
   <div className="col-12 mt-2">
     <label htmlFor="address" className="form-label m-0 fw-bold m-0  ">Address<sup>*</sup></label>
-    <input type="text" value={address} onChange={e=>setAddress(e.target.value)} className="form-control shadow-none border border-secondary p-0 px-2 py-1 rounded-1" id="address" placeholder="No 23, X street"/>
+    <input type="text" value={address1} onChange={e=>setAddress1(e.target.value)} 
+    className={`form-control shadow-none ${address1ErrorMsg ? 'is-invalid border border-danger' :'border border-secondary'} p-0 px-2 py-1 rounded-1`} id="address" placeholder="No 23, X street"/>
+    <div  className="invalid-feedback">
+    {address1ErrorMsg}               
+  </div>
   </div>
 
   <div className="col-md-6 mt-2">
     <label htmlFor="inputState" className="form-label m-0 fw-bold m-0">State<sup>*</sup></label>
-    <select id="inputState" value={state} onChange={e=>setState(e.target.value)} className="form-select shadow-none border border-secondary rounded-1">
-      <option defaultValue={'Choose'} disabled>Choose</option>
+    <select id="inputState" value={state} onChange={e=>setState(e.target.value)}
+     className={`form-select shadow-none ${stateErrorMsg ? 'is-invalid border border-danger' :'border border-secondary'} rounded-1`}>
+      <option value='' disabled>Choose</option>
       <option>Abia</option>
       <option>Adamawa</option>
 
     </select>
+    <div  className="invalid-feedback">
+{stateErrorMsg}         
+     </div>
   </div>
   <div className="col-md-6 mt-2">
     <label htmlFor="city" className="form-label m-0 fw-bold m-0">City<sup>*</sup></label>
-    <select id="city" value={city} onChange={e=>setCity(e.target.value)} className="form-select shadow-none border border-secondary rounded-1">
-      <option defaultValue={'Please Select'} disabled> Please Select</option>
+    <select id="city" value={city} onChange={e=>setCity(e.target.value)} 
+    className={`form-select shadow-none ${cityErrorMsg ? 'is-invalid border border-danger' :'border border-secondary'} rounded-1`}>
+      <option value='' disabled> Please Select</option>
       <option value="arochukwu">Arochukwu</option>
       <option value="umuahia">Umuahia</option>
 
     </select>
+    <div  className="invalid-feedback">
+{cityErrorMsg}         
+     </div>
   </div>
 
 
   <div className="col-12 mt-3 text-end">
-    <button type="submit" className="btn btn-outline-dark p-0 px-4 py-1">Save</button>
+    <button type="submit" className="btn btn-outline-dark p-0 rounded-0 px-4 py-1 mx-1">Save</button>
+    <span className= { saving ? 'spinner-border spinner-border-sm' : notSaved ? 'bi bi-x-circle-fill' : 'bi bi-check-circle-fill'}></span>
+    
   </div>
 </form>
     </>

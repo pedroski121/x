@@ -61,9 +61,6 @@ export const NavBar:FC = () => {
                }</li>
                
             </ul>
-
-
-
          </div>
       </nav>
 
