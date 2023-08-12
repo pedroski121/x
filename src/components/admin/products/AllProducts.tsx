@@ -11,7 +11,7 @@ type TAxiosResponseError = {
 
 export const AllProducts = () =>{
     const router = useRouter();
-    const {data}:{data:IProductsData[]} = useFetch('/api/product/all')
+    const {data} = useFetch<IProductsData[]>('/api/product/all')
 
     const deleteProduct = async (_id:string) =>{
         await axiosInstance.delete('/api/product/delete',{data:{_id}}).then((response:AxiosResponse<TAxiosResponseError[]>)=>{

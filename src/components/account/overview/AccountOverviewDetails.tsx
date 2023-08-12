@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { useFetch } from "@hooks/general/useFetch"
 export type TAccountData = {
     firstName:string, 
     lastName:string,
@@ -11,7 +12,15 @@ export type TAccountData = {
     state?:string, 
     city?:string
 }
-export const AccountOverviewDetails = ({data}:{data:TAccountData}) =>{
+export const AccountOverviewDetails = ({_id}:{_id:string}) =>{
+    const {data, error, isLoading}= useFetch<TAccountData>(`/api/user/${_id}`)
+    if(isLoading){
+        return <p>loading...</p>
+    }
+    if(error){
+        return <p>An error occured fetching the overview of your account details</p>
+    }
+
     return (
         <>
         <div className="mx-5 d-block d-md-none">
