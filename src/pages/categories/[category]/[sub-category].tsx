@@ -32,7 +32,7 @@ const CategoryProducts = () => {
         <div className="row mt-3">
           {
             currentPageProductData?.map(product => <SubCategoryCard productsData={product}
-               wishListData={wishListData || [{_id:'', productID:''}]} changeWish={changeWish} userID={userState._id} activePaths={pages} key={product._id} />)
+               wishListData={wishListData || [{_id:'', productID:''}]} changeWish={changeWish}  activePaths={pages} key={product._id} />)
           }
         </div>
 
