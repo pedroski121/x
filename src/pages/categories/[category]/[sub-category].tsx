@@ -8,9 +8,15 @@ import { GrowingSpinner } from "@components/general/spinners";
 import { BreadCrumbNav } from "@general-components/BreadCrumbNav";
 import { Footer } from "@general-components/footer";
 import Custom404 from "src/pages/404";
+import { useContext } from 'react';
+import { CurrentUserContext } from '@contexts/CurrentUserContext';
+import { useWishList } from '@hooks/wishlist/useWishList';
 
 const CategoryProducts = () => {
   const {pages} = useDynamicPath();
+  const {userState} = useContext(CurrentUserContext)
+  const { data:wishListData, changeWish} = useWishList(userState._id)
+
   const fetchProducts = async (url: string) => await axiosInstance.get(url).then((product: AxiosResponse<IProductsData[]>) => product.data);
   const { data, error, isLoading } = useSWR(`/api/product/all`, fetchProducts);
   if (isLoading) return <GrowingSpinner />
@@ -25,7 +31,8 @@ const CategoryProducts = () => {
         <BreadCrumbNav pages={pages} />
         <div className="row mt-3">
           {
-            currentPageProductData?.map(product => <SubCategoryCard {...product} activePaths={pages} key={product._id} />)
+            currentPageProductData?.map(product => <SubCategoryCard productsData={product}
+               wishListData={wishListData || [{_id:'', productID:''}]} changeWish={changeWish} userID={userState._id} activePaths={pages} key={product._id} />)
           }
         </div>
 

@@ -1,45 +1,18 @@
 import Image from "next/image"
-import { useFetch } from "@hooks/general/useFetch"
-import { useFetchMultipleParams } from "@hooks/general/useFetchMultipleParams"
 import { useRouter } from "next/router"
 import { IProductsData } from "@lib/types/product"
-import { axiosInstance } from "@utils/axiosInstance"
-import { useState} from "react"
 
+import { useWishList } from "@hooks/wishlist/useWishList"
 
-type TWishList = {
-    _id:string, 
-    productID:string
-}
 
 export const WishListItems = ({currentUserId}:{currentUserId:string}) =>{
-    const [deleting, setDeleting] = useState<boolean | undefined>(false)
     const router = useRouter()
-    const {data, isLoading, mutate} = useFetch<TWishList[]>(`/api/wishlist/${currentUserId}`)
-    const generateProductURLs  = (data:TWishList[]):string[] => {
-        const params = data.map((d:TWishList)=>{
-            return d.productID
-        })  
-        return params
-    }
-    const {isLoading:loading, data:productData} =  useFetchMultipleParams<IProductsData>('/api/product', generateProductURLs(data || []))
+    const {productData,deleting, deleteWishList, isLoading, loading} = useWishList(currentUserId)
+    
+    
     if(loading || isLoading){
         return <p>loading...</p>
     }
-
-    const deleteWishList = async (productID:string) =>{
-        
-        setDeleting(true)
-        const data = {productID}
-        await axiosInstance.delete('/api/wishlist/delete',{withCredentials:true, data})
-        .then(()=>{
-            mutate()
-            setDeleting(false)
-        }).catch(()=>{
-            setDeleting(undefined)
-        })
-    }
-
 
 return <>
          <ul className="list-group">

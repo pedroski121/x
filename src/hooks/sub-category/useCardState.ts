@@ -5,14 +5,12 @@ import { BagContext } from "@contexts/BagContext";
 
 interface IUseCardState {
     itemInBag:boolean;
-    favorite:boolean;
     modalDetails:IModalDetails;
     handleToggle(bag:string) : void
 }
 
 export const useCardState = (props:IProductsData):IUseCardState => {
     const [itemInBag, setItemInBag] = useState<boolean>(false);
-    const [favorite, setFavorite] = useState<boolean>(false);
 
     const [modalDetails, setModalDetails] = useState<IModalDetails>({
       name: props.name,
@@ -41,5 +39,5 @@ export const useCardState = (props:IProductsData):IUseCardState => {
         : BagDefaultValues;
     }, []);
   
-    return { itemInBag, favorite, modalDetails, handleToggle };
+    return { itemInBag,  modalDetails, handleToggle };
 }
