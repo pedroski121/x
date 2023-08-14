@@ -3,7 +3,7 @@ import { NextPage } from "next";
 
 const CheckOut: NextPage = () => {
     return <>
-        <header className="d-flex flex-wrap justify-content-between py-2 px-2 border-bottom ">
+        <header className="d-flex flex-column flex-md-row justify-content-between py-2 px-2 border-bottom ">
             <h1 className="fw-bold fs-6 text-secondary">DELIVERY</h1>
             <section >
                 <span className="text-dark"> <i className="bi bi-1-circle-fill"></i> Delivery - </span>
@@ -14,7 +14,7 @@ const CheckOut: NextPage = () => {
         <section className="container">
             <div>
                 <div className="d-flex flex-column">
-                    <h2 className="fs-5 mt-3">Select a Pick-up station</h2>
+                    <h2 className="fs-5 mt-4">Select a Pick-up station</h2>
                     <div className="alert alert-danger alert-dismissible fade show mt-1 " role="alert">
                         <strong>Coming Soon!</strong> Other delivery options
                         <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -35,7 +35,7 @@ const CheckOut: NextPage = () => {
                     <option value="3">Three</option>
                 </select>
             </form>
-            <div className="mt-3">
+            <div className="mt-4">
                 <h3 className="fs-5">Stations</h3>
                 <div className="list-group">
                     <a href="#" className="list-group-item list-group-item-dark list-group-item-action active" aria-current="true">
@@ -62,6 +62,9 @@ const CheckOut: NextPage = () => {
                         <small className="text-body-secondary">And some muted small print.</small>
                     </a>
                 </div>
+            </div>
+            <div className="text-end">
+                <button className="btn btn-dark rounded-0 mt-4 "> Save and Collect Here</button>
             </div>
         </section>
         <Footer />
