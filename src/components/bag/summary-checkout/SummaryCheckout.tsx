@@ -29,13 +29,16 @@ const SummaryCheckout: FC<{ sumOfItems: number }> = ({ sumOfItems }) => {
                 <div className="col-4 border border-dark p-3 text-center ">
                     Total - <b>₦{sumOfItems}</b>
                 </div>
-
-                <button className="btn btn-dark p-3 text-center rounded-0 col-12 mt-5">
-                    Checkout
-                </button>
-                <Link href='/'><button className="btn btn-light p-3 text-center rounded-0 col-12 border border-dark">
+                <Link href='/checkout'>
+                    <button className="btn btn-dark p-3 text-center rounded-0 col-12 mt-5">
+                        Checkout
+                    </button>
+                </Link>
+                <Link href='/'>
+                    <button className="btn btn-light p-3 text-center rounded-0 col-12 border border-dark">
                     Continue Shopping
-                </button></Link>
+                </button>
+                </Link>
                 <button onClick={emptyBag} className="btn btn-danger mt-2 rounded-0 fw-bold">EMPTY BAG</button>
 
             </div>

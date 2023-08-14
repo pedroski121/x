@@ -2,6 +2,7 @@ import { NextPage } from "next"
 import { Table, SummaryCheckout, EmptyBag } from "@components/bag"
 import { SideBar } from "@components/general/sidebar"
 import { useBagCheck } from "@hooks/bag/useBagCheck"
+import { Footer } from "@components/general/footer"
 
 const Bag: NextPage = () => {
     const { sumOfItems, bagEmptyStatus } = useBagCheck()
@@ -15,12 +16,14 @@ const Bag: NextPage = () => {
                             ? <EmptyBag />
                             : <> <Table />
                                 <SummaryCheckout sumOfItems={sumOfItems} />
+
                             </>
                     }
 
                 </div>
             </div>
             <SideBar />
+            <Footer/>
         </>
     )
 }
