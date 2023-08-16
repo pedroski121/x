@@ -64,7 +64,7 @@ const CheckOut: NextPage = () => {
                 </div>
             </div>
             <div className="text-end">
-                <button className="btn btn-dark rounded-0 mt-4 "> Save and Collect Here</button>
+                <button className="btn btn-dark mt-4 "> Save and Collect Here</button>
             </div>
         </section>
         <Footer />
