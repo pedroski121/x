@@ -13,9 +13,9 @@ import { CurrentUserContext } from '@contexts/CurrentUserContext';
 import { useWishList } from '@hooks/wishlist/useWishList';
 
 const CategoryProducts = () => {
-  const {pages} = useDynamicPath();
-  const {userState} = useContext(CurrentUserContext)
-  const { data:wishListData, changeWish} = useWishList(userState._id)
+  const { pages } = useDynamicPath();
+  const { userState } = useContext(CurrentUserContext)
+  const { data: wishListData, changeWish, changingWish } = useWishList(userState._id)
 
   const fetchProducts = async (url: string) => await axiosInstance.get(url).then((product: AxiosResponse<IProductsData[]>) => product.data);
   const { data, error, isLoading } = useSWR(`/api/product/all`, fetchProducts);
@@ -32,7 +32,7 @@ const CategoryProducts = () => {
         <div className="row mt-3">
           {
             currentPageProductData?.map(product => <SubCategoryCard productsData={product}
-               wishListData={wishListData || [{_id:'', productID:''}]} changeWish={changeWish}  activePaths={pages} key={product._id} />)
+              wishListData={wishListData || [{ _id: '', productID: '' }]} changingWish={changingWish} changeWish={changeWish} activePaths={pages} key={product._id} />)
           }
         </div>
 

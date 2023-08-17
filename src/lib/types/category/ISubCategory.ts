@@ -14,5 +14,6 @@ export type TSubCategoryCard = {
     productsData:IProductsData, 
     wishListData: TWishList[], 
     activePaths:string[], 
+    changingWish:string,
     changeWish: (productID:string, wishListData:TWishList[]) => void
   }

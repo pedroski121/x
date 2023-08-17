@@ -7,7 +7,7 @@ import { useCardState } from "@hooks/sub-category/useCardState";
 import { TSubCategoryCard } from "@lib/types/category/ISubCategory";
 
 
-const SubCategoryCard: FC<TSubCategoryCard> = ({productsData, activePaths, wishListData, changeWish}) => {
+const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wishListData, changeWish, changingWish }) => {
   const { itemInBag, modalDetails, handleToggle } = useCardState(productsData);
 
   return (<>
@@ -27,8 +27,13 @@ const SubCategoryCard: FC<TSubCategoryCard> = ({productsData, activePaths, wishL
         </div>
         <div className="card-footer d-flex justify-content-between p-0 bg-white border-0 ms-2 me-2">
           <span data-bs-toggle="modal" onClick={() => handleToggle('bag')} data-bs-target={`#bagModal${modalDetails._id} `} className={`bi ${itemInBag ? 'bi-bag-check-fill text-dark' : 'bi-bag-plus'} ${SubCategoryCss.pointer} h4`}></span>
-
-          <span onClick = {()=>changeWish(productsData._id, wishListData)} className={` bi ${wishListData.map(wish => wish.productID).includes(productsData._id) ? ' bi-heart-fill text-dark' :  'bi-heart'}  ${SubCategoryCss.pointer} h4`}></span>
+          {
+            changingWish !== productsData._id
+              ? <span onClick={() => changeWish(productsData._id, wishListData)} className={` bi ${wishListData.map(wish => wish.productID).includes(productsData._id) ? ' bi-heart-fill text-dark' : 'bi-heart'}  ${SubCategoryCss.pointer} h4`}></span>
+              : <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+          }
         </div>
       </div>
     </div>

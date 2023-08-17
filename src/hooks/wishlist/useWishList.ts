@@ -7,8 +7,10 @@ import { TWishList } from "@lib/types/account/wishlist"
 import { AxiosError } from "axios"
 import {useRouter} from 'next/router'
 export const useWishList = (userID:string) =>{
+
 const router = useRouter()
-const [deleting, setDeleting] = useState<boolean | undefined>(false)
+const [changingWish, setChangingWish] = useState<string>('')
+
 const {data, isLoading, mutate} = useFetch<TWishList[]>(`/api/wishlist/${userID}`)
 
 const generateProductURLs  = (data:TWishList[]):string[] => {
@@ -20,21 +22,26 @@ const generateProductURLs  = (data:TWishList[]):string[] => {
 const {isLoading:loading, data:productData} =  useFetchMultipleParams<IProductsData>('/api/product', generateProductURLs(data || []))
 
 const deleteWishList = async (productID:string) =>{
-    setDeleting(true)
+    setChangingWish(productID)
     const data = {productID}
     await axiosInstance.delete('/api/wishlist/delete',{withCredentials:true, data})
     .then(()=>{
-        mutate()
-        setDeleting(false)
+        mutate().then(()=>{
+            setChangingWish('')
+        })
     }).catch(()=>{
-        setDeleting(undefined)
+        setChangingWish('')
     })
 }
 const addToWishList = async (productID:string, userID:string) =>{
+    setChangingWish(productID)
     await axiosInstance.post('/api/wishlist/add',{productID, userID}, {withCredentials:true})
     .then(()=>{
-        mutate()
+        mutate().then(()=>{
+            setChangingWish('')
+        })
     }).catch((err:AxiosError)=>{
+        setChangingWish('')
         console.log(err.response?.data)
     })
 }
@@ -49,6 +56,6 @@ const changeWish = (productID:string, wishListData:TWishList[]) => {
       addToWishList(productID,userID)
     }
   }
-return  {deleteWishList, loading, productData, isLoading, deleting, data, addToWishList, changeWish}
+return  {deleteWishList, loading, productData, isLoading, changingWish, data, addToWishList, changeWish}
 }
 
