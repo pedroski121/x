@@ -5,21 +5,24 @@ import { axiosInstance } from '@utils/axiosInstance';
 
 export const useSignUp = () => {
     
-  const [fullName, setFullName] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('')
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [spinner, setSpinner] = useState<boolean>(false);
 
   const [accountInValidityMessage, setAccountInValidityMessage] = useState<string>('');
   const [passwordInValidityMessage, setPasswordInvalidityMessage] = useState<string>('');
-  const [fullNameInValidityMessage, setFullNameInValidityMessage] = useState<string>('');
+  const [firstNameInValidityMessage, setFirstNameInValidityMessage] = useState<string>('');
+  const [lastNameInValidityMessage, setLastNameInValidityMessage] = useState<string>('');
+
   const router = useRouter();
   
   async function handleSignUpFormSumbit(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSpinner(true); 
-    setAccountInValidityMessage(''); setPasswordInvalidityMessage(''); setFullNameInValidityMessage('')
-    const data = {email, fullName, password};
+    setAccountInValidityMessage(''); setPasswordInvalidityMessage(''); setFirstNameInValidityMessage(''); setLastNameInValidityMessage('')
+    const data = {email, firstName,lastName, password};
 
     await axiosInstance.post('/api/auth/sign-up', data)
     .then((response: AxiosResponse)=>{
@@ -33,21 +36,26 @@ export const useSignUp = () => {
         else if (obj.field == 'email') {
           setAccountInValidityMessage(obj.message)
         }
-        else if(obj.field == 'fullName') {
-          setFullNameInValidityMessage(obj.message)
+        else if(obj.field == 'firstName') {
+          setFirstNameInValidityMessage(obj.message)
+        }
+        else if(obj.field == 'lastName') {
+          setLastNameInValidityMessage(obj.message)
         }
         else {
-          setPasswordInvalidityMessage(obj.message); setAccountInValidityMessage(obj.message); setFullName(obj.message);
-        }
+          setPasswordInvalidityMessage(obj.message); setAccountInValidityMessage(obj.message); setFirstNameInValidityMessage(obj.message); setLastNameInValidityMessage(obj.message)
+        } 
       })
     });
-    setSpinner(false); setEmail(''); setPassword(''); setFullName('');
+    setSpinner(false); setEmail(''); setPassword(''); setFirstName(''); setLastName('')
   }
   return {
     handleSignUpFormSumbit,
-     fullName,
-      setFullName,
-    fullNameInValidityMessage,
+     firstName,
+      setFirstName,
+      lastName, setLastName,
+    firstNameInValidityMessage,
+    lastNameInValidityMessage,
      email,
       accountInValidityMessage,
        spinner, 
