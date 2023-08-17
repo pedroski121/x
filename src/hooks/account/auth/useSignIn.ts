@@ -27,7 +27,7 @@ export const useSignIn = () => {
       headers: { crossDomain: true, 'Content-Type': 'application/json' },
   })
     .then((response: AxiosResponse<TResponse>)=>{
-      router.push('/').then(()=>router.reload())
+      router.push('/')
     }).catch((err)=>{
       err.response?.data.map((obj:{message:'string', success:boolean, field?:string})=>{
         if(obj.field == 'password'){
