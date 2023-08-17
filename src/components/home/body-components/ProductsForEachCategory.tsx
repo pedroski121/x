@@ -11,7 +11,6 @@ export const ProductsForEachCategory: FC = () => {
     const categories = ['men', 'women']
 
     const { data, isLoading } = useFetchMultipleParams('/api/category', categories)
-    console.log(data)
     if (isLoading) return <div className='mt-5'><BorderSpinner size={false} /></div>
     return <>
         {data?.map((categoryItem: any) => {

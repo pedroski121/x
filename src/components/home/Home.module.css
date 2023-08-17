@@ -1,39 +1,30 @@
-
-
 .carousel_image {
     position: relative;
     width: 100%;
     height: 400px;
-  }
+}
   
 .carousel_image img {
     object-fit: cover;
   }
 
 @media screen and (max-width:767px) {
-
     .carousel_image {
         position: relative;
         width: 100%;
         height: 250px;
       }
-    
 }
 
 .category_row {
   width: 100%;
 }
-
-
-
 .vertical_cover {
   position: relative;
   height:350px;
 }
-
-
-
 .vertical_cover:hover  {
   opacity:0.9;
   cursor: pointer;
 }
+

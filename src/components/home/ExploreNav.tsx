@@ -1,13 +1,31 @@
 import { FC } from "react"
 
+import { Typewriter } from 'react-simple-typewriter'
+
 const ExploreNav: FC = () => {
+    const offers = [
+        'Shirts',
+        'Shoes',
+        'Lingerie',
+        'Okirika',
+        'Jerseys',
+        'Gowns',
+        'Sneakers',
+        'Trad'
+    ]
     return <>
         <div className="row mt-3 mx-3 ">
-            <section className="col-sm-12 order-2 order-md-1 col-md-3 ">
-                <div className={`d-flex fw-bold h1 justify-content-center justify-content-md-start mt-2 mt-md-0`}>
-                    <i className="bi bi-lightning-charge-fill"></i> New In</div>
+            <section className="col-12 col-md-6 order-2 order-md-1 col-md-3 ">
+                <div className={`d-flex fw-bold justify-content-center justify-content-md-start`}>
+                    <span className={`bi bi-lightning-charge-fill fs-3 mt-1 mt-md-0`}>
+                        Look Good On <span className="text-dark border border-dark bg-secondary">
+                            <Typewriter words={offers} typeSpeed={70} loop={false} cursor delaySpeed={1000} /></span>
+                    </span>
+                </div>
+
+
             </section>
-            <section className="col-sm-12 order-1 order-md-2 col-md-9">
+            <section className="col-12 col-md-6 order-1 order-md-2">
                 <div className={`d-flex justify-content-center justify-content-md-end `}>
                     <div className="btn-group me-3" role="group">
                         <button type="button" className="btn btn-outline-dark fw-bold active">All</button>
