@@ -5,7 +5,7 @@ import Image from "next/legacy/image";
 import { BagModal } from "@components/general/bag-modal";
 import { useCardState } from "@hooks/sub-category/useCardState";
 import { TSubCategoryCard } from "@lib/types/category/ISubCategory";
-
+import { BorderSpinner } from "@components/general/spinners";
 
 const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wishListData, changeWish, changingWish }) => {
   const { itemInBag, modalDetails, handleToggle } = useCardState(productsData);
@@ -30,9 +30,7 @@ const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wish
           {
             changingWish !== productsData._id
               ? <span onClick={() => changeWish(productsData._id, wishListData)} className={` bi ${wishListData.map(wish => wish.productID).includes(productsData._id) ? ' bi-heart-fill text-dark' : 'bi-heart'}  ${SubCategoryCss.pointer} h4`}></span>
-              : <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
+              : <BorderSpinner size={false} />
           }
         </div>
       </div>
