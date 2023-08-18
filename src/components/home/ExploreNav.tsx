@@ -11,19 +11,22 @@ const ExploreNav: FC = () => {
         'Suits',
         'Jerseys',
         'Singlets',
+        'Necklace',
         'Gowns',
-        'Sneakers',
+        'Crocs',
         'Trad',
         'Shorts',
         'Boxers',
-        'Jackets'
+        'Jackets',
+        'Watches',
+        'Hair'
     ]
     return <>
-        <div className="row mt-3 mx-3 ">
+        <div className="row mt-3 mx-0 mx-md-3 ">
             <section className="col-12 col-md-6 order-2 order-md-1 col-md-3 ">
                 <div className={`d-flex fw-bold justify-content-center justify-content-md-start`}>
                     <span className={`bi bi-lightning-charge-fill fs-3 mt-1 mt-md-0`}>
-                        Find Your Perfect <span className="text-dark border border-dark bg-secondary">
+                        Find<span className="text-secondary border border-dark">&</span>Buy The Best <span className="text-light border border-dark bg-secondary">
                             <Typewriter words={offers} typeSpeed={70} loop={false} cursor delaySpeed={1000} /></span>
                     </span>
                 </div>
