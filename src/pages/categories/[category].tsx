@@ -10,8 +10,9 @@ import { useFetch } from "@hooks/general/useFetch";
 
 const Category: NextPage = () => {
   // Get  the exact page your on
-  const {pages} = useDynamicPath();
-  const {data, error, isLoading} = useFetch(`/api/category/all`)
+  const { pages } = useDynamicPath();
+  const { data, error, isLoading } = useFetch(`/api/category/all`)
+  console.log(data)
 
   //show an error page or loading page depending on the exact state of SWR
   if (error) return <Custom404 />;

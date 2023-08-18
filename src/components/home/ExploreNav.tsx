@@ -5,20 +5,25 @@ import { Typewriter } from 'react-simple-typewriter'
 const ExploreNav: FC = () => {
     const offers = [
         'Shirts',
+        'Okirika',
         'Shoes',
         'Lingerie',
-        'Okirika',
+        'Suits',
         'Jerseys',
+        'Singlets',
         'Gowns',
         'Sneakers',
-        'Trad'
+        'Trad',
+        'Shorts',
+        'Boxers',
+        'Jackets'
     ]
     return <>
         <div className="row mt-3 mx-3 ">
             <section className="col-12 col-md-6 order-2 order-md-1 col-md-3 ">
                 <div className={`d-flex fw-bold justify-content-center justify-content-md-start`}>
                     <span className={`bi bi-lightning-charge-fill fs-3 mt-1 mt-md-0`}>
-                        Look Good On <span className="text-dark border border-dark bg-secondary">
+                        Find Your Perfect <span className="text-dark border border-dark bg-secondary">
                             <Typewriter words={offers} typeSpeed={70} loop={false} cursor delaySpeed={1000} /></span>
                     </span>
                 </div>
