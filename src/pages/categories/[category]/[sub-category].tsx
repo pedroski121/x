@@ -27,7 +27,7 @@ const SubCategoryProducts = () => {
 
       <div className="container-fluid ">
         <BreadCrumbNav pages={pages} />
-        <div className="row m-0 m-md-3 justify-content-between">
+        <div className="row ">
           {
             data?.products.map(product => <SubCategoryCard productsData={product}
               wishListData={wishListData || [{ _id: '', productID: '' }]} changingWish={changingWish} changeWish={changeWish} activePaths={pages} key={product._id} />)
