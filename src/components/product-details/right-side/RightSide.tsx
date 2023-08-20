@@ -12,7 +12,7 @@ const RightSide = () => {
     const { name, imgURLs, activePaths }: IProductDetailsRightSide = data.data
 
     // get the array of paths but without the name+URLId attached and create a new one
-    let newActivePaths = activePaths.slice(0, activePaths.length - 1)
+    const newActivePaths = activePaths.slice(0, activePaths.length - 1)
     return (
         <>
             <section className="col-12 col-md-6 text-dark p-0 d-flex flex-column justify-content-between">

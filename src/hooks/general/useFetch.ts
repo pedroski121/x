@@ -5,6 +5,6 @@ import useSWR from 'swr'
 export const useFetch = <T=any>(fetchURL:string) => { 
     const fetchData = async (url: string) => await axiosInstance.get(url).then((res:AxiosResponse<T>) => res.data);
 
-    const { data, error, isLoading, mutate } = useSWR<T>(fetchURL, fetchData);
+    const { data, error, isLoading, mutate } = useSWR<T>(fetchURL, fetchData, {refreshInterval:60000});
     return {data, isLoading, error, mutate}
 }

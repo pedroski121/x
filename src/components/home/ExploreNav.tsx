@@ -1,7 +1,7 @@
 import { FC } from "react"
 
 import { Typewriter } from 'react-simple-typewriter'
-
+import Link from "next/dist/client/link"
 const ExploreNav: FC = () => {
     const offers = [
         'Shirts',
@@ -10,16 +10,16 @@ const ExploreNav: FC = () => {
         'Lingerie',
         'Suits',
         'Jerseys',
-        'Singlets',
         'Necklace',
         'Gowns',
         'Crocs',
-        'Trad',
+        'Native',
         'Shorts',
         'Boxers',
         'Jackets',
         'Watches',
-        'Hair'
+        'Hair',
+        'Wrappers'
     ]
     return <>
         <div className="row mt-3 mx-0 mx-md-3 ">
@@ -37,8 +37,13 @@ const ExploreNav: FC = () => {
                 <div className={`d-flex justify-content-center justify-content-md-end `}>
                     <div className="btn-group me-3" role="group">
                         <button type="button" className="btn btn-outline-dark fw-bold active">All</button>
-                        <button type="button" className="btn btn-outline-dark fw-bold">Women</button>
-                        <button type="button" className="btn btn-outline-dark fw-bold">Men</button>
+                        <Link href='/categories/women'>
+                            <button type="button" className="btn btn-outline-dark fw-bold">Women</button>
+                        </Link>
+                        <Link href='/categories/men'>
+                            <button type="button" className="btn btn-outline-dark fw-bold">Men</button>
+                        </Link>
+
                     </div>
                     <button type="button" className="btn btn-outline-dark fw-bold me-1">Filter</button>
                     {/* <button className="btn btn-outline-dark fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><span> Explore</span></button> */}

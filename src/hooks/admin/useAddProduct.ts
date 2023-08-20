@@ -36,6 +36,7 @@ export const useAddProduct = (imgURLs: string[], emptyImgUrlsArrays: () => void)
         .catch((err: AxiosError) => {
           setShowAlert(true)
           setAddState(false)
+          console.log(err.response?.data)
         })
     }
   

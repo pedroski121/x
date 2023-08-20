@@ -12,7 +12,7 @@ const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wish
 
   return (<>
 
-    <div className="col-6 col-md-3 mt-3">
+    <div className="col-5 col-md-3 p-2">
       <div className={`card rounded-2 `}>
         <Link href={{ pathname: `/categories/${activePaths[0]}/${activePaths[1]}/${productsData.name.split(" ").join("-")}-${productsData._id}` }} className=" text-decoration-none text-dark">
           <Image src={productsData.imgURLs ? productsData.imgURLs[0] : '/default-product-not-found.jpg'} alt={productsData.imgAltText} width={300} height={200} layout="responsive" className="card-img rounded-2" objectFit="cover" />

@@ -11,27 +11,25 @@ import Custom404 from "src/pages/404";
 import { useContext } from 'react';
 import { CurrentUserContext } from '@contexts/CurrentUserContext';
 import { useWishList } from '@hooks/wishlist/useWishList';
+import { useFetch } from '@hooks/general/useFetch';
 
-const CategoryProducts = () => {
+const SubCategoryProducts = () => {
   const { pages } = useDynamicPath();
   const { userState } = useContext(CurrentUserContext)
   const { data: wishListData, changeWish, changingWish } = useWishList(userState._id)
 
-  const fetchProducts = async (url: string) => await axiosInstance.get(url).then((product: AxiosResponse<IProductsData[]>) => product.data);
-  const { data, error, isLoading } = useSWR(`/api/product/all`, fetchProducts);
+  const { data, error, isLoading } = useFetch<{ subCategory: string, products: IProductsData[] }>(`/api/product/${pages[0]}/${pages[1]}`);
+
   if (isLoading) return <GrowingSpinner />
   if (error) return <Custom404 />;
-
-  // filter to get the data for the active page category your on
-  const currentPageProductData = data?.filter((receivedPageData) => receivedPageData.category === pages[0] && receivedPageData.subCategory == pages[1]);
   return (
     <>
 
       <div className="container-fluid ">
         <BreadCrumbNav pages={pages} />
-        <div className="row mt-3">
+        <div className="row m-0 m-md-3 justify-content-center ">
           {
-            currentPageProductData?.map(product => <SubCategoryCard productsData={product}
+            data?.products.map(product => <SubCategoryCard productsData={product}
               wishListData={wishListData || [{ _id: '', productID: '' }]} changingWish={changingWish} changeWish={changeWish} activePaths={pages} key={product._id} />)
           }
         </div>
@@ -41,4 +39,4 @@ const CategoryProducts = () => {
     </>
   )
 }
-export default CategoryProducts
+export default SubCategoryProducts

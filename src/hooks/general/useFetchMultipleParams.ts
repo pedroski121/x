@@ -9,7 +9,7 @@ export const useFetchMultipleParams = <T=any>(baseURL:string,dataRouteParamArray
           return {...fetchedObject.data}
       });
   
-  const { isLoading, data} = useSWR<T[], TResponse[]>(dataRouteParamArray, (dataRouteParamArray) => Promise.all(dataRouteParamArray.map((routeParam:string) => fetchProducts(baseURL, routeParam))))
-  return {data, isLoading}
+  const { isLoading, data, error} = useSWR<T[], TResponse[]>(dataRouteParamArray, (dataRouteParamArray) => Promise.all(dataRouteParamArray.map((routeParam:string) => fetchProducts(baseURL, routeParam))))
+  return {data, isLoading, error}
   
 }

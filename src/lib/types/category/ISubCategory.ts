@@ -9,6 +9,10 @@ export interface ISubCategory {
     categoryName?:string;
     altImgText?:string;
 }
+export type TSubCategoriesForCategory = {
+    categoryName:string,
+    subCategories:ISubCategory[]
+}
 
 export type TSubCategoryCard = {
     productsData:IProductsData, 
