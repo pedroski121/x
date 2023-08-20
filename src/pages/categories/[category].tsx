@@ -63,9 +63,9 @@ const Category: NextPage = () => {
             if (subCategory.products.length === 0) {
               return <></>
             }
-            return <div className="row m-2 mt-3" key={key}>
+            return <div className="row m-md-2 mt-3" key={key}>
               <BodySectionHeader text={subCategory.subCategory} page='category' navigateTo={`/categories/${currentPageName}/${subCategory.subCategory}`} />
-              <div className="d-flex flex-row overflow-auto" style={{ width: '100%' }}>
+              <div className="d-flex flex-row gap-4 overflow-auto" style={{ width: '100%' }}>
                 {
 
                   subCategory.products.map((subCategoryItem: IProductsData) => {
