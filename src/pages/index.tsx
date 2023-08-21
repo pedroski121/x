@@ -3,7 +3,8 @@ import { SideBar } from "@components/general/sidebar"
 import { Body } from "@components/home/Body"
 import { Footer } from "@components/general/footer"
 import { NextPage } from "next/types"
-const Home:NextPage = () => {
+
+const Home: NextPage = () => {
   return (
     <>
       <div className="overflow-hidden">

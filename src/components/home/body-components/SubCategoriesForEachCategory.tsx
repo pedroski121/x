@@ -1,38 +1,15 @@
 import HomeCss from '../Home.module.css'
-import { ISubCategory } from "@lib/types/category";
 import { CategoryCard } from "@components/category";
-import { useFetchMultipleParams } from "@hooks/general/useFetchMultipleParams";
 import { BorderSpinner } from "@components/general/spinners";
 import { BodySectionHeader } from "./BodySectionHeader";
-import { FC, useRef } from "react";
-import { useFetch } from '@hooks/general/useFetch';
+import { FC } from "react";
+import { useSubCategoryForEachCategory } from '@hooks/home/useSubCategoriesForEachCategory';
 
-type TCategory = {
-    _id: string,
-    name: string,
-    imgURL: string,
-}
-
-type TFetchMultipleSubCategories = {
-    categoryName: string,
-    subCategories: ISubCategory[]
-}
-
-export const ProductsForEachCategory: FC = () => {
-    const categories = useRef<string[]>([])
-
-    const { data: categoriesData, error: categoriesError, isLoading: categoriesLoading } = useFetch<TCategory[]>('/api/category/all')
-    if (categoriesData) {
-        categoriesData.map((category) => {
-            if (!categories.current.includes(category.name)) {
-                categories.current.push(category.name)
-            }
-        })
-    }
-    const { data, isLoading, error } = useFetchMultipleParams<TFetchMultipleSubCategories>('/api/sub-category', categories.current)
-
+export const SubCategoriesForEachCategory: FC = () => {
+    const { isLoading, categoriesLoading, error, categoriesError, data } = useSubCategoryForEachCategory()
     if (isLoading || categoriesLoading) return <div className='mt-5'><BorderSpinner size={false} /></div>
-    if (categoriesError || error) return <p>An error occured loading the data</p>
+    if (categoriesError || error) return <p className='text-center mt-3'>Error fetching categories and sub-categories</p>
+
     return <>
         {
             data?.map((categories, key) => {

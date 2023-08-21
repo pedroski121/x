@@ -1,31 +1,14 @@
 import { FC } from "react"
-
+import { offers } from "@lib/constants"
 import { Typewriter } from 'react-simple-typewriter'
 import Link from "next/dist/client/link"
 const ExploreNav: FC = () => {
-    const offers = [
-        'Shirts',
-        'Okirika',
-        'Shoes',
-        'Lingerie',
-        'Suits',
-        'Jerseys',
-        'Necklace',
-        'Gowns',
-        'Crocs',
-        'Native',
-        'Shorts',
-        'Boxers',
-        'Jackets',
-        'Watches',
-        'Hair',
-        'Wrappers'
-    ]
+
     return <>
-        <div className="row mt-3 mx-0 mx-md-3 ">
+        <div className="row mt-3 mx-0 mx-md-3 my-2">
             <section className="col-12 col-md-6 order-2 order-md-1 col-md-3 ">
                 <div className={`d-flex fw-bold justify-content-center justify-content-md-start`}>
-                    <span className={`bi bi-lightning-charge-fill fs-3 mt-1 mt-md-0`}>
+                    <span className={`bi bi-lightning-charge-fill fs-4 mt-1 mt-md-0`}>
                         Find<span className="text-secondary border border-dark">&</span>Buy The Best <span className="text-light border border-dark bg-secondary">
                             <Typewriter words={offers} typeSpeed={70} loop={false} cursor delaySpeed={1000} /></span>
                     </span>

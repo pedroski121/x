@@ -1,4 +1,4 @@
 export {Carousel} from './Carousel';
-export {ProductsForEachCategory} from './ProductsForEachCategory';
+export {SubCategoriesForEachCategory} from './SubCategoriesForEachCategory';
 export {Extras} from './Extras'
 export {BodySectionHeader} from './BodySectionHeader'

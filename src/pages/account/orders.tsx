@@ -7,17 +7,17 @@ import { getServerSideProps } from "@utils/user-session"
 import { TAccountPageProps } from "@lib/types/account"
 
 
-const Orders:NextPage<TAccountPageProps> = (session) =>{
+const Orders: NextPage<TAccountPageProps> = () => {
     return (
         <>
             <AccountBody sectionHeading="Orders">
-                <OrderList/>
+                <OrderList />
             </AccountBody>
-            <Footer/>
+            <Footer />
         </>
     )
 }
 
-export {getServerSideProps}
+export { getServerSideProps }
 
 export default Orders
