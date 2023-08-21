@@ -21,7 +21,7 @@
 }
 .vertical_cover {
   position: relative;
-  height:350px;
+  height:300px;
 }
 .vertical_cover:hover  {
   opacity:0.9;

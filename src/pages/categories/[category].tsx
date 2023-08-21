@@ -6,13 +6,21 @@ import { BodySectionHeader } from "@components/home/body-components";
 import { useFetchMultipleParams } from "@hooks/general/useFetchMultipleParams";
 import { IProductsData } from "@lib/types/product";
 import { SubCategoryCard } from "@components/subcategory-card";
+import { v4 as uuidv4 } from 'uuid'
+
 
 import { useCategory } from "@hooks/category/useCategory";
+
+
+type TProductsForEachSubCategory = {
+  subCategory: string,
+  products: IProductsData[]
+}
 
 const Category: NextPage = () => {
   const { subCategoriesLoading, changeWish, currentPageName, changingWish, subCategories, subCategoriesError, pages, wishListData } = useCategory();
 
-  const { data, isLoading, error } = useFetchMultipleParams(`/api/product/${currentPageName}`, subCategories.current)
+  const { data, isLoading, error } = useFetchMultipleParams<TProductsForEachSubCategory>(`/api/product/${currentPageName}`, subCategories.current)
   if (isLoading || subCategoriesLoading) return <div className='d-flex justify-content-center align-items-center'>
     <GrowingSpinner />
   </div>
@@ -23,10 +31,12 @@ const Category: NextPage = () => {
         <BreadCrumbNav pages={pages} />
         {
           data?.map((subCategory, key) => {
+            const subCategoryKey = uuidv4()
+
             if (subCategory.products.length === 0) {
-              return <></>
+              return <div key={subCategoryKey}></div>
             }
-            return <div className="row m-md-2 mt-3" key={key}>
+            return <div className="row m-1 mt-3" key={subCategoryKey + subCategory.subCategory}>
               <BodySectionHeader text={subCategory.subCategory} page='category' navigateTo={`/categories/${currentPageName}/${subCategory.subCategory}`} />
               <div className="d-flex flex-row  overflow-auto" style={{ width: '100%' }}>
                 {

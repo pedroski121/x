@@ -9,7 +9,7 @@ const Home: NextPage = () => {
     <>
       <div className="overflow-hidden">
         <ExploreNav />
-        <SideBar />
+        {/* <SideBar /> */}
         <Body />
 
       </div>

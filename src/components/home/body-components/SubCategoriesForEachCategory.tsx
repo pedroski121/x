@@ -4,7 +4,7 @@ import { BorderSpinner } from "@components/general/spinners";
 import { BodySectionHeader } from "./BodySectionHeader";
 import { FC } from "react";
 import { useSubCategoryForEachCategory } from '@hooks/home/useSubCategoriesForEachCategory';
-
+import { v4 as uuidv4 } from 'uuid'
 export const SubCategoriesForEachCategory: FC = () => {
     const { isLoading, categoriesLoading, error, categoriesError, data } = useSubCategoryForEachCategory()
     if (isLoading || categoriesLoading) return <div className='mt-5'><BorderSpinner size={false} /></div>
@@ -12,9 +12,12 @@ export const SubCategoriesForEachCategory: FC = () => {
 
     return <>
         {
-            data?.map((categories, key) => {
+            data?.map((categories) => {
                 if (categories.subCategories.length !== 0) {
-                    return <div key={key} className={`row px-2 mt-3 gx-3 gx-md-4 gy-2 m-2`}>
+
+                    const categoryKey = uuidv4() + categories.categoryName
+
+                    return <div key={categoryKey} className={`row mt-3 mx-3`}>
                         <BodySectionHeader text={categories.categoryName} navigateTo={`/categories/${categories.categoryName}`} />
                         <div className={`overflow-auto ${HomeCss.category_row} d-flex flex-row`}>
                             {

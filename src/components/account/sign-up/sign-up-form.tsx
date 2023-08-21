@@ -9,9 +9,9 @@ const SignUpForm = () => {
   return (
     <div className={`d-flex flex-column justify-content-center ${accountStyles.side}`}>
       <div className={`p-1 ${styles.sign_up_form} align-self-center`}>
-        <div className={`text-center ${dancingScript.className}`}>
+        <div className={`text-center `}>
           <h1>Welcome</h1>
-          <p className={`text-secondary fs-6 ${dancingScript.className}`}>Elevate your style with our latest fashion finds.</p>
+          <p className={`text-secondary fs-6 `}>Elevate your style with quality and affordable fashion items</p>
         </div>
         <form data-testid="sign-up-form" onSubmit={handleSignUpFormSumbit} noValidate>
           <div className="mb-1">
