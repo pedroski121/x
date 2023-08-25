@@ -42,7 +42,6 @@ const addToWishList = async (productID:string, userID:string) =>{
         })
     }).catch((err:AxiosError)=>{
         setChangingWish('')
-        console.log(err.response?.data)
     })
 }
 const changeWish = (productID:string, wishListData:TWishList[]) => {

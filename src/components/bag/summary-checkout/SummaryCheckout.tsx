@@ -1,33 +1,18 @@
-import { FC, useContext } from "react"
-import { BagContext } from "@contexts/BagContext"
-import { EAvailableBagAction } from "@lib/types/bag"
+import { FC } from "react"
+
 import Link from "next/link"
+import { useSummaryCheckout } from "@hooks/bag/useSummaryCheckout"
 
-
-
-const SummaryCheckout: FC<{ sumOfItems: number }> = ({ sumOfItems }) => {
-    const { dispatch } = useContext(BagContext)
-
-    function emptyBag() {
-        dispatch ? dispatch({ type: EAvailableBagAction.EMPTY_BAG }) : ''
-    }
+const SummaryCheckout: FC<{ sumOfItems: number, mutate: any }> = ({ sumOfItems, mutate }) => {
+    const { loading, emptyBag } = useSummaryCheckout(mutate)
 
     return (
         <>
             <div className="row justify-content-between">
 
-                <div className="col-7">
-                    <div className="row">
-                        <div className=" col-5 border border-dark p-3 text-center">
-                            Delivery - <b>₦0</b>
-                        </div>
-                        <div className="col-7 border border-dark p-3 text-center ">
-                            SubTotal - <b>₦{sumOfItems}</b>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-4 border border-dark p-3 text-center ">
-                    Total - <b>₦{sumOfItems}</b>
+
+                <div className="col-12 border border-dark p-3 text-center ">
+                    SubTotal - <b>₦{sumOfItems}</b>
                 </div>
                 <Link href='/checkout'>
                     <button className="btn btn-dark p-3 text-center rounded-0 col-12 mt-5">
@@ -36,10 +21,12 @@ const SummaryCheckout: FC<{ sumOfItems: number }> = ({ sumOfItems }) => {
                 </Link>
                 <Link href='/'>
                     <button className="btn btn-light p-3 text-center rounded-0 col-12 border border-dark">
-                    Continue Shopping
-                </button>
+                        Continue Shopping
+                    </button>
                 </Link>
-                <button onClick={emptyBag} className="btn btn-danger mt-2 rounded-0 fw-bold">EMPTY BAG</button>
+                <button onClick={emptyBag} className="btn btn-danger mt-2 rounded-0 fw-bold ">
+                    EMPTY BAG {loading && <span className="spinner-border spinner-border-sm "></span>}
+                </button>
 
             </div>
         </>

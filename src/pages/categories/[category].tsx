@@ -30,7 +30,7 @@ const Category: NextPage = () => {
       <div className="container-fluid">
         <BreadCrumbNav pages={pages} />
         {
-          data?.map((subCategory, key) => {
+          data?.map((subCategory) => {
             const subCategoryKey = uuidv4()
 
             if (subCategory.products.length === 0) {

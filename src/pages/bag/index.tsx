@@ -1,29 +1,33 @@
 import { NextPage } from "next"
-import { Table, SummaryCheckout, EmptyBag } from "@components/bag"
+import { Table, EmptyBag } from "@components/bag"
 import { SideBar } from "@components/general/sidebar"
-import { useBagCheck } from "@hooks/bag/useBagCheck"
 import { Footer } from "@components/general/footer"
+import { useBag } from "@hooks/bag/useBag"
+
 
 const Bag: NextPage = () => {
-    const { sumOfItems, bagEmptyStatus } = useBagCheck()
+
+    const { bagItems, productsInBag, mutate, fetchingBagItems, fetchingProducts } = useBag()
+
     return (
         <>
             <div className="container-fluid">
                 <div className="overflow-hidden p-4">
                     <h1 className="text-center fst-italic">My Shopping Bag</h1>
-                    {
-                        bagEmptyStatus()
-                            ? <EmptyBag />
-                            : <> <Table />
-                                <SummaryCheckout sumOfItems={sumOfItems} />
-
-                            </>
+                    {(fetchingBagItems || fetchingProducts)
+                        ? <p>loading...</p>
+                        : (bagItems && productsInBag && productsInBag.length !== 0) ?
+                            <>
+                                <Table bagItems={bagItems} products={productsInBag} mutate={mutate}
+                                    fetchingBagItems={fetchingBagItems} fetchingProducts={fetchingProducts} />
+                            </> :
+                            <EmptyBag />
                     }
 
                 </div>
             </div>
             <SideBar />
-            <Footer/>
+            <Footer />
         </>
     )
 }

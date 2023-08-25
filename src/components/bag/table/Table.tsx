@@ -1,79 +1,88 @@
 import Image from "next/image"
-import { FC, useContext } from "react"
-import { BagContext } from "@contexts/BagContext"
-import { EAvailableBagAction } from "@lib/types/bag"
+import { FC } from "react"
+import { TTable } from "@lib/types/bag"
+import { BorderSpinner } from "@components/general/spinners"
+import { useTable } from "@hooks/bag/useTable"
+import { SummaryCheckout } from "@components/bag"
 
 
-const Table: FC = () => {
-    const { bagState, dispatch } = useContext(BagContext);
+const Table: FC<TTable> = ({ bagItems, products, mutate }) => {
 
-    function removeItem(_id: string) {
-        dispatch ? dispatch({ type: EAvailableBagAction.REMOVE_FROM_BAG, payload: { _id } }) : ''
-    }
+    const { deleting, getItem, removeItem, productSum } = useTable(mutate, bagItems, products)
+
 
     return (
-        <div className="overflow-auto">
-            <table className="table mt-4">
-                <thead>
-                    <tr>
-                        <th scope="col" className="fw-light"></th >
-                        <th scope="col" className="fw-light">Description</th >
-                        <th scope="col" className="fw-light">Size</th>
-                        <th scope="col" className="fw-light">Quantity</th>
-                        <th scope="col" className="fw-light">Remove</th>
-                        <th scope="col" className="fw-light">Price</th>
-                        <th scope="col" className="fw-light">Delivery</th>
+        <>
+            <div className="overflow-auto">
+                <table className="table mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col" className="fw-light"></th >
+                            <th scope="col" className="fw-light">Name</th >
 
-                    </tr >
-                </thead >
+                            <th scope="col" className="fw-light">Size</th>
+                            <th scope="col" className="fw-light">Quantity</th>
+                            <th scope="col" className="fw-light">Remove</th>
+                            <th scope="col" className="fw-light text-center">Price</th>
 
-                <tbody>
+                        </tr >
+                    </thead >
 
-                    {
-                        bagState.map((bagItem, key) => {
-                            // check for the default value and return nothing
-                            if (bagItem._id.length === 0) {
-                                return ''
-                            }
+                    <tbody>
 
-                            return <tr key={key}>
-                                <th scope="row">
-                                    <div style={{ maxWidth: '200px', maxHeight: '200px' }}>
-                                        <Image src={bagItem.imgURL} style={{ objectFit: "cover" }} alt="An item in the bag image" width={200} height={150} />
-                                    </div>
+                        {
+                            products?.map((product, key) => {
+                                return <tr key={key}>
+                                    <th scope="row">
+                                        <div style={{ maxWidth: '200px', maxHeight: '200px' }}>
+                                            <Image src={product.imgURLs[0]} style={{ objectFit: "cover" }} alt="An item in the bag image" width={200} height={150} />
+                                        </div>
 
-                                </th>
-                                <td >
-                                    <div className="me-4">
-                                        <span className="fw-normal">{bagItem.name}</span><br />
-                                        <small className="fw-light">Product Code: <span className="fw-normal">{bagItem._id}</span></small>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="input-group">
-                                        <span className="input-group-text bg-white rounded-0 border border-secondary">XS</span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div className="btn-group" role="group" aria-label="Button group to select the quantity of a product to buy">
-                                        <button type="button" className="btn btn-dark rounded-0">+</button>
-                                        <span className="input-group-text bg-white rounded-0 ">0</span>
-                                        <button type="button" className="btn btn-light rounded-0 border border-secondary">-</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button type="button" onClick={() => removeItem(bagItem._id)} className="btn btn-light border border-secondary rounded-0">x</button>
-                                </td>
-                                <td>₦{bagItem.price}</td>
-                                <td>₦0</td>
-                            </tr>
+                                    </th>
+                                    <td >
+                                        <div className="me-4">
+                                            <span className="fw-normal">{product.name}</span><br />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="input-group">
+                                            <span className="input-group-text bg-white rounded-0 border border-secondary">
+                                                {getItem(product)?.size}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td >
+                                        <div className="input-group">
 
-                        })
-                    }
+                                            <span className="input-group-text bg-white rounded-0 border border-secondary">
+                                                {getItem(product)?.quantity}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" onClick={() => removeItem(product)} className="btn btn-outline-dark border border-secondary rounded-0">
+                                            x
+                                        </button>
 
-                </tbody>
-            </table >
-        </div>
+                                    </td>
+                                    <td className="text-center"> ₦{product.price} </td>
+
+                                    {
+                                        deleting === product._id ? <td><BorderSpinner size={false} /></td> : <></>
+                                    }
+
+                                </tr>
+
+                            })
+                        }
+                    </tbody>
+
+                </table >
+
+            </div>
+            <SummaryCheckout sumOfItems={productSum} mutate={mutate} />
+        </>
+
     )
 }
 

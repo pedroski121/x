@@ -4,3 +4,4 @@ export {type TBagAction} from './TBagAction';
 export {type TBagContextState} from './TBagContextState'
 export {EAvailableBagAction } from './EAvailableBagAction'
 export {BagDefaultValues} from './BagDefaultValues'
+export {type TBag, type TTable, type TUseTable, type TUseBag} from './TBag'
