@@ -5,7 +5,6 @@ import Image from "next/legacy/image";
 import { BagModal } from "@components/general/bag-modal";
 import { TSubCategoryCard } from "@lib/types/category/ISubCategory";
 import { BorderSpinner } from "@components/general/spinners";
-import { useCurrentUser } from "@hooks/account/auth/useCurrentUser";
 
 const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wishListData, changeWish, changingWish, bagItems }) => {
   const [addingItemToBag, setAddingItemToBag] = useState<string>('')

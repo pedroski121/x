@@ -20,7 +20,7 @@ export const ModalBody = ({ itemInBag, size, BagModalCss, product, setSize, amou
 
     return <>
         {
-            itemInBag?.length !== 0 ? <div className={`${BagModalCss.check} d-flex justify-content-center align-items-center text-dark`}>
+            itemInBag && itemInBag.length !== 0 ? <div className={`${BagModalCss.check} d-flex justify-content-center align-items-center text-dark`}>
                 <span className="bi bi-check-circle"></span>
 
             </div> :

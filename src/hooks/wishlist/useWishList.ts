@@ -11,7 +11,7 @@ export const useWishList = (userID:string) =>{
 const router = useRouter()
 const [changingWish, setChangingWish] = useState<string>('')
 
-const {data, isLoading, mutate} = useFetch<TWishList[]>(`/api/wishlist/${userID}`)
+const {data, isLoading, mutate, error} = useFetch<TWishList[]>(`/api/wishlist/${userID}`)
 
 const generateProductURLs  = (data:TWishList[]):string[] => {
     const params = data.map((d:TWishList)=>{
@@ -55,6 +55,6 @@ const changeWish = (productID:string, wishListData:TWishList[]) => {
       addToWishList(productID,userID)
     }
   }
-return  {deleteWishList, loading, productData, isLoading, changingWish, data, addToWishList, changeWish}
+return  {deleteWishList, loading, productData, isLoading, changingWish, data, addToWishList, changeWish, error}
 }
 

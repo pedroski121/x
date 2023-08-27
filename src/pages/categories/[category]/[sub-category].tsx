@@ -10,6 +10,8 @@ import { CurrentUserContext } from '@contexts/CurrentUserContext';
 import { useWishList } from '@hooks/wishlist/useWishList';
 import { useFetch } from '@hooks/general/useFetch';
 import { useBag } from '@hooks/bag/useBag';
+
+
 const SubCategoryProducts = () => {
   const { pages } = useDynamicPath();
   const { userState } = useContext(CurrentUserContext)
@@ -20,6 +22,7 @@ const SubCategoryProducts = () => {
 
   if (isLoading) return <GrowingSpinner />
   if (error) return <Custom404 />;
+
   return (
     <>
 

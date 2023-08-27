@@ -11,8 +11,11 @@ export const useCategory = () => {
  const { pages } = useDynamicPath();
  const subCategories = useRef<string[]>([])
  const { userState } = useContext(CurrentUserContext)
- const { data: wishListData, changeWish, changingWish } = useWishList(userState._id)
+ const { data: wishListData, changeWish, changingWish , error:wishListError} = useWishList(userState._id)
 
+ if(wishListError){
+  console.log(wishListError.response.data)
+ }
 
 
  const currentPageName = pages[pages.length - 1];
