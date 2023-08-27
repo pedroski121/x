@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { FC } from "react"
 import { TTable } from "@lib/types/bag"
-import { BorderSpinner } from "@components/general/spinners"
 import { useTable } from "@hooks/bag/useTable"
 import { SummaryCheckout } from "@components/bag"
 
@@ -45,11 +44,16 @@ const Table: FC<TTable> = ({ bagItems, products, mutate }) => {
                                         </div>
                                     </td>
                                     <td>
-                                        <div className="input-group">
-                                            <span className="input-group-text bg-white rounded-0 border border-secondary">
-                                                {getItem(product)?.size}
-                                            </span>
-                                        </div>
+                                        {
+                                            getItem(product)?.size
+                                                ? <div className="input-group">
+                                                    <span className="input-group-text bg-white rounded-0 border border-secondary">
+                                                        {getItem(product)?.size}
+                                                    </span>
+                                                </div>
+                                                : ''
+                                        }
+
                                     </td>
                                     <td >
                                         <div className="input-group">
@@ -61,15 +65,16 @@ const Table: FC<TTable> = ({ bagItems, products, mutate }) => {
                                     </td>
                                     <td>
                                         <button type="button" onClick={() => removeItem(product)} className="btn btn-outline-dark border border-secondary rounded-0">
-                                            x
+
+
+                                            {
+                                                deleting === product._id ? <span className="spinner-border spinner-border-sm "></span> : 'x'
+                                            }
                                         </button>
 
                                     </td>
                                     <td className="text-center"> ₦{product.price} </td>
 
-                                    {
-                                        deleting === product._id ? <td><BorderSpinner size={false} /></td> : <></>
-                                    }
 
                                 </tr>
 

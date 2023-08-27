@@ -1,5 +1,6 @@
 import { TWishList } from "@lib/types/account/wishlist";
 import { IProductsData } from "@lib/types/product";
+import { TBag } from "../bag";
 
 export interface ISubCategory {
     _id: string; 
@@ -17,6 +18,7 @@ export type TSubCategoriesForCategory = {
 export type TSubCategoryCard = {
     productsData:IProductsData, 
     wishListData: TWishList[], 
+    bagItems:TBag[] | undefined,
     activePaths:string[], 
     changingWish:string,
     changeWish: (productID:string, wishListData:TWishList[]) => void

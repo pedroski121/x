@@ -1,8 +1,5 @@
-import useSWR from 'swr'
-import { AxiosResponse } from "axios";
 import { IProductsData } from '@lib/types/product'
 import { useDynamicPath } from "@hooks/general/useDynamicPath";
-import { axiosInstance } from "@utils/axiosInstance";
 import { SubCategoryCard } from "@components/subcategory-card";
 import { GrowingSpinner } from "@components/general/spinners";
 import { BreadCrumbNav } from "@general-components/BreadCrumbNav";
@@ -12,13 +9,14 @@ import { useContext } from 'react';
 import { CurrentUserContext } from '@contexts/CurrentUserContext';
 import { useWishList } from '@hooks/wishlist/useWishList';
 import { useFetch } from '@hooks/general/useFetch';
-
+import { useBag } from '@hooks/bag/useBag';
 const SubCategoryProducts = () => {
   const { pages } = useDynamicPath();
   const { userState } = useContext(CurrentUserContext)
   const { data: wishListData, changeWish, changingWish } = useWishList(userState._id)
 
   const { data, error, isLoading } = useFetch<{ subCategory: string, products: IProductsData[] }>(`/api/product/${pages[0]}/${pages[1]}`);
+  const { bagItems } = useBag()
 
   if (isLoading) return <GrowingSpinner />
   if (error) return <Custom404 />;
@@ -29,8 +27,12 @@ const SubCategoryProducts = () => {
         <BreadCrumbNav pages={pages} />
         <div className="row ">
           {
-            data?.products.map(product => <SubCategoryCard productsData={product}
-              wishListData={wishListData || [{ _id: '', productID: '' }]} changingWish={changingWish} changeWish={changeWish} activePaths={pages} key={product._id} />)
+            data?.products.map(product => (
+              <SubCategoryCard productsData={product}
+                wishListData={wishListData || [{ _id: '', productID: '' }]}
+                bagItems={bagItems} changingWish={changingWish} changeWish={changeWish}
+                activePaths={pages} key={product._id} />
+            ))
           }
         </div>
 

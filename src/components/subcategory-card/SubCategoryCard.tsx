@@ -1,14 +1,21 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Link from "next/link";
 import SubCategoryCss from './SubCategoryCard.module.css';
 import Image from "next/legacy/image";
 import { BagModal } from "@components/general/bag-modal";
-import { useCardState } from "@hooks/sub-category/useCardState";
 import { TSubCategoryCard } from "@lib/types/category/ISubCategory";
 import { BorderSpinner } from "@components/general/spinners";
+import { useCurrentUser } from "@hooks/account/auth/useCurrentUser";
 
-const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wishListData, changeWish, changingWish }) => {
-  const { itemInBag, modalDetails, handleToggle } = useCardState(productsData);
+const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wishListData, changeWish, changingWish, bagItems }) => {
+  const [addingItemToBag, setAddingItemToBag] = useState<string>('')
+
+
+  const itemInBag = bagItems?.filter(item => item.productID === productsData._id)
+
+  const addItemToBag = (_id: string): void => {
+    setAddingItemToBag(_id)
+  }
 
   return (<>
 
@@ -26,16 +33,24 @@ const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wish
 
         </div>
         <div className="card-footer d-flex justify-content-between p-0 bg-white border-0 ms-2 me-2">
-          <span data-bs-toggle="modal" onClick={() => handleToggle('bag')} data-bs-target={`#bagModal${modalDetails._id} `} className={`bi ${itemInBag ? 'bi-bag-check-fill text-dark' : 'bi-bag-plus'} ${SubCategoryCss.pointer} h4`}></span>
+          {
+            addingItemToBag !== productsData._id
+              ? <span data-bs-toggle="modal" data-bs-target={`#bagModal${productsData._id} `}
+                className={`bi ${itemInBag && itemInBag.length !== 0 ? 'bi-bag-check-fill text-dark' : 'bi-bag-plus'} ${SubCategoryCss.pointer} h4`}></span>
+              : <BorderSpinner size={false} />
+          }
+
           {
             changingWish !== productsData._id
-              ? <span onClick={() => changeWish(productsData._id, wishListData)} className={` bi ${wishListData.map(wish => wish.productID).includes(productsData._id) ? ' bi-heart-fill text-dark' : 'bi-heart'}  ${SubCategoryCss.pointer} h4`}></span>
+              ? <span onClick={() => changeWish(productsData._id, wishListData)}
+                className={` bi ${wishListData.map(wish => wish.productID).includes(productsData._id) ? ' bi-heart-fill text-dark' : 'bi-heart'}  ${SubCategoryCss.pointer} h4`}></span>
               : <BorderSpinner size={false} />
           }
         </div>
       </div>
     </div>
-    <BagModal {...modalDetails} />
+
+    <BagModal itemInBag={itemInBag} addItemToBag={addItemToBag} product={productsData} />
 
   </>)
 }

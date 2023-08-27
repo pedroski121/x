@@ -1,7 +1,7 @@
+import { IProductsData } from "../product";
+import { TBag } from "./TBag";
 export interface IModalDetails {
-    name: string;
-    price: number;
-    _id: string;
-    inBag?:boolean;
-    imgURLs:string[];
+    itemInBag?: TBag[] | undefined;
+    addItemToBag?:(_id:string)=>void;
+    product:IProductsData
   }

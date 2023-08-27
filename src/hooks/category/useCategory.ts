@@ -9,7 +9,6 @@ import { TSubCategoriesForCategory } from "@lib/types/category";
 export const useCategory = () => {
  // Get  the exact page your on
  const { pages } = useDynamicPath();
- // const { data, error, isLoading } = useFetch<TCategory[]>(`/api/category/all`)
  const subCategories = useRef<string[]>([])
  const { userState } = useContext(CurrentUserContext)
  const { data: wishListData, changeWish, changingWish } = useWishList(userState._id)

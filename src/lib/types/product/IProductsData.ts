@@ -14,4 +14,10 @@ export interface IProductsData {
     activePaths:string[],
     imgAltText?:string,
     reviews?: { userID: string, review: string, date: string }[]
+    sizes?:string[]
   }
+  
+export type TProductsForEachSubCategory = {
+  subCategory: string,
+  products: IProductsData[]
+}

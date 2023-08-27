@@ -9,35 +9,3 @@ interface IUseCardState {
     handleToggle(bag:string) : void
 }
 
-export const useCardState = (props:IProductsData):IUseCardState => {
-    const [itemInBag, setItemInBag] = useState<boolean>(false);
-
-    const [modalDetails, setModalDetails] = useState<IModalDetails>({
-      name: props.name,
-      _id: props._id,
-      price: props.price,
-      imgURLs: props.imgURLs,
-    });
-  
-    const { dispatch, bagState } = useContext(BagContext);
-  
-    const handleToggle = (bag: string) => {
-      if (bag === "bag") {
-        const inBagorNot = bagState?.some((bag) => bag._id === props._id);
-        setItemInBag(inBagorNot);
-        setModalDetails({ ...modalDetails, inBag: inBagorNot });
-      }
-    };
-  
-    useEffect(() => {
-      handleToggle("bag");
-    }, [bagState]);
-  
-    useEffect(() => {
-      dispatch
-        ? dispatch({ type: EAvailableBagAction.IN_BAG })
-        : BagDefaultValues;
-    }, []);
-  
-    return { itemInBag,  modalDetails, handleToggle };
-}
