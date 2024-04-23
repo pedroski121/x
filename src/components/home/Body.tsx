@@ -6,7 +6,7 @@ const Body: FC = () => {
     return <>
         <Carousel />
         <SubCategoriesForEachCategory />
-        <Extras />
+        {/* <Extras /> */}
 
     </>
 }
