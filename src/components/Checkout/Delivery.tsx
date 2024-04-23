@@ -1,5 +1,6 @@
 import { useFetch } from "@hooks/general/useFetch";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import { BorderSpinner } from "@components/general/spinners";
 import { ILogisticsCompanyLocation } from '@lib/types/checkout'
 
@@ -8,7 +9,11 @@ const Delivery = () => {
     const [id, setID] = useState<string>('')
     const [state, setState] = useState<string>('Abia')
     const { data, error, isLoading } = useFetch<ILogisticsCompanyLocation[]>(`/api/logistics-company-locations/${state}`)
+    const router = useRouter()
 
+    const beforeNavigateToReview = () => {
+        router.push('/checkout/review')
+    }
     return <>
         <section className="container">
             <div>
@@ -67,22 +72,24 @@ const Delivery = () => {
                 <h3 className="fs-5">Stations</h3>
                 {isLoading ? <BorderSpinner size={false} /> : error ? <p className="text-center fw-bold">Error Fetching Available Stations</p> : <div className="list-group" style={{ height: "400px", overflowY: "scroll" }}>
                     {
-                        data?.length === 0 ? <p className="fs-6 text-center">No available station in this state. Please pick another state </p> : data?.map((station) => {
-                            return <a href="#" className={`list-group-item list-group-item-dark list-group-item-action border border-secondary ${id === station._id ? 'active' : ''}`} onClick={() => setID(station._id)} aria-current="true">
-                                <div className="d-flex w-100 flex-column">
-                                    <h5 className="mb-1">{station.logisticsCompany}</h5>
-                                    <p>{station.address}</p>
-                                    <span>{station.city}, {station.state} state</span>
-                                </div>
-                            </a>
-                        })
+                        data?.length === 0 ?
+                            <p className="fs-6 text-center">No available station in this state. Please pick another state </p>
+                            : data?.map((station) => {
+                                return <a href="#" key={station._id} className={`list-group-item list-group-item-dark list-group-item-action border border-secondary ${id === station._id ? 'active' : ''}`} onClick={() => setID(station._id)} aria-current="true">
+                                    <div className="d-flex w-100 flex-column">
+                                        <h5 className="mb-1">{station.logisticsCompany}</h5>
+                                        <p>{station.address}</p>
+                                        <span>{station.city}, {station.state} state</span>
+                                    </div>
+                                </a>
+                            })
                     }
 
 
                 </div>}
             </div>
             <div className="text-end">
-                <button className={`btn btn-dark mt-4 ${data?.length === 0 ? 'disabled' : ''}`}> Next </button>
+                <button className={`btn btn-dark mt-4 ${data?.length === 0 ? 'disabled' : ''}`} onClick={beforeNavigateToReview}> Next </button>
             </div>
         </section>
     </>
