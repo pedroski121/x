@@ -8,11 +8,22 @@ import { ILogisticsCompanyLocation } from '@lib/types/checkout'
 const Delivery = () => {
     const [id, setID] = useState<string>('')
     const [state, setState] = useState<string>('Abia')
+    const [nextButtonLoading, setNextButtonLoading] = useState<boolean>(false)
+    const [noStationSelectedError, setnoStationSelectedError] = useState<boolean>(false)
     const { data, error, isLoading } = useFetch<ILogisticsCompanyLocation[]>(`/api/logistics-company-locations/${state}`)
     const router = useRouter()
 
     const beforeNavigateToReview = () => {
-        router.push('/checkout/review')
+        setNextButtonLoading(true)
+        sessionStorage.setItem('pick_up_station_id', id)
+        if (!sessionStorage.getItem('pick_up_station_id') || sessionStorage.getItem('pick_up_station_id')?.length === 0) {
+            setnoStationSelectedError(true)
+            setNextButtonLoading(false)
+
+        } else {
+            router.push('/checkout/review')
+        }
+
     }
     return <>
         <section className="container">
@@ -23,6 +34,15 @@ const Delivery = () => {
                         <strong>Coming Soon!</strong> Other delivery options
                         <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    {
+                        noStationSelectedError
+                            ? <div className="alert alert-danger alert-dismissible fade show mt-1 " role="alert">
+                                <strong>No pick-up station</strong> selected
+                                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            : <></>
+                    }
+
                 </div>
             </div>
             <form>
@@ -84,12 +104,15 @@ const Delivery = () => {
                                 </a>
                             })
                     }
-
-
-                </div>}
+                </div>
+                }
             </div>
+            <section className="mt-4">
+
+            </section>
             <div className="text-end">
-                <button className={`btn btn-dark mt-4 ${data?.length === 0 ? 'disabled' : ''}`} onClick={beforeNavigateToReview}> Next </button>
+                <button className={`btn btn-dark mt-4 ${data?.length === 0 ? 'disabled' : ''}`} onClick={beforeNavigateToReview}>
+                    Next {nextButtonLoading ? <span className="spinner-border spinner-border-sm "></span> : <></>}  </button>
             </div>
         </section>
     </>
