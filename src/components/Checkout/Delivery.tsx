@@ -24,7 +24,7 @@ const Delivery = () => {
         } else {
             router.push('/checkout/review')
         }
-    }, [id])
+    }, [id, router])
     return <>
         <section className="container">
             <div>

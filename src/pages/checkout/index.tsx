@@ -1,7 +1,7 @@
 import { Footer } from "@components/general/footer";
 import { NextPage } from "next";
-import Delivery from "@components/checkout/Delivery";
-import CheckoutHeader from "@components/checkout/Header";
+import Delivery from "@components/Checkout/Delivery";
+import CheckoutHeader from "@components/Checkout/Header";
 
 const CheckOut: NextPage = () => {
 

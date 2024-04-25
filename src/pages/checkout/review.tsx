@@ -1,4 +1,4 @@
-import CheckoutHeader from "@components/checkout/Header"
+import CheckoutHeader from "@components/Checkout/Header"
 import { Footer } from "@components/general/footer"
 import Image from "next/image"
 import { useRouter } from "next/router"
