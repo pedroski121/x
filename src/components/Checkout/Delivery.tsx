@@ -1,6 +1,7 @@
 import { useFetch } from "@hooks/general/useFetch";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { BorderSpinner } from "@components/general/spinners";
 import { ILogisticsCompanyLocation } from '@lib/types/checkout'
 
@@ -13,7 +14,7 @@ const Delivery = () => {
     const { data, error, isLoading } = useFetch<ILogisticsCompanyLocation[]>(`/api/logistics-company-locations/${state}`)
     const router = useRouter()
 
-    const beforeNavigateToReview = () => {
+    const beforeNavigateToReview = useCallback(() => {
         setNextButtonLoading(true)
         sessionStorage.setItem('pick_up_station_id', id)
         if (!sessionStorage.getItem('pick_up_station_id') || sessionStorage.getItem('pick_up_station_id')?.length === 0) {
@@ -23,8 +24,7 @@ const Delivery = () => {
         } else {
             router.push('/checkout/review')
         }
-
-    }
+    }, [id])
     return <>
         <section className="container">
             <div>
