@@ -7,8 +7,8 @@ export const Footer = () => {
       <div className="row  p-5">
         <section className="col-12 col-md-4">
           <HomeIcon iconColor="text-white" />
-          <p className="ms-3">Empowering fashion and beauty enthusiasts across Nigeria </p>
-          <p className="ms-3 fw-bold">© 2023 All rights reserved. <span className="text-white">Slucent</span></p>
+          <p className="ms-2">Curating Fashion For All </p>
+          <p className="ms-2 fw-bold">© 2024 All rights reserved. <span className="text-white">Slucent</span></p>
         </section>
         <section className="col-12 col-md-2 ms-3 mt-3 mt-md-0">
           <h6 className="text-white">SITEMAP</h6>
