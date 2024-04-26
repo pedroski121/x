@@ -34,11 +34,11 @@ const bagReducer = (state: TBagState[], action: TBagAction): TBagState[] => {
     }
 }
 
-export const BagContext = React.createContext<TBagContextState>({ bagState: BagDefaultValues })
+export const BagContext = React.createContext<TBagContextState>({ bagState: [BagDefaultValues] })
 
 export const BagProvider = ({ children }: { children: ReactNode }) => {
 
-    const [bagState, dispatch] = useReducer(bagReducer, BagDefaultValues)
+    const [bagState, dispatch] = useReducer(bagReducer, [BagDefaultValues])
     return (
         <BagContext.Provider value={{ bagState, dispatch }}>
             {children}

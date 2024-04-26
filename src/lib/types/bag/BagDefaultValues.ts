@@ -12,3 +12,10 @@ quantity: 0,
 size: '',
 _id: '',
 }
+
+export const BagDefaultValues = {
+    name: 'string',
+    price: 0,
+    imgURL: 'string',
+    _id: "string"
+}
