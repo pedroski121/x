@@ -15,7 +15,8 @@ const Review = () => {
         isLoading,
         error,
         missingDetails,
-        router } = useReview()
+        router,
+        productsInBag } = useReview()
 
     return <>
         <CheckoutHeader activePage="review" />
