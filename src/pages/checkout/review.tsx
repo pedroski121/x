@@ -1,53 +1,30 @@
 import CheckoutHeader from "@components/Checkout/Header"
 import { Footer } from "@components/general/footer"
 import Image from "next/image"
-import { useRouter } from "next/router"
-import { useBag } from "@hooks/bag/useBag"
-import { useBagCheck } from "@hooks/bag/useBagCheck"
-import { useEffect, useState } from "react"
-import { useTable } from "@hooks/bag/useTable"
-import { ProductDefaultValues } from "@lib/types/product"
-import { bagDefault } from "@lib/types/bag"
-import { useFetch } from "@hooks/general/useFetch"
-import { useCurrentUser } from "@hooks/account/auth/useCurrentUser"
-
-export interface IPickUpStation {
-    logisticsCompany: string;
-    state: string;
-    city: string;
-    address: string;
-    _id: string;
-}
+import PaymentButton from "@components/Checkout/PaymentButton"
+import { BorderSpinner } from "@components/general/spinners"
+import { useReview } from "@hooks/checkout/useReview"
 
 const Review = () => {
-    const router = useRouter()
-    const [pickUpStationId, setPickUpStationId] = useState<string>('')
-    let { productsInBag, bagItems, mutate } = useBag()
-    const currentUser = useCurrentUser()
-
-    const { data: pickUpStation, isLoading, error } = useFetch<IPickUpStation>(`/api/pick-up-station/${pickUpStationId}`)
-    if (bagItems === undefined) {
-        bagItems = [bagDefault]
-    }
-    if (productsInBag === undefined) {
-        productsInBag = [ProductDefaultValues]
-    }
-    const { productSum, getItem } = useTable(mutate, bagItems, productsInBag)
-
-    useEffect(() => {
-        const pickUpId = window.sessionStorage.getItem('pick_up_station_id')
-        pickUpId !== null && setPickUpStationId(pickUpId)
-    }, [])
+    const {
+        checkImportantDetails,
+        productSum,
+        getItem,
+        currentUser,
+        pickUpStation,
+        isLoading,
+        error,
+        missingDetails,
+        router } = useReview()
 
     return <>
         <CheckoutHeader activePage="review" />
         <div className="container">
             <h5 className="mt-2">Items</h5>
-            <section className="border border-dark border-opacity-25 q border-2 ">
+            <section className="border border-dark border-opacity-25 border-2 ">
                 <ul className="list-group mt-2 border-2">
                     {
                         productsInBag?.map((product) => {
-                            console.log(product)
                             return <li key={product._id} style={{ whiteSpace: "nowrap", height: "150px" }} className={`list-group-item  overflow-auto shadow m-2 rounded-1 p-0 mb-3 d-flex flex-row justify-content-between `}>
                                 <div className={` d-flex flex-row `}>
                                     <div style={{ height: "100%", width: "140px", position: "relative" }}>
@@ -86,13 +63,20 @@ const Review = () => {
                     <ul className="list-group m-2">
                         <li className="list-group-item border border-secondary border-1 p-0 ps-3 pt-1">
                             <span className="fw-bold text-secondary">Pick-up Station</span>
-                            <h6>{pickUpStation?.logisticsCompany}</h6>
-                            <p className="m-0">{pickUpStation?.address} <br /> {pickUpStation?.city}, {pickUpStation?.state}
-                            </p>
+                            {
+                                isLoading
+                                    ? <div className="p-5"> <BorderSpinner size={false} /> </div>
+                                    : error
+                                        ? <p>Please select another Pick-up station</p>
+                                        : <>
+                                            <h6>{pickUpStation?.logisticsCompany}</h6>
+                                            <p className="m-0">{pickUpStation?.address} <br /> {pickUpStation?.city}, {pickUpStation?.state}
+                                            </p>
+                                        </>
+                            }
                             <button onClick={() => router.push('/checkout')} className="btn btn-dark mb-3 mt-1 rounded-0">Change</button>
                         </li>
-
-                        <li className="list-group-item border border-secondary border-1 p-0 ps-3 pt-1 mt-2">
+                        <li className={`list-group-item border ${missingDetails ? 'border-danger' : 'border-secondary'} border-1 p-0 ps-3 pt-1 mt-2 `}>
                             <span className="fw-bold text-secondary">Contact Information</span>
                             <p className=" p-0 m-0 px-3 mt-1"><i className="bi bi-telephone-fill me-1"></i><span>
                                 +234{currentUser?.phoneNumber}
@@ -104,14 +88,10 @@ const Review = () => {
 
                         </li>
                     </ul>
-
                 </div>
 
             </section>
-            <div className="text-end">
-                <button className="btn btn-dark mt-2 rounded-0 px-0 px-5 fw-bold">Checkout</button>
-
-            </div>
+            <PaymentButton checkImportantDetails={checkImportantDetails} />
         </div>
         <Footer />
     </>
