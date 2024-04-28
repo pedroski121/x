@@ -21,6 +21,11 @@ const Review = () => {
     return <>
         <CheckoutHeader activePage="review" />
         <div className="container">
+            {missingDetails ? <div className="alert alert-danger alert-dismissible fade show mt-1 " role="alert">
+                <strong>Please fill in the necessary information</strong>
+                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> : <></>}
+
             <h5 className="mt-2">Items</h5>
             <section className="border border-dark border-opacity-25 border-2 ">
                 <ul className="list-group mt-2 border-2">
@@ -92,7 +97,8 @@ const Review = () => {
                 </div>
 
             </section>
-            <PaymentButton checkImportantDetails={checkImportantDetails} />
+
+            <PaymentButton checkImportantDetails={checkImportantDetails} currentUser={currentUser} productSum={productSum} />
         </div>
         <Footer />
     </>
