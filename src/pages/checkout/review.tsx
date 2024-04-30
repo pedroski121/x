@@ -4,6 +4,8 @@ import Image from "next/image"
 import PaymentButton from "@components/Checkout/PaymentButton"
 import { BorderSpinner } from "@components/general/spinners"
 import { useReview } from "@hooks/checkout/useReview"
+import { axiosInstance } from "@utils/axiosInstance"
+import { AxiosResponse } from "axios"
 
 const Review = () => {
     const {
@@ -16,7 +18,39 @@ const Review = () => {
         error,
         missingDetails,
         router,
-        productsInBag } = useReview()
+        productsInBag,
+        bagItems } = useReview()
+    const onPaymentSuccess = async (reference: any) => {
+        const productIDAndQuantity: { productID: string, quantity: number, size: string, amountPaid: number }[] = [];
+
+        bagItems.map((item) => {
+            productsInBag.map((product) => {
+                if (product._id === item.productID) {
+                    productIDAndQuantity.push({ productID: item.productID, quantity: item.quantity, size: item.size, amountPaid: product.price })
+                }
+            })
+        })
+        const date = new Date()
+        console.log(pickUpStation)
+        await axiosInstance.post('/api/order/add', {
+            userID: currentUser?._id,
+            pickUpStationID: pickUpStation?._id,
+            orderInitiationTime: date.getTime().toString(),
+            pendingDate: date.toLocaleDateString(),
+            productIDAndQuantity: productIDAndQuantity,
+            totalAmountPaid: productSum,
+        }).then(async (res: AxiosResponse<{ message: string; success: boolean }>) => {
+            if (res.data.success === true) {
+                await axiosInstance.delete('/api/bag/empty-bag').then(() => router.push('/account/orders').then(() => router.reload()))
+            }
+        }).catch((err) => {
+            console.log(console.log(err))
+        })
+
+    }
+    const onPaymentClose = (reference: any) => {
+
+    }
 
     return <>
         <CheckoutHeader activePage="review" />
@@ -98,7 +132,7 @@ const Review = () => {
 
             </section>
 
-            <PaymentButton checkImportantDetails={checkImportantDetails} currentUser={currentUser} productSum={productSum} />
+            <PaymentButton checkImportantDetails={checkImportantDetails} currentUser={currentUser} onPaymentClose={onPaymentClose} productSum={productSum} onPaymentSuccess={onPaymentSuccess} />
         </div>
         <Footer />
     </>

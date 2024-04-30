@@ -39,7 +39,7 @@ const useReview = () =>{
             return true
         }
     }
-    return {checkImportantDetails,productSum, getItem, pickUpStation, isLoading, error, missingDetails,currentUser,productsInBag, router}
+    return {checkImportantDetails,productSum, getItem, pickUpStation, isLoading, error, missingDetails,currentUser,productsInBag, router, bagItems}
 }
 
 export {useReview}

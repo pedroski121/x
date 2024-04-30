@@ -6,18 +6,14 @@ interface IPaymentButton {
     checkImportantDetails: () => boolean;
     productSum: number;
     currentUser?: IUser;
+    onPaymentSuccess: (reference: any) => void;
+    onPaymentClose: (reference: any) => void;
 }
 
-const PaymentButton: FC<IPaymentButton> = ({ checkImportantDetails, productSum, currentUser }) => {
+const PaymentButton: FC<IPaymentButton> = ({ checkImportantDetails, productSum, currentUser, onPaymentSuccess, onPaymentClose }) => {
 
 
-    const onPaymentSuccess = (reference: any) => {
-        console.log(reference)
-    }
 
-    const onPaymentClose = (reference: any) => {
-        console.log(reference)
-    }
 
     const componentProps = {
         email: currentUser?.email || '',
