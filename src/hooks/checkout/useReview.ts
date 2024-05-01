@@ -7,12 +7,20 @@ import { bagDefault } from "@lib/types/bag"
 import { useTable } from "@hooks/bag/useTable"
 import { ProductDefaultValues } from "@lib/types/product"
 import { IPickUpStation } from "@lib/types/checkout"
+import { axiosInstance } from "@utils/axiosInstance"
+import { AxiosResponse } from "axios"
+const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }; 
 const useReview = () =>{
     const router = useRouter()
     const [pickUpStationId, setPickUpStationId] = useState<string>('')
     let { productsInBag, bagItems, mutate } = useBag()
     const [missingDetails, setMissingDetails] = useState<boolean>(false)
-
+    const [orderPlaced, setOrderPlaced] = useState<boolean>(false)
     const currentUser = useCurrentUser()
 
     const { data: pickUpStation, isLoading, error } = useFetch<IPickUpStation>(`/api/pick-up-station/${pickUpStationId}`)
@@ -39,7 +47,48 @@ const useReview = () =>{
             return true
         }
     }
-    return {checkImportantDetails,productSum, getItem, pickUpStation, isLoading, error, missingDetails,currentUser,productsInBag, router, bagItems}
+    const onPaymentSuccess = async (reference: any) => {
+        const referenceID = reference.reference
+        setOrderPlaced(true)
+        scrollToTop()
+        const productIDAndQuantity: { productID: string, quantity: number, size: string, amountPaid: number }[] = [];
+        bagItems?.map((item) => {
+            productsInBag?.map((product) => {
+                if (product._id === item.productID) {
+                    productIDAndQuantity.push({ productID: item.productID, quantity: item.quantity, size: item.size, amountPaid: product.price })
+                }
+            })
+        })
+        const date = new Date()
+    
+        await axiosInstance.post('/api/order/add', {
+            userID: currentUser?._id,
+            pickUpStationID: pickUpStation?._id,
+            orderInitiationTime: date.getTime().toString(),
+            pendingDate: date.toLocaleDateString(),
+            productIDAndQuantity: productIDAndQuantity,
+            totalAmountPaid: productSum,
+            referenceID
+        })
+        .then(async (res: AxiosResponse<{ message: string; success: boolean }>) => {
+            if (res.data.success === true) {
+                await axiosInstance.delete('/api/bag/empty-bag')
+                .then(() => router.push('/account/orders')
+                .then(() => {
+                    setOrderPlaced(false)
+                    router.reload()
+                }))
+            }
+        })
+        .catch((err) => {
+            console.log(console.log(err))
+        })
+
+    }
+    const onPaymentClose = (reference: any) => {
+        console.log(reference)
+    }
+    return {checkImportantDetails,productSum, getItem, pickUpStation, isLoading, error,  missingDetails,currentUser,productsInBag, router, bagItems, onPaymentSuccess, onPaymentClose, orderPlaced}
 }
 
 export {useReview}

@@ -24,7 +24,7 @@ const PaymentButton: FC<IPaymentButton> = ({ checkImportantDetails, productSum, 
         reference: (new Date()).getTime().toString(),
         onSuccess: (reference: any) => onPaymentSuccess(reference),
         onClose: (reference: any) => onPaymentClose(reference),
-        className: `btn btn-dark mt-2 rounded-0 px-0 px-5 fw-bold ${checkImportantDetails() ? 'disabled' : ''}`,
+        className: `btn btn-dark mt-2 rounded-0 px-0 px-5 fw-bold ${checkImportantDetails() || productSum === 0 ? 'disabled' : ''}`,
         metadata: {
             custom_fields: [
                 {
