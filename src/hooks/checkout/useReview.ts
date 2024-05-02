@@ -9,6 +9,7 @@ import { ProductDefaultValues } from "@lib/types/product"
 import { IPickUpStation } from "@lib/types/checkout"
 import { axiosInstance } from "@utils/axiosInstance"
 import { AxiosResponse } from "axios"
+import { IOrderProductDetails } from "@lib/types/checkout"
 const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -51,22 +52,23 @@ const useReview = () =>{
         const referenceID = reference.reference
         setOrderPlaced(true)
         scrollToTop()
-        const productIDAndQuantity: { productID: string, quantity: number, size: string, amountPaid: number }[] = [];
+        const date = new Date()
+
+        const pendingDate = date.toLocaleDateString()
+        const productDetails: IOrderProductDetails[] = [];
         bagItems?.map((item) => {
             productsInBag?.map((product) => {
                 if (product._id === item.productID) {
-                    productIDAndQuantity.push({ productID: item.productID, quantity: item.quantity, size: item.size, amountPaid: product.price })
+                    productDetails.push({ productID: item.productID, quantity: item.quantity, pendingDate, size: item.size, amountPaid: product.price, currentStatus:"pending" })
                 }
             })
         })
-        const date = new Date()
     
         await axiosInstance.post('/api/order/add', {
             userID: currentUser?._id,
             pickUpStationID: pickUpStation?._id,
             orderInitiationTime: date.getTime().toString(),
-            pendingDate: date.toLocaleDateString(),
-            productIDAndQuantity: productIDAndQuantity,
+            productDetails: productDetails,
             totalAmountPaid: productSum,
             referenceID
         })

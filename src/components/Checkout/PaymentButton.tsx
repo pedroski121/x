@@ -11,10 +11,6 @@ interface IPaymentButton {
 }
 
 const PaymentButton: FC<IPaymentButton> = ({ checkImportantDetails, productSum, currentUser, onPaymentSuccess, onPaymentClose }) => {
-
-
-
-
     const componentProps = {
         email: currentUser?.email || '',
         amount: productSum * 100,
