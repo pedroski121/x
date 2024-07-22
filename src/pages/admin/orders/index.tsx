@@ -1,10 +1,19 @@
-import { OffCanvas } from "@components/admin"
 import { NextPage } from "next"
+import { Header } from "@components/admin"
+import { Footer } from "@components/general/footer"
+import OrdersTable from "@components/admin/orders/OrdersTable"
+import OrdersHeader from "@components/admin/orders/OrdersHeader"
 
-const Orders:NextPage = () => {
+
+const Orders: NextPage = () => {
     return (<>
-        <OffCanvas />
-        orders
+        <div className="container">
+            <Header pageName="Order" />
+            <OrdersHeader />
+            <OrdersTable />
+        </div>
+
+        <Footer />
     </>
     )
 }

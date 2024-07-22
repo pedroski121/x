@@ -54,12 +54,12 @@ const useReview = () =>{
         scrollToTop()
         const date = new Date()
 
-        const pendingDate = date.toLocaleDateString()
+        const dateLocaleString = date.toLocaleDateString()
         const productDetails: IOrderProductDetails[] = [];
         bagItems?.map((item) => {
             productsInBag?.map((product) => {
                 if (product._id === item.productID) {
-                    productDetails.push({ productID: item.productID, quantity: item.quantity, pendingDate, size: item.size, amountPaid: product.price, currentStatus:"pending" })
+                    productDetails.push({ productID: item.productID, quantity: item.quantity, pendingDate:dateLocaleString.toString(), size: item.size, amountPaid: product.price, currentStatus:"pending" })
                 }
             })
         })
@@ -70,6 +70,7 @@ const useReview = () =>{
             orderInitiationTime: date.getTime().toString(),
             productDetails: productDetails,
             totalAmountPaid: productSum,
+            createdAt:dateLocaleString,
             referenceID
         })
         .then(async (res: AxiosResponse<{ message: string; success: boolean }>) => {

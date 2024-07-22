@@ -7,11 +7,11 @@ import Custom404 from "src/pages/404"
 import { FC } from "react"
 import { TUserData } from "@lib/types/admin"
 
-export const UserTable: FC<{limit:number}> = ({limit}) => {
+export const UserTable: FC<{ limit: number }> = ({ limit }) => {
     const [userPage, setUserPage] = useState<number>(1);
     const router = useRouter()
 
-    useEffect(()=>{
+    useEffect(() => {
         setUserPage(Number(router.query.page))
     }, [router.query.page])
 
@@ -30,14 +30,14 @@ export const UserTable: FC<{limit:number}> = ({limit}) => {
                             <th scope="col">Full Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone Number</th>
-                            <th scope="col">Number of Pending Orders</th>
+                            <th scope="col">Number of Orders</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             data?.map((user, key) => {
                                 return (
-                                    <tr  style={{ cursor: 'pointer' }} key={user._id}>
+                                    <tr style={{ cursor: 'pointer' }} key={user._id}>
                                         <th scope="row">{key + 1}</th>
                                         <td>{user.fullName}</td>
                                         <td>{user.email}</td>
