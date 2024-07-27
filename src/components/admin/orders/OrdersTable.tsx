@@ -51,15 +51,23 @@ const OrdersTable = () => {
                                         const date = new Date(order.orderInitiationTime)
                                         const orderTimeCreationHour = date.getHours()
                                         const orderTimeCreationMinutes = date.getMinutes()
-                                        return <>
-                                            <tr className={order.status === 'pending' ? `table-warning` : 'table-secondary'} style={{ cursor: "pointer" }} onClick={() => router.push(`/admin/orders/${order.orderID}`)}>
-                                                <th scope="row">{order.orderID}</th>
-                                                <td>{order.createdAt}</td>
-                                                <td>{`${orderTimeCreationHour}:${orderTimeCreationMinutes}`}</td>
-                                                <td>{order.totalAmountPaid}</td>
-                                                <td>{order.status}</td>
-                                            </tr>
-                                        </>
+                                        let orderCompleted: boolean = true
+                                        order.productDetails.map((product) => {
+                                            if (product.currentStatus != 'delivered') {
+                                                orderCompleted = false
+                                            }
+                                        })
+                                        return <tr key={order.orderID} className={
+                                            //@ts-ignore
+                                            orderCompleted == false ? `table-warning` : 'table-success'} style={{ cursor: "pointer" }
+                                            } onClick={() => router.push(`/admin/orders/${order.orderID}`)}>
+                                            <th scope="row">{order.orderID}</th>
+                                            <td>{order.createdAt}</td>
+                                            <td>{`${orderTimeCreationHour}:${orderTimeCreationMinutes}`}</td>
+                                            <td>{order.totalAmountPaid}</td>
+                                            <td>{order.status}</td>
+                                        </tr>
+
                                     })
                                 }
 

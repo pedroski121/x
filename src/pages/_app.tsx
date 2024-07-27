@@ -6,7 +6,9 @@ import { BagProvider } from '@contexts/BagContext';
 import { CurrentUserProvider } from '@contexts/CurrentUserContext';
 import { NavBar } from '@components/general/navbar';
 
-export default function App({ Component, pageProps:{...pageProps} }: AppProps) {
+// import { UserProvider } from '@auth0/nextjs-auth0/client';
+
+export default function App({ Component, pageProps: { ...pageProps } }: AppProps) {
   useEffect(() => {
     // @ts-ignore
     import('bootstrap/dist/js/bootstrap');
@@ -14,15 +16,24 @@ export default function App({ Component, pageProps:{...pageProps} }: AppProps) {
 
   return (
     <>
-    <CurrentUserProvider>
-      <BagProvider>
-        <NavBar/>
-        <div className='mt-5'>
-        <Component {...pageProps}/>
-        </div>
-      </BagProvider>
+      <CurrentUserProvider>
+        <BagProvider>
+          <NavBar />
+          <div className='mt-5'>
+            <Component {...pageProps} />
+          </div>
+        </BagProvider>
       </CurrentUserProvider>
+      {/* <UserProvider>
+        <BagProvider>
+          <NavBar />
+          <div className='mt-5'>
+            <Component {...pageProps} />
+          </div>
+        </BagProvider>
+      </UserProvider> */}
     </>)
 }
+
 
 

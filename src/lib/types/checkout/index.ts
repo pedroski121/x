@@ -24,14 +24,16 @@ export interface IOrderProductDetails {
     shippedDate?: string,
     deliveredDate?: string,
 }
+
 export interface IOrder {
     userID: string;
     orderID: string;
     productDetails: IOrderProductDetails[];
     pickUpStationID: string;
     orderInitiationTime: string;
+    createdAt: string;
+    updatedAt?: string;
     totalAmountPaid: number;
-
+    status: string;
     referenceID: string
 }
-

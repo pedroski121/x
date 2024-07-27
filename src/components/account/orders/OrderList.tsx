@@ -20,9 +20,6 @@ export const OrderList = () => {
     })
     const { data: products, isLoading: productsListLoading } = useFetchMultipleParams<IProductsData>('/api/product', productsIDs)
 
-
-
-
     return (<>
         <ul className="list-group">
             {

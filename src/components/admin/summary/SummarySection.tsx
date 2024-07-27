@@ -23,7 +23,7 @@ export const SummarySection = () => {
 
 
     const { data } = useFetchMultipleParams<TOrderStateSummary>('/api/order', params)
-
+    console.log(data)
     const getDetailOfSpecificOrders = (status: string): TOrderStateSummary => {
         return data?.find(currentStatus => currentStatus.status === status) || { status: '', count: 0 }
     }
