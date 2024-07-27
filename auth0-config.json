@@ -1,0 +1,9 @@
+
+{
+  "domain": "https://dev-0kbl15zaxtc8l4yb.us.auth0.com",
+  "clientId": "TNNrLa2PQGZdrA6JWXUrPGZZx4A9ueLF",
+  "clientSecret": "XUIWJEnu152YvTFLWDpSmrZpuC7AyMlZXviCxwvUSrSUO_dOq6XDV__f2L0L5DF6",
+  "redirectUri": "http://localhost:3000/api/callback",
+  "postLogoutRedirectUri": "http://localhost:3000/",
+  "audience": "https://dev-0kbl15zaxtc8l4yb.us.auth0.com/api/v2/"
+}
