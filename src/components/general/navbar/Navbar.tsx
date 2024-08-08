@@ -65,6 +65,13 @@ export const NavBar: FC = () => {
                      <button className="btn btn-dark rounded-5 me-2 mx-md-0  disabled" type="button">Checkout</button>
                   </li>
                </ul>
+               {/* USE TO ADD NOTIFICATION BADGE ON AN ICON */}
+               {/* <div className="position-relative d-inline-block">
+                  <i className="bi bi-person"></i>
+                  <span className="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                     <span className="visually-hidden">New alerts</span>
+                  </span>
+               </div> */}
             </div>
          </div>
       </nav>
