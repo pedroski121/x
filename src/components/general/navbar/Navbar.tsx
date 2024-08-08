@@ -5,63 +5,68 @@ import { useCurrentUser } from '@hooks/account/auth/useCurrentUser';
 import { useDynamicPath } from '@hooks/general/useDynamicPath';
 import { HomeIcon } from '@components/HomeIcon'
 import NavbarCss from './NavBar.module.css';
+import Image from 'next/image';
 
 export const NavBar: FC = () => {
+
    const { bagItems } = useBag()
    const { currentPagePath }: { currentPagePath: string } = useDynamicPath()
    const currentUser = useCurrentUser()
 
 
    return (<>
-      <nav className="py-1 bg-light border-bottom fixed-top" data-testid="nav_bar">
-         <div className="container d-flex flex-wrap justify-content-between">
-            <div> <HomeIcon /></div>
-            <ul className="nav">
-               <li className="nav-item position-relative">
-                  <Link href="/bag" className='nav-link link-dark px-2'>
-                     Bag {bagItems && bagItems.length !== 0 ? <sup className={`${NavbarCss.dot}`}>•</sup> : <></>}
-                  </Link>
 
-               </li>
-               <li className="nav-item dropdown"> {
-                  currentUser
-                     ?
-                     <> <Link href="#" className="nav-link dropdown-toggle link-dark" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" >
-                        <>Hi <span className='fw-bold'>{currentUser.firstName}</span></>
+      <nav className="navbar navbar-expand-md navbar-light bg-light p-0 fixed-top ">
+         <div className="container-fluid p-0 ms-2">
 
+            <Link style={{ height: '60px' }} href='/'>
+               <div style={{ height: "100%", width: "60px", position: "relative", backgroundColor: 'white' }}>
+                  <Image src="/icons/SlucentLogo.svg" style={{ objectFit: "cover" }} alt={`Brand Icon`} fill />
+               </div>
+            </Link>
+            <form className="d-flex" style={{ width: "50%" }}>
+               <input className={`form-control d-none d-md-block me-2 border border-secondary shadow-none rounded-5 ${NavbarCss.search}`} type="search" placeholder="Search product or brand" aria-label="Search" />
+               <button className="btn btn-outline-dark d-none d-md-block" type="submit">
+                  <i className="bi bi-search"></i>
+               </button>
+
+            </form>
+            {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+               <span className="navbar-toggler-icon"></span>
+            </button> */}
+            <div className="" id="navbarNav">
+               <ul className="navbar-nav ms-auto d-flex flex-row">
+                  <li className="nav-item">
+                     {/* <a className="nav-link" href="#"><i className="bi bi-heart icon fs-5"></i></a> */}
+                     <Link href="£" className={`nav-link`}>
+                        <i className={`bi bi-search icon d-block d-md-none fs-5 me-2 mx-md-0  `}></i>
                      </Link>
-                        <ul className="dropdown-menu dropdown-menu-dark text-center p-0" aria-labelledby="navbarDarkDropdownMenuLink">
-                           <Link href="/account" className={`dropdown-item ${NavbarCss.dropdown_link} fw-bold rounded-1 ${currentPagePath === '/account' ? 'bg-black' : ''}`}>
-                              My Account
-                           </Link>
 
-                           <Link href="/account/orders" className={`dropdown-item fw-bold ${NavbarCss.dropdown_link} ${currentPagePath === '/account/orders' ? 'bg-black' : ''}`}>
-                              Orders
-                           </Link>
+                  </li>
 
-                           <Link href="/account/wish-list" className={`dropdown-item fw-bold ${NavbarCss.dropdown_link} ${currentPagePath === '/account/wish-list' ? 'bg-black' : ''}`}>
-                              Wishlist
-                           </Link>
-                           <li><hr className="dropdown-divider" /></li>
-
-                           <Link href="#" className={`dropdown-item fw-bolder ${NavbarCss.dropdown_link} rounded-1 pb-2`}>
-                              Sign Out
-                           </Link>
-
-                        </ul></>
-
-                     :
-                     <Link href="/account/sign-in" className="nav-link link-dark"
-                        aria-expanded="false" >
-                        <span className='fw-bold'>Sign In</span>
-
+                  <li className="nav-item">
+                     {/* <a className="nav-link" href="#"><i className="bi bi-person icon fs-5"></i></a> */}
+                     <Link href="/account" className={`nav-link`}>
+                        <i className={`bi bi-person icon fs-5  me-2 mx-md-0 ${currentPagePath === '/account' ? 'text-dark' : 'text-secondary'}`}></i>
                      </Link>
-               }</li>
+                  </li>
 
-            </ul>
+                  <li className="nav-item">
+                     {/* <a className="nav-link" href="#"><i className="bi bi-heart icon fs-5"></i></a> */}
+                     <Link href="/account/wish-list" className={`nav-link`}>
+                        <i className={`bi bi-heart icon fs-5 me-2 mx-md-0  ${currentPagePath === '/account/wish-list' ? 'text-dark' : 'text-secondary'}`}></i>
+                     </Link>
+
+                  </li>
+                  <li className="nav-item">
+                     <a className="nav-link" href="#"><i className="bi bi-bag icon  fs-5"></i></a>
+                  </li>
+                  <li className="nav-item d-none d-md-block">
+                     <button className="btn btn-dark rounded-5 me-2 mx-md-0  disabled" type="button">Checkout</button>
+                  </li>
+               </ul>
+            </div>
          </div>
       </nav>
-
    </>)
 }
