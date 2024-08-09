@@ -24,9 +24,9 @@ export const NavBar: FC = () => {
                   <Image src="/icons/SlucentLogo.svg" style={{ objectFit: "cover" }} alt={`Brand Icon`} fill />
                </div>
             </Link>
-            <form className="d-flex" style={{ width: "50%" }}>
-               <input className={`form-control d-none d-md-block me-2 border border-secondary shadow-none rounded-5 ${NavbarCss.search}`} type="search" placeholder="Search product or brand" aria-label="Search" />
-               <button className="btn btn-outline-dark d-none d-md-block" type="submit">
+            <form className="d-flex " style={{ width: "60%" }}>
+               <input className={`form-control d-none d-sm-block me-2 border border-secondary shadow-none rounded-5 ${NavbarCss.search}`} type="search" placeholder="Search product or brand" aria-label="Search" />
+               <button className="btn btn-outline-dark d-none d-sm-block" type="submit">
                   <i className="bi bi-search"></i>
                </button>
 
@@ -39,7 +39,7 @@ export const NavBar: FC = () => {
                   <li className="nav-item">
                      {/* <a className="nav-link" href="#"><i className="bi bi-heart icon fs-5"></i></a> */}
                      <Link href="£" className={`nav-link`}>
-                        <i className={`bi bi-search icon d-block d-md-none fs-5 me-2 mx-md-0  `}></i>
+                        <i className={`bi bi-search icon d-block d-sm-none fs-5 me-2 mx-md-0  `}></i>
                      </Link>
 
                   </li>
@@ -62,7 +62,7 @@ export const NavBar: FC = () => {
                      <a className="nav-link" href="#"><i className="bi bi-bag icon  fs-5"></i></a>
                   </li>
                   <li className="nav-item d-none d-md-block">
-                     <button className="btn btn-dark rounded-5 me-2 mx-md-0  disabled" type="button">Checkout</button>
+                     <button className="btn btn-dark rounded-5 me-2 mx-md-1 disabled" type="button">Checkout</button>
                   </li>
                </ul>
                {/* USE TO ADD NOTIFICATION BADGE ON AN ICON */}

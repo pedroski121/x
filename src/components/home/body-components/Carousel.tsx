@@ -8,20 +8,21 @@ import Link from "next/link"
 export const Carousel: FC = () => {
     return (
         <><div className="row justify-content-center">
-            <div id="homePageIndicators" className="carousel slide col-10 rounded-4" data-bs-ride="true">
+            <div id="homePageIndicators" className="carousel slide col-10 rounded-3" data-bs-ride="true">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#homePageIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#homePageIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#homePageIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                <div className={`carousel-inner rounded-4 `}>
+                <div className={`carousel-inner rounded-3 `}>
                     <div className={`carousel-item active `}>
                         <Link href={'#'}>
                             <div className={`${HomeCss.carousel_image} `}>
 
-                                <Image src="/face.jpg" alt="Slide 2" fill />
+                                <Image src="/icons/SlucentLogoVariation-02.png" alt="Slide 2" fill />
 
-                            </div></Link>
+                            </div>
+                        </Link>
                     </div>
                     <div className={`carousel-item`}>
                         <div className={`${HomeCss.carousel_image}`}>
