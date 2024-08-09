@@ -36,3 +36,11 @@
     }
 }
 
+.nav_link_tab{
+  color: #686363;
+  font-weight:500;
+}
+.nav_link_tab:hover{
+  color: grey;
+}
+
