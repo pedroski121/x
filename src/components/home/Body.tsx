@@ -4,9 +4,12 @@ import { SubCategoriesForEachCategory, Carousel, Extras } from './body-component
 
 const Body: FC = () => {
     return <>
+
         <Carousel />
-        <SubCategoriesForEachCategory />
         <Extras />
+
+        <SubCategoriesForEachCategory />
+
 
     </>
 }

@@ -8,7 +8,7 @@ import Link from "next/link"
 export const Carousel: FC = () => {
     return (
         <><div className="row justify-content-center">
-            <div id="homePageIndicators" className="carousel slide col-10 rounded-3" data-bs-ride="true">
+            <div id="homePageIndicators" className="carousel slide col-12 col-md-10 p-0 rounded-3" data-bs-ride="true">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#homePageIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#homePageIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -48,6 +48,7 @@ export const Carousel: FC = () => {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
+
         </div>
         </>
     )
