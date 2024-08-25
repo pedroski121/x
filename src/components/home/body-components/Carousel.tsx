@@ -28,6 +28,7 @@ export const Carousel: FC = () => {
                         <div className={`${HomeCss.carousel_image}`}>
                             <Link href={'#'}>
                                 <Image src="/okirika.jpg" alt="Slide 2" fill />
+
                             </Link>
                         </div>
                     </div>
@@ -35,6 +36,10 @@ export const Carousel: FC = () => {
                         <div className={`${HomeCss.carousel_image}`}>
                             <Link href={"#"}>
                                 <Image src="/suit.jpg" alt="Slide 2" fill />
+                                <div className="carousel-caption  text-start">
+                                    <h2>Inspired by the Best</h2>
+                                    <p><u>Shop Men</u></p>
+                                </div>
                             </Link>
                         </div>
                     </div>
