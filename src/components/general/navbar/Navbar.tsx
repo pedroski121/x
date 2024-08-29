@@ -45,7 +45,7 @@ export const NavBar: FC = () => {
 
                   <li className="nav-item">
                      <Link href="/account/wish-list" className={`nav-link`}>
-                        <i className={`bi bi-heart icon fs-5 me-1 mx-md-0  ${currentPagePath === '/account/wish-list' ? 'text-dark' : 'text-secondary'}`}></i>
+                        <i className={`bi bi-heart icon fs-5 mx-md-0  ${currentPagePath === '/account/wish-list' ? 'text-dark' : 'text-secondary'}`}></i>
                      </Link>
 
                   </li>

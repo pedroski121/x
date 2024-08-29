@@ -43,7 +43,7 @@ export const SubCategoriesForEachCategory: FC = () => {
                                                             return <></>
                                                         }
                                                         // return <CategoryCard {...subCategory} key={subCategory._id} />
-                                                        return <div className="col-6 col-md-3 pe-1" key={categoryKey + key} onClick={() => router.push(`/categories/${categories.categoryName}/${subCategory.name}`)}>
+                                                        return <div className="col-5 col-md-3 pe-1" key={categoryKey + key} onClick={() => router.push(`/categories/${categories.categoryName}/${subCategory.name}`)}>
 
                                                             <div className="card mt-1 rounded-0">
                                                                 <Image src={`${subCategory?.imgURL}`} className="rounded-0 card-img" alt={''} width={300} height={200} style={{ objectFit: 'cover' }} />
