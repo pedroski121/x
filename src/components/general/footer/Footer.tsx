@@ -6,7 +6,9 @@ export const Footer = () => {
     <footer className={`bg-black text-secondary overflow-hidden mt-5 `}>
       <div className="row  p-5">
         <section className="col-12 col-md-4">
-          <HomeIcon iconColor="text-white" />
+          {/* <HomeIcon /> */}
+
+
           <p className="ms-2">Curating Fashion For All </p>
           <p className="ms-2 fw-bold">© 2024 All rights reserved. <span className="text-white">Slucent</span></p>
         </section>

@@ -32,14 +32,14 @@ export const NavBar: FC = () => {
                   <li className="nav-item">
 
                      <Link href="£" className={`nav-link`}>
-                        <i className={`bi bi-search icon d-block d-sm-none fs-5 me-1 mx-md-0  `}></i>
+                        <i className={`bi bi-search icon d-block d-sm-none fs-5  mx-md-0  `}></i>
                      </Link>
 
                   </li>
 
                   <li className="nav-item">
                      <Link href="/account" className={`nav-link`}>
-                        <i className={`bi bi-person icon fs-5  me-1 mx-md-0 ${currentPagePath === '/account' ? 'text-dark' : 'text-secondary'}`}></i>
+                        <i className={`bi bi-person icon fs-5  mx-md-0 ${currentPagePath === '/account' ? 'text-dark' : 'text-secondary'}`}></i>
                      </Link>
                   </li>
 
@@ -53,7 +53,7 @@ export const NavBar: FC = () => {
                   <li className="nav-item">
                      <Link className="nav-link" href="#">
                         <div className="position-relative d-inline-block">
-                           <i className="bi bi-bag fs-5 me-1 mx-md-0"></i>
+                           <i className="bi bi-bag fs-5  mx-md-0"></i>
                            <span className="position-absolute top-0 start-100 translate-middle p-1 bg-secondary border border-light rounded-circle">
                               <span className="visually-hidden">New alerts</span>
                            </span>
