@@ -10,36 +10,32 @@ export const Extras: FC = () => {
 
                 <section className={`col-12 col-md-4 rounded-bottom  ${HomeCss.vertical_cover}`}>
                     <Link href={'/test'}>
-                        <Image src='/traditional.jpg' alt='/' className=" rounded-bottom " fill style={{ objectFit: "cover" }} />
+                        <Image src='/jewelry.jpg' alt='/' className=" rounded-bottom " fill style={{ objectFit: "cover" }} />
 
                     </Link>
-                    <div style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        color: 'white',
-                        padding: '10px',
-                        textAlign: 'start',
-                        fontSize: '18px'
-                    }}>
-                        Shop Traditional
+                    <div className={`${HomeCss.vertical_cover_bottom_text} p-2 fw-bold`}>
+                        JEWELRIES
                     </div>
                 </section>
                 <section className={` col-12 col-md-4 border rounded-1 ${HomeCss.vertical_cover}`}>
                     <Link href={'/test'}>
                         <Image src='/corporate.jpg' alt='/' fill className='rounded-1' style={{ objectFit: "cover" }} />
                     </Link>
-                    Go Corporate
+                    <div className={`${HomeCss.vertical_cover_bottom_text} p-2 fw-bold`}>
+                        OFFICIAL BRANDS
+                    </div>
                 </section>
                 <section className={` col-12 col-md-4 border rounded-1 ${HomeCss.vertical_cover}`}>
                     <Link href={'/test'}>
                         <Image src='/okirika.jpg' alt='/' fill className='rounded-1' style={{ objectFit: "cover" }} />
                     </Link>
-                    Shop within budget
+                    <div className={`${HomeCss.vertical_cover_bottom_text} p-2 fw-bold`}>
+                        OKIRIKA
+                    </div>
+
                 </section>
 
-            </div>
-        </div>
+            </div >
+        </div >
     </>
 }
