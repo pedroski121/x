@@ -28,7 +28,7 @@ const ExploreNav: FC = () => {
                         </Link>
 
                     </div>
-                    <button type="button" className="btn btn-outline-dark fw-bold me-1">Filter</button>
+                    {/* <button type="button" className="btn btn-outline-dark fw-bold me-1">Filter</button> */}
                     {/* <button className="btn btn-outline-dark fw-bold" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><span> Explore</span></button> */}
                 </div>
             </section>

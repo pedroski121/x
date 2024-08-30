@@ -48,6 +48,7 @@ export const SubCategoriesForEachCategory: FC = () => {
                                                             <div className="card mt-1 rounded-0">
                                                                 <Image src={`${subCategory?.imgURL}`} className="rounded-0 card-img" alt={''} width={300} height={200} style={{ objectFit: 'cover' }} />
                                                                 <div className="card-body p-2">
+
                                                                     <Link href={{ pathname: `/categories/${categories.categoryName}/${subCategory.name}` }} className="stretched-link text-decoration-none text-dark">
                                                                         <p className="card-text text-capitalize fw-bold">{subCategory.name}</p>
                                                                     </Link>
@@ -60,7 +61,21 @@ export const SubCategoriesForEachCategory: FC = () => {
                                                     })
                                                 }
 
+                                                <div className="col-5 col-md-3 pe-1" onClick={() => router.push(`/categories/${categories.categoryName}`)}>
 
+                                                    <div className="card mt-1 rounded-0">
+                                                        <Image src={`/add.png`} className="rounded-0 card-img" alt={''} width={300} height={200} style={{ objectFit: 'cover' }} />
+                                                        <div className="card-body p-2">
+
+                                                            <Link href={{ pathname: `/categories/${categories.categoryName}` }} className="stretched-link text-decoration-none text-dark">
+                                                                <p className="card-text text-capitalize fw-bold">Explore {categories.categoryName}</p>
+                                                            </Link>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
                                             </div>
 
                                         </div>

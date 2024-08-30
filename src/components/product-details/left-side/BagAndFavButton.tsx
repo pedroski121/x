@@ -2,19 +2,44 @@ import ProductDetailsCss from '../ProductDetails.module.css';
 import { BagModal } from '@components/general/bag-modal';
 import { ProductContext } from '@contexts/ProductContext';
 import { useContext } from 'react';
+import { useBag } from '@hooks/bag/useBag';
+import { useWishList } from '@hooks/wishlist/useWishList';
+import { CurrentUserContext } from '@contexts/CurrentUserContext';
+
 
 // import { useCardState } from '@hooks/sub-category/useCardState';
-
+import { useState } from 'react';
+import { BorderSpinner } from '@components/general/spinners';
 const BagAndFavoriteButton = () => {
     const productsData = useContext(ProductContext).data
-    // const { itemInBag, modalDetails } = useCardState(productsData);
+    const { bagItems } = useBag()
+    const [addingItemToBag, setAddingItemToBag] = useState<string>('')
+    const { userState } = useContext(CurrentUserContext)
+
+    let { data: wishListData, changeWish, changingWish } = useWishList(userState._id)
+
+
+    const addItemToBag = (_id: string): void => {
+        setAddingItemToBag(_id)
+    }
+
+
+    const itemInBag = bagItems?.filter(item => item.productID === productsData._id)
 
     return (
         <>
             <div className={`d-grid p-0 ${ProductDetailsCss.button_height_increase}`}>
-                {/* <button className="btn btn-dark rounded-0" data-bs-toggle="modal" data-bs-target={`#bagModal${productsData._id}`} type="button">{itemInBag ? 'Remove from' : 'Add to'} Bag</button> */}
-                <button className="btn btn-secondary rounded-0" type="button">Favorite</button>
-                {/* <BagModal {...modalDetails} /> */}
+                <button className="btn btn-dark rounded-0 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target={`#bagModal${productsData._id}`} type="button">
+                    <span className='pe-2'> {itemInBag?.length !== 0 ? 'Remove from' : 'Add to'} Bag</span> {addingItemToBag !== productsData._id ? '' : <BorderSpinner white={true} size={false} />} </button>
+
+                {/* <button className="btn btn-secondary rounded-0" type="button">Wish to Have!</button> */}
+                {/* {
+                    changingWish !== productsData._id && wishListData
+                        ? <span onClick={() => changeWish(productsData._id, wishListData)}
+                            className={` bi ${wishListData.map(wish => wish.productID).includes(productsData._id) ? ' bi-heart-fill text-dark' : 'bi-heart'}  h4`}></span>
+                        : <BorderSpinner size={false} />
+                } */}
+                <BagModal itemInBag={itemInBag} product={productsData} addItemToBag={addItemToBag} />
             </div>
         </>
     )

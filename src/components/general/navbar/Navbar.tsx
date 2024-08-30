@@ -32,31 +32,33 @@ export const NavBar: FC = () => {
                   <li className="nav-item">
 
                      <Link href="£" className={`nav-link`}>
-                        <i className={`bi bi-search icon d-block d-sm-none fs-6  mx-md-0  `}></i>
+                        <i className={`bi bi-search icon d-block d-sm-none fs-5  mx-md-0  `}></i>
                      </Link>
 
                   </li>
 
                   <li className="nav-item">
                      <Link href="/account" className={`nav-link`}>
-                        <i className={`bi bi-person icon fs-6  me-1 mx-md-0 ${currentPagePath === '/account' ? 'text-dark' : 'text-secondary'}`}></i>
+                        <i className={`bi bi-person icon fs-5   mx-md-0 ${currentPagePath === '/account' ? 'text-dark' : 'text-secondary'}`}></i>
                      </Link>
                   </li>
 
                   <li className="nav-item">
                      <Link href="/account/wish-list" className={`nav-link`}>
-                        <i className={`bi bi-heart icon fs-6 me-1 mx-md-0  ${currentPagePath === '/account/wish-list' ? 'text-dark' : 'text-secondary'}`}></i>
+                        <i className={`bi bi-heart icon fs-5  mx-md-0  ${currentPagePath === '/account/wish-list' ? 'text-dark' : 'text-secondary'}`}></i>
                      </Link>
 
                   </li>
 
                   <li className="nav-item">
-                     <Link className="nav-link" href="#">
-                        <div className="position-relative me-1 d-inline-block">
-                           <i className="bi bi-bag fs-6  mx-md-0"></i>
-                           <span className="position-absolute top-0 start-100 translate-middle p-1 bg-secondary border border-light rounded-circle">
-                              <span className="visually-hidden">Bag alerts</span>
-                           </span>
+                     <Link className="nav-link" href="/bag">
+                        <div className="position-relative me-2 d-inline-block">
+                           <i className="bi bi-bag fs-5  mx-md-0"></i>
+                           {bagItems && bagItems.length !== 0 ?
+                              <span className="position-absolute top-0 start-100 translate-middle p-1 bg-secondary border border-light rounded-circle">
+                                 <span className="visually-hidden">Bag alerts</span>
+                              </span> : <></>}
+
                         </div>
                      </Link>
                   </li>
