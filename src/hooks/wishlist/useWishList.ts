@@ -52,6 +52,7 @@ const changeWish = (productID:string, wishListData:TWishList[]) => {
       deleteWishList(productID)
       
     } else {
+        console.log(productID, userID)
       addToWishList(productID,userID)
     }
   }

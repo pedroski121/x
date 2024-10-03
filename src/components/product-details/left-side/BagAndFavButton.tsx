@@ -25,20 +25,20 @@ const BagAndFavoriteButton = () => {
 
 
     const itemInBag = bagItems?.filter(item => item.productID === productsData._id)
-
     return (
         <>
             <div className={`d-grid p-0 ${ProductDetailsCss.button_height_increase}`}>
-                <button className="btn btn-dark rounded-0 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target={`#bagModal${productsData._id}`} type="button">
-                    <span className='pe-2'> {itemInBag?.length !== 0 ? 'Remove from' : 'Add to'} Bag</span> {addingItemToBag !== productsData._id ? '' : <BorderSpinner white={true} size={false} />} </button>
-
-                {/* <button className="btn btn-secondary rounded-0" type="button">Wish to Have!</button> */}
-                {/* {
-                    changingWish !== productsData._id && wishListData
-                        ? <span onClick={() => changeWish(productsData._id, wishListData)}
-                            className={` bi ${wishListData.map(wish => wish.productID).includes(productsData._id) ? ' bi-heart-fill text-dark' : 'bi-heart'}  h4`}></span>
+                <button className="btn btn-dark fw-bold rounded-0 d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target={`#bagModal${productsData._id}`} type="button">
+                    <span className='pe-2'> {itemInBag && itemInBag.length !== 0 ? 'Remove from' : 'Add to'} Bag</span> {addingItemToBag !== productsData._id ? '' : <BorderSpinner white={true} size={false} />} </button>
+                {
+                    changingWish !== productsData._id && wishListData ?
+                        <button onClick={() => changeWish(productsData._id, wishListData)}
+                            className="btn btn-secondary rounded-0 fw-bold" type="button">
+                            {wishListData.map(wish => wish.productID).includes(productsData._id) ? 'Add to' : 'Remove from'} Wishlist
+                        </button>
                         : <BorderSpinner size={false} />
-                } */}
+                }
+
                 <BagModal itemInBag={itemInBag} product={productsData} addItemToBag={addItemToBag} />
             </div>
         </>
