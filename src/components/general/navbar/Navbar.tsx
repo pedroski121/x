@@ -4,8 +4,7 @@ import { useBag } from '@hooks/bag/useBag';
 import { useCurrentUser } from '@hooks/account/auth/useCurrentUser';
 import { useDynamicPath } from '@hooks/general/useDynamicPath';
 import { HomeIcon } from '@components/HomeIcon'
-import NavbarCss from './NavBar.module.css';
-import Image from 'next/image';
+import { Search } from './Search';
 
 export const NavBar: FC = () => {
 
@@ -19,13 +18,7 @@ export const NavBar: FC = () => {
       <nav className="navbar navbar-expand-md bg-light p-0 fixed-top ">
          <div className="container-fluid p-0 ms-2">
             <HomeIcon />
-            <form className="d-flex " style={{ width: "60%" }}>
-               <input className={`form-control d-none d-sm-block me-2 border border-secondary shadow-none rounded-5 ${NavbarCss.search}`} type="search" placeholder="Search product or brand" aria-label="Search" />
-               <button className="btn btn-outline-dark d-none d-sm-block" type="submit">
-                  <i className="bi bi-search"></i>
-               </button>
-
-            </form>
+            <Search />
 
             <div className="" id="navbarNav">
                <ul className="navbar-nav d-flex flex-row">

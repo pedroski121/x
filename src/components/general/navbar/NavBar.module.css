@@ -1,18 +1,6 @@
-.dot {
-    font-size: 18px;
-    font-weight: bolder;
-    color: #292626;
-}
 
 
 .search:hover, .search:active {
     border:1px solid black !important;
 }
 
-.brand-icon-container {
-    width: 50px; /* Adjust the width as needed */
-    height: 50px; /* Adjust the height as needed */
-    background-image: url('/icons/SlucentLogo-01.png');
-    background-size: cover;
-    background-position: center;
-  }
