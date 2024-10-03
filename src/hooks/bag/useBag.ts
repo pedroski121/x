@@ -11,8 +11,6 @@ import { TBag , TUseBag} from "@lib/types/bag"
 export const useBag = ():TUseBag =>{
   const [ids, setIDs] = useState<string[]>([])
     const { data: bagItems, isLoading: fetchingBagItems, mutate } = useFetch<TBag[]>('/api/bag/all')
-
-
     const getProductIDs = (bagItems: TBag[]): string[] => {
         const productIDs: string[] = []
         if (bagItems && bagItems.length !== 0) {

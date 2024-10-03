@@ -14,12 +14,19 @@ const BagModal: FC<IModalDetails> = ({ itemInBag, addItemToBag, product }) => {
                 <div className="modal-dialog ">
                     <div className="modal-content rounded-0">
                         <ModalHeader itemInBag={itemInBag} />
+                        {
+                            product.quantity <= 0 ?
+                                <div className="alert alert-danger" role="alert">
+                                    <b>Out of Stock</b>
+                                </div>
+                                : <></>
+                        }
 
                         <ModalBody itemInBag={itemInBag} size={size} BagModalCss={BagModalCss} product={product}
                             setSize={setSize} amountOfItemsToBeBought={amountOfItemsToBeBought}
                             changeAmountOfItemsToBeBought={changeAmountOfItemsToBeBought} />
 
-                        <ModalFooter itemInBag={itemInBag} removeFromBag={removeFromBag} addToBag={addToBag} />
+                        <ModalFooter itemInBag={itemInBag} removeFromBag={removeFromBag} addToBag={addToBag} productQuantity={product.quantity} />
                     </div>
                 </div>
             </div>

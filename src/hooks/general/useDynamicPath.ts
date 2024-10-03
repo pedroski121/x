@@ -6,7 +6,7 @@ import { useRouter } from "next/router"
 
 export const useDynamicPath = ()=>{
     const router = useRouter();
-    const currentPagePath:string = router.asPath;
+    const currentPagePath:string = decodeURI(router.asPath);
     let pages:string[] = currentPagePath.split('/').slice(2);
     return {pages, currentPagePath}
 }

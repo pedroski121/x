@@ -15,10 +15,7 @@ import { useBag } from "@hooks/bag/useBag";
 const Category: NextPage = () => {
   const { subCategoriesLoading, changeWish, currentPageName, changingWish,
     subCategories, subCategoriesError, pages, wishListData } = useCategory();
-
   const { bagItems } = useBag()
-
-
   const { data, isLoading, error } = useFetchMultipleParams<TProductsForEachSubCategory>(
     `/api/product/${currentPageName}`, subCategories.current
   )
@@ -27,13 +24,13 @@ const Category: NextPage = () => {
   </div>
   if (subCategoriesError || error) return <p>An error occured loading the data</p>
 
-
   return (
     <>
       <div className="container-fluid">
+
         <BreadCrumbNav pages={pages} />
         {
-          data?.map((subCategory) => {
+          data?.map((subCategory: any) => {
             const subCategoryKey = uuidv4()
 
             if (subCategory.products.length === 0) {
@@ -45,6 +42,7 @@ const Category: NextPage = () => {
                 {
 
                   subCategory.products.map((subCategoryItem: IProductsData) => {
+
                     return <SubCategoryCard productsData={subCategoryItem}
                       wishListData={wishListData || [{ _id: '', productID: '' }]} bagItems={bagItems} changingWish={changingWish} changeWish={changeWish}
                       activePaths={[...pages, subCategoryItem.subCategory]} key={subCategoryItem._id} />

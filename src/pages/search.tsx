@@ -16,11 +16,9 @@ const Search: NextPage = () => {
     const { pages } = useDynamicPath();
     const { userState } = useContext(CurrentUserContext)
     const { data: wishListData, changeWish, changingWish } = useWishList(userState._id)
-
     const { bagItems } = useBag()
     const { q } = router.query
     const { data, isLoading } = useFetch<IProductsData[]>(`/search?q=${q}`)
-
 
     return (
         <>
@@ -43,9 +41,4 @@ const Search: NextPage = () => {
         </>
     )
 }
-
-
-
-
-
 export default Search

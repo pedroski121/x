@@ -52,7 +52,7 @@ export const ModalBody = ({ itemInBag, size, BagModalCss, product, setSize, amou
                         <div className="btn-group mt-3" role="group" aria-label="Button group to select the quantity of a product to buy">
                             <button type="button"
                                 onClick={() => changeAmountOfItemsToBeBought('minus')} className="btn btn-light  border border-secondary">-</button>
-                            <span className="input-group-text bg-white rounded-0">{amountOfItemsToBeBought}</span>
+                            <span className="input-group-text bg-white rounded-0">{product.quantity <= 0 ? '0' : amountOfItemsToBeBought}</span>
                             <button type="button"
                                 onClick={() => changeAmountOfItemsToBeBought('plus')} className="btn btn-light  border border-secondary">+</button>
                         </div>
