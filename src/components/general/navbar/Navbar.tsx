@@ -38,7 +38,7 @@ export const NavBar: FC = () => {
 
                   <li className="nav-item">
                      <Link href="/account/wish-list" className={`nav-link`}>
-                        <i className={`bi bi-heart icon fs-5  mx-md-0  ${currentPagePath === '/account/wish-list' ? 'text-dark' : 'text-secondary'}`}></i>
+                        <i className={`bi bi-heart icon fs-5 d-none d-sm-block mx-md-0 me-1  ${currentPagePath === '/account/wish-list' ? 'text-dark' : 'text-secondary'}`}></i>
                      </Link>
 
                   </li>
@@ -55,12 +55,19 @@ export const NavBar: FC = () => {
                         </div>
                      </Link>
                   </li>
-                  <li className="nav-item d-none d-md-block">
-                     <button className="btn btn-dark rounded-5 me-1 mx-md-1 disabled" type="button">Checkout</button>
+
+                  <li className='nav-item d-none d-md-block '>
+                     {
+                        bagItems && bagItems.length !== 0 ? <Link href='/checkout'>
+                           <button className={`btn btn-dark rounded-5 me-1 mx-md-1 `}>
+                              Checkout
+                           </button>
+                        </Link> : <button className={`btn btn-dark rounded-5 me-1 mx-md-1 disabled`}>
+                           Checkout
+                        </button>
+                     }
                   </li>
-
                </ul>
-
             </div>
          </div>
       </nav>

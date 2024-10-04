@@ -16,9 +16,14 @@ const ReviewsAccordion = (props: IReviewAccordion) => {
                 </h2>
                 <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div className={`accordion-body ${ProductDetailsCss.accordion_container} overflow-auto`}>
+                        No reviews yet
                         {
 
-                            props.reviews?.map((review) => { return <p key={review.review}>review 1</p> })
+                            props.reviews?.map((review) => {
+
+                                return <p key={review.review}>review 1</p>
+                            })
+
                         }
 
                     </div>
