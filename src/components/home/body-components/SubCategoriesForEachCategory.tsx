@@ -54,7 +54,7 @@ export const SubCategoriesForEachCategory: FC = () => {
                                                 })
                                             }
 
-                                            <div className="col-5 col-md-3 pe-1" onClick={() => router.push(`/categories/${categories.categoryName}`)}>
+                                            {/* <div className="col-5 col-md-3 pe-1" onClick={() => router.push(`/categories/${categories.categoryName}`)}>
 
                                                 <div className="card mt-1 rounded-0">
                                                     <Image src={`/add.png`} className="rounded-0 card-img" alt={''} width={300} height={200} style={{ objectFit: 'cover' }} />
@@ -68,7 +68,7 @@ export const SubCategoriesForEachCategory: FC = () => {
                                                 </div>
 
 
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                     </div>

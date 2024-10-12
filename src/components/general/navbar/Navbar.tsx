@@ -1,18 +1,18 @@
 import React, { FC } from 'react'
 import Link from 'next/link'
 import { useBag } from '@hooks/bag/useBag';
-import { useCurrentUser } from '@hooks/account/auth/useCurrentUser';
 import { useDynamicPath } from '@hooks/general/useDynamicPath';
 import { HomeIcon } from '@components/HomeIcon'
 import { Search } from './Search';
+import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+import { SignInButton, UserButton, SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
 export const NavBar: FC = () => {
 
    const { bagItems } = useBag()
    const { currentPagePath }: { currentPagePath: string } = useDynamicPath()
-   const currentUser = useCurrentUser()
-
-
+   const pathname = usePathname()
    return (<>
 
       <nav className="navbar navbar-expand-md bg-light p-0 fixed-top ">
@@ -23,17 +23,27 @@ export const NavBar: FC = () => {
             <div className="" id="navbarNav">
                <ul className="navbar-nav d-flex flex-row">
                   <li className="nav-item">
-
                      <Link href="£" className={`nav-link`}>
                         <i className={`bi bi-search icon d-block d-sm-none fs-5  mx-md-0  `}></i>
                      </Link>
-
                   </li>
 
                   <li className="nav-item">
-                     <Link href="/account" className={`nav-link`}>
-                        <i className={`bi bi-person icon fs-5   mx-md-0 ${currentPagePath === '/account' ? 'text-dark' : 'text-secondary'}`}></i>
-                     </Link>
+
+                     <SignedIn>
+                        <Link href="/account" className={`nav-link`}>
+                           <i className={`bi bi-person fs-5 `}></i>
+                        </Link>
+                     </SignedIn>
+
+                     <SignedOut>
+                        <SignInButton mode='modal' forceRedirectUrl={pathname} >
+                           <button className="nav-link border-0 bg-transparent">
+                              <i className='bi bi-person fs-5'></i>
+                           </button>
+                        </SignInButton>
+
+                     </SignedOut>
                   </li>
 
                   <li className="nav-item">

@@ -12,8 +12,8 @@ export type TAccountData = {
     state?: string,
     city?: string
 }
-export const AccountOverviewDetails = ({ _id }: { _id: string }) => {
-    const { data, error, isLoading } = useFetch<TAccountData>(`/api/user/${_id}`)
+export const AccountOverviewDetails = () => {
+    const { data, error, isLoading } = useFetch<TAccountData>(`/api/user/s`)
     if (isLoading) {
         return <p>loading...</p>
     }

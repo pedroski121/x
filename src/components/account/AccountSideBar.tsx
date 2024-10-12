@@ -1,7 +1,10 @@
 import { useDynamicPath } from "@hooks/general/useDynamicPath"
 import { useRouter } from "next/router"
 
+import { useClerk } from "@clerk/nextjs"
+
 export const AccountSideBar = () => {
+    const { signOut } = useClerk();
     const router = useRouter()
 
     const navigateTo = (page: string) => {
@@ -25,13 +28,15 @@ export const AccountSideBar = () => {
                     <button onClick={() => navigateTo('/account/address-book')} className={`btn btn-outline-dark rounded-0  ${currentPagePath === '/account/address-book' || currentPagePath === '/account/address-book/edit' ? 'active' : ''} border-end-0 border-bottom-0 fw-bold`}>
                         Address Book
                     </button>
-                    <button className="btn btn-outline-dark rounded-0 border-end-0 fw-bold">
+                    <button className={`btn btn-outline-dark ${currentPagePath === '/account/manage-account' ? 'active' : ''} rounded-0 border-end-0 fw-bold`} onClick={() => navigateTo('/account/manage-account')}>
                         Manage Account
                     </button>
 
                 </div>
                 <div className="d-grid">
-                    <button className="btn btn-danger rounded-0 fw-bold">Sign Out</button>
+                    <button className="btn btn-danger rounded-0 fw-bold" onClick={() => signOut()}>
+                        Sign out
+                    </button>
                 </div>
             </div>
         </div>
