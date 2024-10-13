@@ -5,14 +5,12 @@ import { axiosInstance } from "@utils/axiosInstance"
 import { useState} from "react"
 import { TWishList } from "@lib/types/account/wishlist"
 import { AxiosError } from "axios"
-import {useRouter} from 'next/router'
 export const useWishList = (userID:string) =>{
 
-const router = useRouter()
 const [changingWish, setChangingWish] = useState<string>('')
 
-const {data, isLoading, mutate, error} = useFetch<TWishList[]>(`/api/wishlist/${userID}`)
-
+const {data, isLoading, mutate, error} = useFetch<TWishList[]>(`/api/wishlist`)
+console.log(data)
 const generateProductURLs  = (data:TWishList[]):string[] => {
     const params = data.map((d:TWishList)=>{
         return d.productID
@@ -45,14 +43,11 @@ const addToWishList = async (productID:string, userID:string) =>{
     })
 }
 const changeWish = (productID:string, wishListData:TWishList[]) => {
-    if(!userID){
-        router.push('/account/sign-in')
-    }
-    else if(wishListData.map(wish => wish.productID).includes(productID)){
+   
+    if(wishListData.map(wish => wish.productID).includes(productID)){
       deleteWishList(productID)
       
     } else {
-        console.log(productID, userID)
       addToWishList(productID,userID)
     }
   }

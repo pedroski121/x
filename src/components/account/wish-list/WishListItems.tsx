@@ -1,13 +1,15 @@
+'use client'
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { IProductsData } from "@lib/types/product"
 
 import { useWishList } from "@hooks/wishlist/useWishList"
-
-
-export const WishListItems = ({ currentUserId }: { currentUserId: string }) => {
+import { useAuth } from "@clerk/nextjs"
+export const WishListItems = () => {
     const router = useRouter()
-    const { productData, changingWish, deleteWishList, isLoading, loading } = useWishList(currentUserId)
+    const { userId } = useAuth()
+    const { productData, changingWish, deleteWishList, isLoading, loading } = useWishList(userId || '')
+
 
 
     if (loading || isLoading) {
@@ -21,7 +23,7 @@ export const WishListItems = ({ currentUserId }: { currentUserId: string }) => {
             {productData && productData.map((product: IProductsData) => {
 
                 const available = product.quantity > 0
-                return <li key={product._id} style={{ whiteSpace: "nowrap", height: "150px" }} className={`list-group-item overflow-auto border border-secondary rounded-1 p-0 mb-3 d-flex flex-row justify-content-between `}>
+                return <li key={`product._id${Math.random()}`} style={{ whiteSpace: "nowrap", height: "150px" }} className={`list-group-item overflow-auto border border-secondary rounded-1 p-0 mb-3 d-flex flex-row justify-content-between `}>
                     <div className={` d-flex flex-row `}>
                         <div style={{ height: "100%", width: "140px", position: "relative" }}>
                             <Image src={product.imgURLs[0]} style={{ objectFit: "cover" }} alt="An item in the bag image" fill />

@@ -5,17 +5,19 @@ import { GrowingSpinner } from "@components/general/spinners";
 import { BreadCrumbNav } from "@general-components/BreadCrumbNav";
 import { Footer } from "@general-components/footer";
 import Custom404 from "src/pages/404";
-import { useContext } from 'react';
-import { CurrentUserContext } from '@contexts/CurrentUserContext';
+// import { useContext } from 'react';
+// import { CurrentUserContext } from '@contexts/CurrentUserContext';
 import { useWishList } from '@hooks/wishlist/useWishList';
 import { useFetch } from '@hooks/general/useFetch';
 import { useBag } from '@hooks/bag/useBag';
-
+import { useUser } from '@clerk/nextjs';
 
 const SubCategoryProducts = () => {
   const { pages } = useDynamicPath();
-  const { userState } = useContext(CurrentUserContext)
-  const { data: wishListData, changeWish, changingWish } = useWishList(userState._id)
+  // const { userState } = useContext(CurrentUserContext)
+  const { user } = useUser();
+
+  const { data: wishListData, changeWish, changingWish } = useWishList(user?.id || '')
 
   const { data, error, isLoading } = useFetch<{ subCategory: string, products: IProductsData[] }>(`/api/product/${pages[0]}/${pages[1]}`);
   const { bagItems } = useBag()

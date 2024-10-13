@@ -28,9 +28,6 @@ export const fetchUserSessionData = async (context:GetServerSidePropsContext):Pr
         return [{ message: 'User not authenticated', success: false }] ;
     }
 }
-
-
-
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext):Promise<GetServerSidePropsResult<{session:TUserSession}>> => {
     const userSession = await fetchUserSessionData(context);
     if(isCurrentUser(userSession)) {
@@ -43,4 +40,7 @@ export const getServerSideProps: GetServerSideProps = async (context: GetServerS
         }
     }
 }
+
+
+
 

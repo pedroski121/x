@@ -5,10 +5,13 @@ import Image from "next/legacy/image";
 import { BagModal } from "@components/general/bag-modal";
 import { TSubCategoryCard } from "@lib/types/category/ISubCategory";
 import { BorderSpinner } from "@components/general/spinners";
-
+import { useAuth } from "@clerk/nextjs";
+import { SignInButton } from '@clerk/nextjs';
+import { usePathname } from "next/navigation";
 const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wishListData, changeWish, changingWish, bagItems }) => {
   const [addingItemToBag, setAddingItemToBag] = useState<string>('')
-
+  const { isSignedIn } = useAuth()
+  const pathname = usePathname()
 
   const itemInBag = bagItems?.filter(item => item.productID === productsData._id)
 
@@ -40,7 +43,11 @@ const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wish
           }
 
           {
-            changingWish !== productsData._id
+            !isSignedIn ? <SignInButton mode='modal' forceRedirectUrl={pathname}>
+              <button className="nav-link border-0 bg-transparent">
+                <i className='bi bi-heart fs-5'></i>
+              </button>
+            </SignInButton> : changingWish !== productsData._id
               ? <span onClick={() => changeWish(productsData._id, wishListData)}
                 className={` bi ${wishListData.map(wish => wish.productID).includes(productsData._id) ? ' bi-heart-fill text-dark' : 'bi-heart'}  ${SubCategoryCss.pointer} h4`}></span>
               : <BorderSpinner size={false} />

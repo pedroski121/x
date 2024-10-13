@@ -4,7 +4,6 @@ import { useBag } from '@hooks/bag/useBag';
 import { useDynamicPath } from '@hooks/general/useDynamicPath';
 import { HomeIcon } from '@components/HomeIcon'
 import { Search } from './Search';
-import { useRouter } from 'next/router';
 import { usePathname } from 'next/navigation';
 import { SignInButton, UserButton, SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
