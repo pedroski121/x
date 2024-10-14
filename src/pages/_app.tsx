@@ -6,7 +6,6 @@ import { CurrentUserProvider } from '@contexts/CurrentUserContext';
 import { NavBar } from '@components/general/navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import Head from 'next/head';
-// import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function App({ Component, pageProps: { ...pageProps } }: AppProps) {
   useEffect(() => {

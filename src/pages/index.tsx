@@ -5,8 +5,6 @@ import { NextPage } from "next/types"
 import { useFetch } from "@hooks/general/useFetch"
 
 const Home: NextPage = () => {
-  const { data } = useFetch('/protected')
-  console.log(data)
   return (
     <>
       <div className="overflow-hidden">
@@ -18,9 +16,6 @@ const Home: NextPage = () => {
     </>
   )
 }
-
-
-
 
 
 export default Home
