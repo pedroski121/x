@@ -3,17 +3,19 @@ import { FC, useState } from "react"
 import { axiosInstance } from "@utils/axiosInstance"
 import { mutate } from "swr"
 import { AxiosResponse } from "axios"
-
+import { useAuth } from "@clerk/nextjs"
 
 export const useBagModal = ({ itemInBag, addItemToBag, product }:IModalDetails) => {
 
+
     const [size, setSize] = useState<string>(product && product.sizes && product.sizes[0] || '')
     const [amountOfItemsToBeBought, setAmountOfItemsToBeBought] = useState<number>(1)
-
+    const {getToken} = useAuth()
     const addToBag = async (): Promise<void> => {
+        const token = await getToken()
         addItemToBag && addItemToBag(product._id)
-        const newItemInBag = await axiosInstance.post('/api/bag/add', { productID: product._id, size, quantity: amountOfItemsToBeBought },
-            { withCredentials: true })
+        const newItemInBag = await axiosInstance.post('/api/bag/add', {productID: product._id, size, quantity: amountOfItemsToBeBought, },
+            {headers:{Authorization: `Bearer ${token}`},  withCredentials: true })
             .then((response: AxiosResponse<TBag>) => {
                 return response.data
             })
@@ -51,8 +53,10 @@ export const useBagModal = ({ itemInBag, addItemToBag, product }:IModalDetails) 
 
     const removeFromBag = async (): Promise<void> => {
         addItemToBag && addItemToBag(product._id)
+        const token = await getToken();
         itemInBag && await axiosInstance.delete('/api/bag/delete', {
             withCredentials: true,
+            headers:{Authorization:`Bearer ${token}`},
             data: { _id: itemInBag[0]._id }
         })
         addItemToBag && await mutate('/api/bag/all').then(() => addItemToBag(''))

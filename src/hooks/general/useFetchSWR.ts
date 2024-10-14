@@ -13,9 +13,8 @@ interface SWRResponse<T> {
 export const useFetchSWR = <T = any>(url: string): SWRResponse<T> => {
   const { getToken } = useAuth();
 
-  // Define the fetcher that includes fetching the token
   const fetchData = async (url: string): Promise<T> => {
-    const token = await getToken();  // Retrieve the token when needed
+    const token = await getToken();  
     const response: AxiosResponse<T> = await axiosInstance.get(url, {
       headers: { Authorization: `Bearer ${token}` },
     });

@@ -1,16 +1,15 @@
 import { useState} from "react"
-import { useFetch } from "@hooks/general/useFetch"
 import { useFetchMultipleParams } from "@hooks/general/useFetchMultipleParams"
 import { useEffect } from "react"
 import { IProductsData } from "@lib/types/product"
 import { TBag , TUseBag} from "@lib/types/bag"
-
+import { useFetchSWR } from "@hooks/general/useFetchSWR"
 
 
 
 export const useBag = ():TUseBag =>{
   const [ids, setIDs] = useState<string[]>([])
-    const { data: bagItems, isLoading: fetchingBagItems, mutate } = useFetch<TBag[]>('/api/bag/all')
+    const { data: bagItems, isLoading: fetchingBagItems, mutate } = useFetchSWR<TBag[]>('/api/bag/all')
     const getProductIDs = (bagItems: TBag[]): string[] => {
         const productIDs: string[] = []
         if (bagItems && bagItems.length !== 0) {

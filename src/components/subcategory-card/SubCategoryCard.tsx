@@ -35,7 +35,11 @@ const SubCategoryCard: FC<TSubCategoryCard> = ({ productsData, activePaths, wish
 
         </div>
         <div className="card-footer d-flex justify-content-between p-0 bg-white border-0 ms-2 me-2">
-          {
+          {!isSignedIn ? <SignInButton mode='modal' forceRedirectUrl={pathname}>
+            <button className="nav-link border-0 bg-transparent">
+              <i className={`bi bi-bag-plus ${SubCategoryCss.pointer} h4`}></i>
+            </button>
+          </SignInButton> :
             addingItemToBag !== productsData._id
               ? <span data-bs-toggle="modal" data-bs-target={`#bagModal${productsData._id} `}
                 className={`bi ${itemInBag && itemInBag.length !== 0 ? 'bi-bag-check-fill text-dark' : 'bi-bag-plus'} ${SubCategoryCss.pointer} h4`}></span>
