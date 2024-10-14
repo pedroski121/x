@@ -6,13 +6,14 @@ import { useState} from "react"
 import { TWishList } from "@lib/types/account/wishlist"
 import { AxiosError } from "axios"
 import { useAuth } from "@clerk/nextjs"
+import { useFetchSWR } from "@hooks/general/useFetchSWR"
 export const useWishList = (userID:string) =>{
     const [changingWish, setChangingWish] = useState<string>('')
 
 const {getToken} = useAuth()
 
 
-const {data, isLoading, mutate, error} = useFetch<TWishList[]>(`/api/wishlist`)
+const {data, isLoading, mutate, error} = useFetchSWR<TWishList[]>(`/api/wishlist`)
 const generateProductURLs  = (data:TWishList[]):string[] => {
     const params = data.map((d:TWishList)=>{
         return d.productID
