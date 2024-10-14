@@ -7,9 +7,10 @@ import { TWishList } from "@lib/types/account/wishlist"
 import { AxiosError } from "axios"
 import { useAuth } from "@clerk/nextjs"
 export const useWishList = (userID:string) =>{
+    const [changingWish, setChangingWish] = useState<string>('')
+
 const {getToken} = useAuth()
 
-const [changingWish, setChangingWish] = useState<string>('')
 
 const {data, isLoading, mutate, error} = useFetch<TWishList[]>(`/api/wishlist`)
 const generateProductURLs  = (data:TWishList[]):string[] => {
@@ -23,7 +24,7 @@ const {isLoading:loading, data:productData} =  useFetchMultipleParams<IProductsD
 const deleteWishList = async (productID:string) =>{
     setChangingWish(productID)
     const data = {productID}
-    await axiosInstance.delete('/api/wishlist/delete',{headers:{Authorization:`Bearer ${getToken()}`}, data})
+    await axiosInstance.delete('/api/wishlist/delete',{headers:{Authorization:`Bearer ${await getToken()}`},withCredentials:true, data})
     .then(()=>{
         mutate().then(()=>{
             setChangingWish('')
@@ -34,7 +35,7 @@ const deleteWishList = async (productID:string) =>{
 }
 const addToWishList = async (productID:string, userID:string) =>{
     setChangingWish(productID)
-    await axiosInstance.post('/api/wishlist/add',{productID, userID}, {headers:{Authorization:`Bearer ${getToken()}`}})
+    await axiosInstance.post('/api/wishlist/add',{productID, userID}, {headers:{Authorization:`Bearer ${await getToken()}`}, withCredentials:true})
     .then(()=>{
         mutate().then(()=>{
             setChangingWish('')
