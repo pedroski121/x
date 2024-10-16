@@ -13,7 +13,8 @@ export type TAccountData = {
     city?: string
 }
 export const AccountOverviewDetails = () => {
-    const { data, error, isLoading } = useFetch<TAccountData>(`/api/user/s`)
+    const { data, error, isLoading } = useFetch<TAccountData>(`/api/user`)
+
     if (isLoading) {
         return <p>loading...</p>
     }

@@ -34,7 +34,7 @@ export const AccountSideBar = () => {
 
                 </div>
                 <div className="d-grid">
-                    <button className="btn btn-danger rounded-0 fw-bold" onClick={() => signOut()}>
+                    <button className="btn btn-danger rounded-0 fw-bold" onClick={() => signOut().then(() => router.reload())}>
                         Sign out
                     </button>
                 </div>

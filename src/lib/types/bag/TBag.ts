@@ -22,7 +22,14 @@ export type TUseTable = {
     deleting:string,
      getItem:(product:IProductsData)=>TBag, 
     removeItem:(product:IProductsData)=>void,
-     productSum:number
+     productSum:number,
+    // //  itemQuantityPrice:{
+    // //     itemID: string,
+    // //     quantity: number,
+    // //     totalPrice: number
+    // // }[]
+    // totalProductPrice:number
+
 }
 
 export type TUseBag = {

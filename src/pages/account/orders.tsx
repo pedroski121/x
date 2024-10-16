@@ -28,6 +28,4 @@ const Orders: NextPage<TAccountPageProps> = () => {
     )
 }
 
-export { getServerSideProps }
-
 export default Orders

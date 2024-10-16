@@ -1,12 +1,10 @@
 import { AccountBody, WishListItems } from "@components/account"
 import { Footer } from "@components/general/footer"
 import { TUserSession } from "@lib/types/current-user"
-// import { getServerSideProps } from "@utils/user-session"
 import { NextPage } from "next/types"
 import { SignedOut, SignedIn } from "@clerk/nextjs"
 
-const WishList: NextPage<{ session: TUserSession }> = (session) => {
-    // const { currentUser } = session.session[0]
+const WishList: NextPage<{ session: TUserSession }> = () => {
     return <>
         <SignedOut>
             <div className="container vh-100">
@@ -27,5 +25,4 @@ const WishList: NextPage<{ session: TUserSession }> = (session) => {
     </>
 }
 
-// export { getServerSideProps }
 export default WishList
