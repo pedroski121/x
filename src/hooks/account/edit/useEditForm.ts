@@ -5,11 +5,22 @@ import { axiosInstance } from "@utils/axiosInstance"
 import { AxiosError } from "axios"
 import { TFormError } from "@lib/types/response"
 import { useAuth } from "@clerk/nextjs"
+import { useFetchSWR } from "@hooks/general/useFetchSWR"
+import { useUser } from "@clerk/nextjs"
+
+interface IAddressBook {
+  phoneNumber?:number,
+  additionalPhoneNumber?:number, 
+  address1?:string,
+   address2?:string, 
+   state?:string, 
+   city?:string};
 
 
 export const useEditForm = () =>{
-    const {userState} = useContext(CurrentUserContext)
-
+    // const {userState} = useContext(CurrentUserContext)
+    const { data: userState } = useFetchSWR<IAddressBook>('/api/user')
+    // const { user } = useUser()
     const {getToken} = useAuth()
 
     const [phoneNumber, setPhoneNumber] = useState<number>(0)
@@ -28,12 +39,16 @@ export const useEditForm = () =>{
     const [notSaved, setNotSaved] = useState<boolean>(false)
     
     const onEditFormRender = () => {
-        const {phoneNumber, additionalPhoneNumber, state, city,address1} = userState
-        phoneNumber && setPhoneNumber(phoneNumber)
-        additionalPhoneNumber && setAdditionalPhoneNumber(additionalPhoneNumber)
-        state && setState(state)
-        city && setCity(city)
-        address1 && setAddress1(address1)
+   
+      if(userState){
+          // const {phoneNumber, additionalPhoneNumber, state, city,address1} = userState
+          userState.phoneNumber && setPhoneNumber(userState.phoneNumber)
+          userState.additionalPhoneNumber && setAdditionalPhoneNumber(userState.additionalPhoneNumber)
+          userState.state && setState(state)
+          userState.city && setCity(userState.city)
+          userState.address1 && setAddress1(userState.address1)
+      }
+      
     }
 
     const editFormSubmit = async (e:FormEvent<HTMLFormElement>) =>{

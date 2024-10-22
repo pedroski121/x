@@ -1,33 +1,37 @@
 import Link from "next/link"
-import { useContext } from "react"
-import { CurrentUserContext } from "@contexts/CurrentUserContext"
-
+import { useFetchSWR } from "@hooks/general/useFetchSWR"
+import { useUser } from "@clerk/nextjs"
 export const Address = () => {
-  const { userState } = useContext(CurrentUserContext)
+  const { data: userState } = useFetchSWR('/api/user')
+  const { user } = useUser()
   return (<>
     <div className="d-flex justify-content-center">
       <div className="card rounded-0 border-0 shadow-lg mt-3" style={{ height: "220px", width: "90%" }}>
 
         <div className="card-body">
-          <h5 className="card-title">{userState.firstName && userState.lastName ? <>{userState.firstName} {userState.lastName}</> : <></>}</h5>
+          <h5 className="card-title">{user?.fullName ? <>{user?.fullName}</> : <></>}</h5>
         </div>
         <ul className="list-group">
           {
-            userState.address1
+            userState && userState.address1
               ? <li className="list-group-item list-group-item-dark">{userState.address1}</li>
-              : <li className="list-group-item list-group-item-dark">Address Empty</li>
+              : <li className="list-group-item list-group-item-dark">Address empty</li>
 
           }
 
           {
-            userState.state && userState.city
+            userState && userState.state && userState.city
               ? <li className="list-group-item">{userState.city}, {userState.state}</li>
               : <li className="list-group-item">State or city empty</li>
           }
-          <li className="list-group-item list-group-item-dark">{
-            userState.email
-          }</li>
-          {userState.phoneNumber
+          {user && user.primaryEmailAddress ?
+            <li className="list-group-item list-group-item-dark">{
+              `${user?.primaryEmailAddress}`
+            }</li>
+            : <li className="list-group-item list-group-item-dark">Email Address empty</li>}
+
+
+          {userState && userState.phoneNumber
             ? <li className="list-group-item">0{userState.phoneNumber}</li>
             : <li className="list-group-item"> Phone Number empty</li>
           }
