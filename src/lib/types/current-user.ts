@@ -25,3 +25,11 @@ export type IUser = {
     state?:string,
     city?:string
 }
+export interface IAddressBook {
+    phoneNumber?:number,
+    additionalPhoneNumber?:number, 
+    address1?:string,
+     address2?:string, 
+     state?:string, 
+     city?:string
+    };

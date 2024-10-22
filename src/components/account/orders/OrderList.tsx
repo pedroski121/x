@@ -6,9 +6,8 @@ import { IProductsData } from "@lib/types/product"
 
 
 export const OrderList = () => {
-    const { data: orders, isLoading: orderListLoading, error } = useFetch<IOrder[]>('/api/order')
+    const { data: orders, isLoading: orderListLoading } = useFetch<IOrder[]>('/api/order')
     const productsIDs: string[] = []
-
     orders && orders.map((order) => {
         const products = order.productDetails
         products.map((product) => {
@@ -25,6 +24,7 @@ export const OrderList = () => {
             {
                 productsListLoading || orderListLoading ? <></> :
                     orders && orders.length !== 0 ? orders.map((order) => {
+
                         const productDetails = order.productDetails
                         return productDetails.map((productDetail) => {
 
@@ -38,9 +38,10 @@ export const OrderList = () => {
 
 
                                             <div className=" text-center text-md-start px-3">
-                                                <p className={`fw-bold `}>{product.name}<br />
+                                                <p className={`fw-bold `}>{productDetail.quantity} {product.name}<br />
                                                     <span className="text-secondary" style={{ fontSize: '13px', fontStyle: 'italic' }}>Order - {order.orderID}</span>
                                                 </p>
+                                                <span>Price - ₦{order.totalAmountPaid}</span>
 
                                                 <p>
 

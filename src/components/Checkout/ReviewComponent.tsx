@@ -11,6 +11,7 @@ export const ReviewComponent = () => {
         checkImportantDetails,
         productSum,
         getItem,
+        userAddress,
         currentUser,
         pickUpStation,
         isLoading,
@@ -103,10 +104,10 @@ export const ReviewComponent = () => {
                         <li className={`list-group-item border ${missingDetails ? 'border-danger' : 'border-secondary'} border-1 p-0 ps-3 pt-1 mt-2 `}>
                             <span className="fw-bold text-secondary">Contact Information</span>
                             <p className=" p-0 m-0 px-3 mt-1"><i className="bi bi-telephone-fill me-1"></i><span>
-                                +234{currentUser?.phoneNumber}
+                                +234{userAddress?.phoneNumber}
                             </span></p>
                             <p className="  m-0 p-0 px-3 mt-1"> <i className="bi bi-envelope-fill me-2"></i><span >
-                                {currentUser && currentUser.email}
+                                {currentUser?.primaryEmailAddress ? `${currentUser?.primaryEmailAddress}` : ''}
                             </span></p>
                             <button onClick={() => router.push('/account/address-book/edit')} className="btn btn-dark mb-3 mt-1 rounded-0">Change</button>
 

@@ -1,28 +1,15 @@
 import { useState, useEffect, useContext } from "react"
 import { FormEvent } from "react"
-import { CurrentUserContext } from "@contexts/CurrentUserContext"
 import { axiosInstance } from "@utils/axiosInstance"
 import { AxiosError } from "axios"
 import { TFormError } from "@lib/types/response"
 import { useAuth } from "@clerk/nextjs"
 import { useFetchSWR } from "@hooks/general/useFetchSWR"
-import { useUser } from "@clerk/nextjs"
-
-interface IAddressBook {
-  phoneNumber?:number,
-  additionalPhoneNumber?:number, 
-  address1?:string,
-   address2?:string, 
-   state?:string, 
-   city?:string};
-
-
+import { IAddressBook } from "@lib/types/current-user"
 export const useEditForm = () =>{
-    // const {userState} = useContext(CurrentUserContext)
     const { data: userState } = useFetchSWR<IAddressBook>('/api/user')
-    // const { user } = useUser()
     const {getToken} = useAuth()
-
+    
     const [phoneNumber, setPhoneNumber] = useState<number>(0)
     const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState<number | undefined>(0)
     const [address1, setAddress1] = useState<string>('')

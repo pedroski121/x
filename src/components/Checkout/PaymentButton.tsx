@@ -1,18 +1,17 @@
 import { PaystackButton } from "react-paystack"
 import { FC } from "react"
-import { IUser } from "@lib/types/current-user"
-
+import { UserResource } from "@clerk/types";
 interface IPaymentButton {
     checkImportantDetails: () => boolean;
     productSum: number;
-    currentUser?: IUser;
+    currentUser?: UserResource | null;
     onPaymentSuccess: (reference: any) => void;
     onPaymentClose: (reference: any) => void;
 }
 
 const PaymentButton: FC<IPaymentButton> = ({ checkImportantDetails, productSum, currentUser, onPaymentSuccess, onPaymentClose }) => {
     const componentProps = {
-        email: currentUser?.email || '',
+        email: `${currentUser?.primaryEmailAddress}` || '',
         amount: productSum * 100,
         publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || '',
         text: "Checkout",
