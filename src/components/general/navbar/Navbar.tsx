@@ -6,7 +6,6 @@ import { HomeIcon } from '@components/HomeIcon'
 import { Search } from './Search';
 import { usePathname } from 'next/navigation';
 import { SignInButton, UserButton, SignOutButton, SignedIn, SignedOut } from '@clerk/nextjs';
-
 export const NavBar: FC = () => {
 
    const { bagItems } = useBag()
@@ -52,6 +51,25 @@ export const NavBar: FC = () => {
 
                   </li>
 
+                  <ul className="dropdown-menu dropdown-menu-dark text-center p-0" aria-labelledby="navbarDarkDropdownMenuLink">
+                     <Link href="/account" className={`dropdown-item fw-bold rounded-1 ${currentPagePath === '/account' ? 'bg-black' : ''}`}>
+                        My Account
+                     </Link>
+
+                     <Link href="/account/orders" className={`dropdown-item fw-bold  ${currentPagePath === '/account/orders' ? 'bg-black' : ''}`}>
+                        Orders
+                     </Link>
+
+                     <Link href="/account/wish-list" className={`dropdown-item fw-bold  ${currentPagePath === '/account/wish-list' ? 'bg-black' : ''}`}>
+                        Wishlist
+                     </Link>
+                     <li><hr className="dropdown-divider" /></li>
+
+                     <Link href="#" className={`dropdown-item fw-bolder rounded-1 pb-2`}>
+                        Sign Out
+                     </Link>
+
+                  </ul>
                   <li className="nav-item">
                      <Link className="nav-link" href="/bag">
                         <div className="position-relative me-2 d-inline-block">

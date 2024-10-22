@@ -4,10 +4,13 @@ import { CurrentUserContext } from "@contexts/CurrentUserContext"
 import { axiosInstance } from "@utils/axiosInstance"
 import { AxiosError } from "axios"
 import { TFormError } from "@lib/types/response"
+import { useAuth } from "@clerk/nextjs"
 
 
 export const useEditForm = () =>{
     const {userState} = useContext(CurrentUserContext)
+
+    const {getToken} = useAuth()
 
     const [phoneNumber, setPhoneNumber] = useState<number>(0)
     const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState<number | undefined>(0)
@@ -42,11 +45,14 @@ export const useEditForm = () =>{
         if(!additionalPhoneNumber){
           delete userInfoObject.additionalPhoneNumber
         }
-        await axiosInstance.patch(`/api/user/${userState._id}/update-details`, userInfoObject, {withCredentials:true})
-        .then(()=>{
+        const token = await getToken()
+        await axiosInstance.patch(`/api/user/update-details`, userInfoObject, {withCredentials:true,headers:{Authorization:`Bearer ${token}`} })
+        .then((data)=>{
+          console.log(data)
           setSaving(false)
         })
         .catch((err:AxiosError<TFormError[]>)=>{
+          console.log(err)
           setNotSaved(true)
           setSaving(false)
           const errors = err.response?.data
