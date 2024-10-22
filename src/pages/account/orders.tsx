@@ -3,7 +3,6 @@ import { NextPage } from "next/types"
 import { Footer } from "@components/general/footer"
 import { AccountBody } from "@components/account"
 import { OrderList } from "@components/account"
-import { getServerSideProps } from "@utils/user-session"
 import { TAccountPageProps } from "@lib/types/account"
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 

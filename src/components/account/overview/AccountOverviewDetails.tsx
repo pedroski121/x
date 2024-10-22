@@ -1,20 +1,12 @@
 import Link from "next/link"
-import { useFetch } from "@hooks/general/useFetch"
-export type TAccountData = {
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    phoneNumber?: number,
-    additionalPhoneNumber?: number,
-    address1?: string,
-    address2?: string,
-    state?: string,
-    city?: string
-}
-export const AccountOverviewDetails = () => {
-    const { data, error, isLoading } = useFetch<TAccountData>(`/api/user`)
 
+import { useFetchSWR } from "@hooks/general/useFetchSWR"
+import { IAddressBook } from "@lib/types/current-user"
+import { useUser } from "@clerk/nextjs"
+
+export const AccountOverviewDetails = () => {
+    const { data, error, isLoading } = useFetchSWR<IAddressBook>(`/api/user`)
+    const { user } = useUser();
     if (isLoading) {
         return <p>loading...</p>
     }
@@ -39,9 +31,9 @@ export const AccountOverviewDetails = () => {
                                     ACCOUNT DETAILS
                                 </div>
                                 <div className="card-body border border-dark border-top-0">
-                                    <h5 className="card-title">{`${data.firstName} ${data.lastName}`}</h5>
+                                    <h5 className="card-title">{`${user?.fullName}`}</h5>
                                     <p className="card-text">
-                                        <span className="bi bi-envelope-fill"></span> {data.email}<br></br>
+                                        <span className="bi bi-envelope-fill"></span> {`${user?.primaryEmailAddress}`}<br></br>
                                         {data.phoneNumber ? <> <span className="bi bi-telephone-fill"></span> <span></span>0{data.phoneNumber}</> : <></>}
                                     </p>
                                 </div>
