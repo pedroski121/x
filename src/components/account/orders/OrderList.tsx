@@ -17,8 +17,14 @@ export const OrderList = () => {
             }
         })
     })
-    const { data: products, isLoading: productsListLoading } = useFetchMultipleParams<IProductsData>('/api/product', productsIDs)
 
+    const { data: products, isLoading: productsListLoading } = useFetchMultipleParams<IProductsData>('/api/product', productsIDs)
+    if (orders?.length === 0 || !orders) {
+        return <p>No orders yet</p>
+    }
+    if (orderListLoading || productsListLoading) {
+        return <p>Loading...</p>
+    }
     return (<>
         <ul className="list-group">
             {
