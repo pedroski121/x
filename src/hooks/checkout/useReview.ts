@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { useBag } from "@hooks/bag/useBag"
-import { useCurrentUser } from "@hooks/account/auth/useCurrentUser"
 import { useFetch } from "@hooks/general/useFetch"
 import { useFetchSWR } from "@hooks/general/useFetchSWR"
 import { bagDefault } from "@lib/types/bag"
@@ -81,7 +80,7 @@ const useReview = () =>{
         }, {withCredentials:true, headers:{Authorization: `Bearer ${token}`}})
         .then(async (res: AxiosResponse<{ message: string; success: boolean }>) => {
             if (res.data.success === true) {
-                await axiosInstance.delete('/api/bag/empty-bag')
+                await axiosInstance.delete('/api/bag/empty-bag', {withCredentials:true, headers:{Authorization:`Bearer ${token}`}})
                 .then(() => router.push('/account/orders')
                 .then(() => {
                     setOrderPlaced(false)
