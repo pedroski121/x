@@ -1,12 +1,12 @@
 import Image from "next/image"
-import { useFetch } from "@hooks/general/useFetch"
 import { IOrder } from "@lib/types/checkout"
 import { useFetchMultipleParams } from "@hooks/general/useFetchMultipleParams"
 import { IProductsData } from "@lib/types/product"
+import { useFetchSWR } from "@hooks/general/useFetchSWR"
 
 
 export const OrderList = () => {
-    const { data: orders, isLoading: orderListLoading } = useFetch<IOrder[]>('/api/order')
+    const { data: orders, isLoading: orderListLoading } = useFetchSWR<IOrder[]>('/api/order')
     const productsIDs: string[] = []
     orders && orders.map((order) => {
         const products = order.productDetails
